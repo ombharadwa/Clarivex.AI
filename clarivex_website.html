@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Clarivex.AI — Clarity Through Intelligence</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --navy:   #0d0b24;
+    --navy2:  #1a1440;
+    --purple: #7F77DD;
+    --purpleL:#AFA9EC;
+    --coral:  #D85A30;
+    --coralL: #F0997B;
+    --white:  #ffffff;
+    --cream:  #f8f7ff;
+    --gray:   #888780;
+    --dgray:  #26215C;
+    --border: #E0DEFA;
+    --font-display: 'Syne', sans-serif;
+    --font-body:    'DM Sans', sans-serif;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--font-body); background: var(--cream); color: var(--navy2); overflow-x: hidden; }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 5%; height: 72px;
+    background: rgba(13,11,36,0.92);
+    backdrop-filter: blur(16px);
+    border-bottom: 0.5px solid rgba(127,119,221,0.18);
+    transition: all 0.3s;
+  }
+  .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+  .nav-logo-icon {
+    width: 38px; height: 38px; border-radius: 9px;
+    background: rgba(127,119,221,0.2);
+    border: 1px solid rgba(175,169,236,0.4);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .nav-logo-icon svg { width: 20px; height: 20px; }
+  .nav-wordmark { font-family: var(--font-display); font-size: 17px; font-weight: 800; color: var(--white); letter-spacing: 1.5px; }
+  .nav-wordmark span { color: var(--purple); }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    font-family: var(--font-body); font-size: 14px; font-weight: 400;
+    color: rgba(255,255,255,0.65); text-decoration: none;
+    letter-spacing: 0.3px; transition: color 0.2s;
+  }
+  .nav-links a:hover, .nav-links a.active { color: var(--white); }
+  .nav-cta {
+    padding: 9px 22px; border-radius: 100px;
+    background: var(--purple); color: var(--white);
+    font-family: var(--font-body); font-size: 13px; font-weight: 500;
+    text-decoration: none; transition: background 0.2s, transform 0.15s;
+    border: none; cursor: pointer;
+  }
+  .nav-cta:hover { background: var(--purpleL); transform: translateY(-1px); }
+
+  /* ── PAGES ── */
+  .page { display: none; min-height: 100vh; padding-top: 72px; }
+  .page.active { display: block; }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: calc(100vh - 72px);
+    background: var(--navy);
+    position: relative; overflow: hidden;
+    display: flex; align-items: center;
+  }
+  .hero-bg {
+    position: absolute; inset: 0; pointer-events: none;
+  }
+  .hero-bg-circle1 { position:absolute; right:-10%; top:-20%; width:60vw; height:60vw; border-radius:50%; background:radial-gradient(circle, rgba(127,119,221,0.12) 0%, transparent 70%); }
+  .hero-bg-circle2 { position:absolute; left:-5%; bottom:-10%; width:40vw; height:40vw; border-radius:50%; background:radial-gradient(circle, rgba(216,90,48,0.08) 0%, transparent 70%); }
+  .hero-grid {
+    position: absolute; inset: 0;
+    background-image: linear-gradient(rgba(127,119,221,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(127,119,221,0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+  .hero-content { position: relative; z-index: 2; padding: 0 8%; max-width: 900px; }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 6px 16px; border-radius: 100px;
+    background: rgba(127,119,221,0.12); border: 0.5px solid rgba(127,119,221,0.3);
+    margin-bottom: 2rem; font-size: 12px; color: var(--purpleL); letter-spacing: 2px;
+    font-family: var(--font-body); font-weight: 400;
+  }
+  .hero-badge-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--purple); animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+  .hero-title {
+    font-family: var(--font-display); font-size: clamp(42px, 6vw, 80px);
+    font-weight: 800; line-height: 1.08; color: var(--white);
+    margin-bottom: 1.5rem; letter-spacing: -1px;
+  }
+  .hero-title .accent { color: var(--coral); }
+  .hero-title .purple { color: var(--purple); }
+  .hero-sub {
+    font-size: 18px; font-weight: 300; color: rgba(255,255,255,0.55);
+    line-height: 1.7; max-width: 560px; margin-bottom: 2.5rem;
+  }
+  .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary {
+    padding: 14px 32px; border-radius: 100px;
+    background: var(--purple); color: var(--white);
+    font-family: var(--font-body); font-size: 15px; font-weight: 500;
+    text-decoration: none; transition: all 0.2s; cursor: pointer; border: none;
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .btn-primary:hover { background: #9490e8; transform: translateY(-2px); }
+  .btn-outline {
+    padding: 14px 32px; border-radius: 100px;
+    background: transparent; color: var(--white);
+    border: 1px solid rgba(255,255,255,0.2);
+    font-family: var(--font-body); font-size: 15px; font-weight: 400;
+    text-decoration: none; transition: all 0.2s; cursor: pointer;
+  }
+  .btn-outline:hover { border-color: var(--purple); color: var(--purpleL); }
+  .hero-stats {
+    display: flex; gap: 3rem; margin-top: 4rem;
+    padding-top: 2.5rem; border-top: 0.5px solid rgba(255,255,255,0.08);
+  }
+  .hero-stat-num { font-family: var(--font-display); font-size: 32px; font-weight: 800; color: var(--white); }
+  .hero-stat-label { font-size: 12px; color: var(--gray); letter-spacing: 1.5px; margin-top: 3px; }
+
+  /* ── SECTIONS ── */
+  section { padding: 96px 8%; }
+  .section-label {
+    font-size: 11px; font-weight: 500; letter-spacing: 3px;
+    color: var(--purple); text-transform: uppercase; margin-bottom: 1rem;
+  }
+  .section-title {
+    font-family: var(--font-display); font-size: clamp(28px, 4vw, 46px);
+    font-weight: 800; color: var(--navy2); line-height: 1.15; margin-bottom: 1.2rem;
+    letter-spacing: -0.5px;
+  }
+  .section-title .accent { color: var(--coral); }
+  .section-sub { font-size: 17px; font-weight: 300; color: var(--gray); line-height: 1.7; max-width: 560px; }
+
+  /* ── SERVICES ── */
+  .services-dark { background: var(--navy2); }
+  .services-dark .section-title { color: var(--white); }
+  .services-dark .section-sub { color: rgba(255,255,255,0.45); }
+  .services-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5px; margin-top: 4rem;
+    border: 1.5px solid rgba(127,119,221,0.15); border-radius: 16px; overflow: hidden;
+  }
+  .service-card {
+    padding: 2.5rem 2rem;
+    background: rgba(255,255,255,0.025);
+    border: 0.5px solid rgba(127,119,221,0.1);
+    transition: background 0.3s;
+    position: relative; overflow: hidden;
+  }
+  .service-card::before {
+    content:''; position:absolute; top:0; left:0; right:0; height:2px;
+    background: linear-gradient(90deg, var(--purple), var(--coral));
+    transform: scaleX(0); transform-origin: left; transition: transform 0.3s;
+  }
+  .service-card:hover { background: rgba(127,119,221,0.06); }
+  .service-card:hover::before { transform: scaleX(1); }
+  .service-num { font-family: var(--font-display); font-size: 13px; font-weight: 700; color: var(--purple); letter-spacing: 2px; margin-bottom: 1.2rem; }
+  .service-icon { width: 44px; height: 44px; border-radius: 10px; background: rgba(127,119,221,0.15); border: 0.5px solid rgba(127,119,221,0.3); display: flex; align-items: center; justify-content: center; margin-bottom: 1.2rem; }
+  .service-icon svg { width: 22px; height: 22px; stroke: var(--purpleL); fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+  .service-name { font-family: var(--font-display); font-size: 18px; font-weight: 700; color: var(--white); margin-bottom: 0.75rem; }
+  .service-desc { font-size: 14px; font-weight: 300; color: rgba(255,255,255,0.45); line-height: 1.7; }
+
+  /* ── ABOUT LIGHT ── */
+  .about-section { background: var(--cream); }
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; margin-top: 4rem; }
+  .about-visual {
+    position: relative; height: 420px;
+    border-radius: 20px; overflow: hidden;
+    background: var(--navy2);
+    border: 0.5px solid var(--border);
+  }
+  .about-visual-inner { width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+  .about-circle1 { position:absolute; right:-20%; top:-20%; width:300px; height:300px; border-radius:50%; background:radial-gradient(circle,rgba(127,119,221,0.18) 0%,transparent 70%); }
+  .about-circle2 { position:absolute; left:-10%; bottom:-10%; width:200px; height:200px; border-radius:50%; background:radial-gradient(circle,rgba(216,90,48,0.12) 0%,transparent 70%); }
+  .about-xmark { position: relative; z-index: 2; }
+  .about-xmark svg { width: 100px; height: 100px; }
+  .about-tagline-visual { position: relative; z-index: 2; font-family: var(--font-display); font-size: 22px; font-weight: 800; color: var(--white); margin-top: 1.5rem; letter-spacing: -0.5px; text-align: center; }
+  .about-tagline-visual span { color: var(--purple); }
+  .about-text-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 2rem; }
+  .about-fact { padding: 1.2rem; background: var(--white); border-radius: 12px; border: 0.5px solid var(--border); }
+  .about-fact-num { font-family: var(--font-display); font-size: 26px; font-weight: 800; color: var(--purple); }
+  .about-fact-label { font-size: 12px; color: var(--gray); margin-top: 3px; letter-spacing: 0.5px; }
+  .values-list { list-style: none; margin-top: 2rem; }
+  .values-list li { display: flex; align-items: flex-start; gap: 12px; padding: 14px 0; border-bottom: 0.5px solid var(--border); }
+  .values-list li:last-child { border-bottom: none; }
+  .value-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--purple); margin-top: 6px; flex-shrink: 0; }
+  .value-name { font-weight: 500; font-size: 15px; color: var(--navy2); margin-bottom: 2px; }
+  .value-desc { font-size: 13px; color: var(--gray); line-height: 1.6; }
+
+  /* ── CAREERS ── */
+  .careers-section { background: var(--cream); }
+  .jobs-grid { display: grid; gap: 1rem; margin-top: 3rem; }
+  .job-card {
+    background: var(--white); border: 0.5px solid var(--border);
+    border-radius: 14px; padding: 1.8rem 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+    transition: all 0.2s; cursor: pointer;
+  }
+  .job-card:hover { border-color: var(--purple); box-shadow: 0 4px 24px rgba(127,119,221,0.1); transform: translateY(-2px); }
+  .job-left { display: flex; align-items: center; gap: 1.2rem; }
+  .job-icon { width: 48px; height: 48px; border-radius: 12px; background: rgba(127,119,221,0.08); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .job-icon svg { width: 22px; height: 22px; stroke: var(--purple); fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+  .job-title { font-family: var(--font-display); font-size: 17px; font-weight: 700; color: var(--navy2); margin-bottom: 4px; }
+  .job-tags { display: flex; gap: 8px; flex-wrap: wrap; }
+  .job-tag { padding: 3px 10px; border-radius: 100px; font-size: 11px; font-weight: 400; }
+  .job-tag.remote { background: rgba(127,119,221,0.1); color: var(--dgray); }
+  .job-tag.type { background: rgba(216,90,48,0.08); color: var(--coral); }
+  .job-tag.exp { background: rgba(127,119,221,0.06); color: var(--purple); }
+  .job-apply { padding: 10px 22px; border-radius: 100px; background: var(--navy2); color: var(--white); font-size: 13px; font-weight: 500; font-family: var(--font-body); border: none; cursor: pointer; transition: all 0.2s; white-space: nowrap; text-decoration: none; }
+  .job-apply:hover { background: var(--purple); }
+  .careers-cta-box { background: var(--navy2); border-radius: 20px; padding: 3rem; text-align: center; margin-top: 3rem; position: relative; overflow: hidden; }
+  .careers-cta-box::before { content:''; position:absolute; right:-5%; top:-20%; width:300px; height:300px; border-radius:50%; background:radial-gradient(circle,rgba(127,119,221,0.15) 0%,transparent 70%); pointer-events:none; }
+  .careers-cta-title { font-family: var(--font-display); font-size: 26px; font-weight: 800; color: var(--white); margin-bottom: 0.8rem; }
+  .careers-cta-sub { font-size: 15px; color: rgba(255,255,255,0.45); margin-bottom: 1.5rem; }
+
+  /* ── CONTACT ── */
+  .contact-section { background: var(--navy); }
+  .contact-section .section-title { color: var(--white); }
+  .contact-section .section-sub { color: rgba(255,255,255,0.45); }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 4rem; margin-top: 4rem; align-items: start; }
+  .contact-info-card { display: flex; flex-direction: column; gap: 1.5rem; }
+  .contact-item { display: flex; align-items: flex-start; gap: 1rem; }
+  .contact-item-icon { width: 44px; height: 44px; border-radius: 10px; background: rgba(127,119,221,0.15); border: 0.5px solid rgba(127,119,221,0.25); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .contact-item-icon svg { width: 20px; height: 20px; stroke: var(--purpleL); fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+  .contact-item-label { font-size: 11px; color: var(--gray); letter-spacing: 1.5px; margin-bottom: 3px; }
+  .contact-item-val { font-size: 15px; color: var(--white); font-weight: 400; }
+  .contact-form { background: rgba(255,255,255,0.03); border: 0.5px solid rgba(127,119,221,0.2); border-radius: 16px; padding: 2.5rem; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
+  .form-group { display: flex; flex-direction: column; gap: 6px; margin-bottom: 1rem; }
+  .form-group label { font-size: 12px; color: rgba(255,255,255,0.45); letter-spacing: 0.5px; }
+  .form-group input, .form-group textarea, .form-group select {
+    background: rgba(255,255,255,0.04); border: 0.5px solid rgba(127,119,221,0.2);
+    border-radius: 10px; padding: 12px 16px; color: var(--white);
+    font-family: var(--font-body); font-size: 14px;
+    transition: border-color 0.2s; outline: none; resize: vertical;
+  }
+  .form-group input:focus, .form-group textarea:focus, .form-group select:focus { border-color: var(--purple); }
+  .form-group textarea { min-height: 110px; }
+  .form-group select option { background: var(--navy2); }
+  .form-submit {
+    width: 100%; padding: 14px; border-radius: 100px;
+    background: linear-gradient(90deg, var(--purple), #9490e8);
+    color: var(--white); font-family: var(--font-body);
+    font-size: 15px; font-weight: 500; border: none; cursor: pointer;
+    transition: all 0.2s;
+  }
+  .form-submit:hover { opacity: 0.9; transform: translateY(-1px); }
+  .form-success { display: none; text-align: center; padding: 2rem; }
+  .form-success-icon { font-size: 40px; margin-bottom: 1rem; }
+  .form-success-text { color: var(--purpleL); font-size: 16px; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--navy); border-top: 0.5px solid rgba(127,119,221,0.12);
+    padding: 2rem 8%; display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 1rem;
+  }
+  .footer-brand { font-family: var(--font-display); font-size: 14px; font-weight: 700; color: rgba(255,255,255,0.35); letter-spacing: 1px; }
+  .footer-brand span { color: var(--purple); }
+  .footer-tagline { font-size: 12px; color: rgba(255,255,255,0.2); letter-spacing: 2px; }
+  .footer-copy { font-size: 12px; color: rgba(255,255,255,0.2); }
+
+  /* ── ANIMATIONS ── */
+  .fade-in { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .fade-in.visible { opacity: 1; transform: none; }
+  @keyframes floatX { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
+  .float { animation: floatX 4s ease-in-out infinite; }
+
+  @media(max-width:768px){
+    .nav-links { display:none; }
+    .about-grid, .contact-grid { grid-template-columns:1fr; }
+    .form-row { grid-template-columns:1fr; }
+    .hero-stats { gap:1.5rem; flex-wrap:wrap; }
+    section { padding:64px 5%; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── NAVBAR ── -->
+<nav id="navbar">
+  <a class="nav-logo" href="#" onclick="showPage('home')">
+    <div class="nav-logo-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#AFA9EC" stroke-width="2" stroke-linecap="round">
+        <line x1="5" y1="5" x2="19" y2="19"/><line x1="19" y1="5" x2="5" y2="19"/>
+        <circle cx="12" cy="12" r="3" fill="#AFA9EC" stroke="none"/>
+      </svg>
+    </div>
+    <span class="nav-wordmark">CLARIVEX<span>.AI</span></span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#" onclick="showPage('home')" id="nav-home" class="active">Home</a></li>
+    <li><a href="#" onclick="showPage('about')" id="nav-about">About</a></li>
+    <li><a href="#" onclick="showPage('services')" id="nav-services">Services</a></li>
+    <li><a href="#" onclick="showPage('careers')" id="nav-careers">Careers</a></li>
+    <li><a href="#" onclick="showPage('contact')" id="nav-contact">Contact</a></li>
+  </ul>
+  <a href="#" class="nav-cta" onclick="showPage('contact')">Get in Touch</a>
+</nav>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- HOME PAGE -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="page active" id="page-home">
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-bg">
+      <div class="hero-bg-circle1"></div>
+      <div class="hero-bg-circle2"></div>
+      <div class="hero-grid"></div>
+    </div>
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span class="hero-badge-dot"></span>
+        AI-FIRST TECHNOLOGY COMPANY · INDIA
+      </div>
+      <h1 class="hero-title">
+        Turning Complex Data<br>Into <span class="accent">Clear</span><br><span class="purple">Decisions</span>
+      </h1>
+      <p class="hero-sub">Clarivex.AI builds intelligent systems that transform raw business data into actionable insight — in real time, for every team.</p>
+      <div class="hero-actions">
+        <a href="#" class="btn-primary" onclick="showPage('services')">
+          Explore Services
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="#" class="btn-outline" onclick="showPage('about')">Learn About Us</a>
+      </div>
+      <div class="hero-stats">
+        <div>
+          <div class="hero-stat-num">4+</div>
+          <div class="hero-stat-label">AI PRODUCTS</div>
+        </div>
+        <div>
+          <div class="hero-stat-num">100%</div>
+          <div class="hero-stat-label">AI-FIRST</div>
+        </div>
+        <div>
+          <div class="hero-stat-num">∞</div>
+          <div class="hero-stat-label">POSSIBILITIES</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SERVICES PREVIEW -->
+  <section class="services-dark fade-in">
+    <p class="section-label">What We Build</p>
+    <h2 class="section-title">Intelligent Products<br>For Real Business</h2>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-num">01</div>
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+        </div>
+        <div class="service-name">ClarivexInsight</div>
+        <div class="service-desc">Real-time BI dashboards from any data source. No SQL needed.</div>
+      </div>
+      <div class="service-card">
+        <div class="service-num">02</div>
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+        </div>
+        <div class="service-name">ClarivexChat</div>
+        <div class="service-desc">Ask your data questions in plain language. Get instant answers.</div>
+      </div>
+      <div class="service-card">
+        <div class="service-num">03</div>
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+        </div>
+        <div class="service-name">ClarivexFlow</div>
+        <div class="service-desc">AI automation that triggers smart actions on detected patterns.</div>
+      </div>
+      <div class="service-card">
+        <div class="service-num">04</div>
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        </div>
+        <div class="service-name">ClarivexPredict</div>
+        <div class="service-desc">Forecast sales, churn, and demand before they happen.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY US -->
+  <section style="background:var(--cream)" class="fade-in">
+    <p class="section-label">Why Clarivex.AI</p>
+    <h2 class="section-title">Clarity is the <span class="accent">New</span> Competitive Edge</h2>
+    <p class="section-sub">Most businesses have data. Very few have clarity. We bridge that gap with AI built for decision-making, not just analysis.</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.5rem;margin-top:3rem;">
+      <div style="padding:2rem;background:var(--white);border-radius:16px;border:0.5px solid var(--border);">
+        <div style="width:40px;height:40px;border-radius:10px;background:rgba(127,119,221,0.1);display:flex;align-items:center;justify-content:center;margin-bottom:1rem;">
+          <svg width="20" height="20" fill="none" stroke="var(--purple)" stroke-width="1.5" stroke-linecap="round" viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        </div>
+        <div style="font-family:var(--font-display);font-size:16px;font-weight:700;color:var(--navy2);margin-bottom:.5rem;">Fast</div>
+        <div style="font-size:13px;color:var(--gray);line-height:1.7;">Real-time insights, not week-old reports.</div>
+      </div>
+      <div style="padding:2rem;background:var(--white);border-radius:16px;border:0.5px solid var(--border);">
+        <div style="width:40px;height:40px;border-radius:10px;background:rgba(216,90,48,0.08);display:flex;align-items:center;justify-content:center;margin-bottom:1rem;">
+          <svg width="20" height="20" fill="none" stroke="var(--coral)" stroke-width="1.5" stroke-linecap="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+        </div>
+        <div style="font-family:var(--font-display);font-size:16px;font-weight:700;color:var(--navy2);margin-bottom:.5rem;">Simple</div>
+        <div style="font-size:13px;color:var(--gray);line-height:1.7;">No data scientists needed. Any team can use it.</div>
+      </div>
+      <div style="padding:2rem;background:var(--white);border-radius:16px;border:0.5px solid var(--border);">
+        <div style="width:40px;height:40px;border-radius:10px;background:rgba(127,119,221,0.1);display:flex;align-items:center;justify-content:center;margin-bottom:1rem;">
+          <svg width="20" height="20" fill="none" stroke="var(--purple)" stroke-width="1.5" stroke-linecap="round" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <div style="font-family:var(--font-display);font-size:16px;font-weight:700;color:var(--navy2);margin-bottom:.5rem;">Secure</div>
+        <div style="font-size:13px;color:var(--gray);line-height:1.7;">Enterprise-grade security and data privacy.</div>
+      </div>
+      <div style="padding:2rem;background:var(--white);border-radius:16px;border:0.5px solid var(--border);">
+        <div style="width:40px;height:40px;border-radius:10px;background:rgba(216,90,48,0.08);display:flex;align-items:center;justify-content:center;margin-bottom:1rem;">
+          <svg width="20" height="20" fill="none" stroke="var(--coral)" stroke-width="1.5" stroke-linecap="round" viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+        </div>
+        <div style="font-family:var(--font-display);font-size:16px;font-weight:700;color:var(--navy2);margin-bottom:.5rem;">Scalable</div>
+        <div style="font-size:13px;color:var(--gray);line-height:1.7;">Grows with your business from startup to enterprise.</div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- ABOUT PAGE -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="page" id="page-about">
+  <div class="hero" style="min-height:320px;">
+    <div class="hero-bg"><div class="hero-bg-circle1"></div><div class="hero-grid"></div></div>
+    <div class="hero-content">
+      <div class="hero-badge"><span class="hero-badge-dot"></span>OUR STORY</div>
+      <h1 class="hero-title" style="font-size:clamp(32px,5vw,62px);">Built on One<br>Belief — <span class="accent">Clarity</span></h1>
+    </div>
+  </div>
+
+  <section class="about-section">
+    <p class="section-label">About Us</p>
+    <h2 class="section-title">We Don't Just Build AI.<br>We Build <span class="accent">Clarity.</span></h2>
+    <div class="about-grid">
+      <div class="about-visual float">
+        <div class="about-visual-inner">
+          <div class="about-circle1"></div>
+          <div class="about-circle2"></div>
+          <div class="about-xmark">
+            <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="100" height="100" rx="22" fill="rgba(127,119,221,0.18)"/>
+              <rect width="100" height="100" rx="22" fill="none" stroke="rgba(175,169,236,0.4)" stroke-width="1"/>
+              <line x1="28" y1="28" x2="72" y2="72" stroke="#AFA9EC" stroke-width="11" stroke-linecap="round"/>
+              <line x1="72" y1="28" x2="28" y2="72" stroke="#F0997B" stroke-width="11" stroke-linecap="round"/>
+              <circle cx="50" cy="50" r="9" fill="#AFA9EC"/>
+            </svg>
+          </div>
+          <div class="about-tagline-visual">CLARIVEX<span>.AI</span></div>
+        </div>
+      </div>
+      <div>
+        <p style="font-size:16px;color:var(--gray);line-height:1.8;margin-bottom:1.5rem;">
+          Clarivex.AI was founded with a single belief: every business — regardless of size — deserves the power of intelligent decision-making.
+        </p>
+        <p style="font-size:16px;color:var(--gray);line-height:1.8;margin-bottom:2rem;">
+          We are an AI-first technology company headquartered in Ahmedabad, India, building products that turn complex, unstructured data into clear, actionable intelligence.
+        </p>
+        <div class="about-text-grid">
+          <div class="about-fact"><div class="about-fact-num">2025</div><div class="about-fact-label">FOUNDED</div></div>
+          <div class="about-fact"><div class="about-fact-num">India</div><div class="about-fact-label">HEADQUARTERED</div></div>
+          <div class="about-fact"><div class="about-fact-num">4+</div><div class="about-fact-label">AI PRODUCTS</div></div>
+          <div class="about-fact"><div class="about-fact-num">Global</div><div class="about-fact-label">VISION</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="background:var(--navy2)" class="fade-in">
+    <p class="section-label" style="color:var(--purple)">Our Values</p>
+    <h2 class="section-title" style="color:var(--white)">What Drives Us</h2>
+    <ul class="values-list" style="max-width:640px;margin-top:2.5rem;">
+      <li>
+        <div class="value-dot"></div>
+        <div><div class="value-name" style="color:var(--white)">Clarity First</div><div class="value-desc" style="color:rgba(255,255,255,.4)">Every product we build starts with one question: does this make things clearer for the user?</div></div>
+      </li>
+      <li>
+        <div class="value-dot" style="background:var(--coral)"></div>
+        <div><div class="value-name" style="color:var(--white)">Radical Simplicity</div><div class="value-desc" style="color:rgba(255,255,255,.4)">Complex AI should feel simple. We obsess over removing friction from every experience.</div></div>
+      </li>
+      <li>
+        <div class="value-dot"></div>
+        <div><div class="value-name" style="color:var(--white)">Customer Outcomes</div><div class="value-desc" style="color:rgba(255,255,255,.4)">We measure success by our customers' results, not by our features shipped.</div></div>
+      </li>
+      <li>
+        <div class="value-dot" style="background:var(--coral)"></div>
+        <div><div class="value-name" style="color:var(--white)">India-Built, World-Class</div><div class="value-desc" style="color:rgba(255,255,255,.4)">Proud of our roots. Ambitious about our reach. Built in India for the world.</div></div>
+      </li>
+    </ul>
+  </section>
+
+  <!-- Founder -->
+  <section style="background:var(--cream)" class="fade-in">
+    <p class="section-label">Leadership</p>
+    <h2 class="section-title">Meet the Founder</h2>
+    <div style="margin-top:3rem;max-width:540px;background:var(--white);border-radius:20px;border:0.5px solid var(--border);padding:2.5rem;">
+      <div style="display:flex;align-items:center;gap:1.2rem;margin-bottom:1.5rem;">
+        <div style="width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,var(--purple),var(--coral));display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:22px;font-weight:800;color:var(--white);">OB</div>
+        <div>
+          <div style="font-family:var(--font-display);font-size:20px;font-weight:800;color:var(--navy2);">Om Bharadwa</div>
+          <div style="font-size:12px;color:var(--purple);letter-spacing:2px;margin-top:2px;">FOUNDER &amp; CEO</div>
+        </div>
+      </div>
+      <p style="font-size:14px;color:var(--gray);line-height:1.8;">Visionary technologist and entrepreneur building the future of AI-powered business intelligence in India. Om founded Clarivex.AI with a mission to make intelligent decision-making accessible to every organisation.</p>
+      <div style="display:flex;gap:.75rem;margin-top:1.5rem;flex-wrap:wrap;">
+        <a href="mailto:Ombharadwa1336@gmail.com" style="padding:8px 16px;border-radius:100px;background:rgba(127,119,221,0.08);border:0.5px solid var(--border);font-size:12px;color:var(--purple);text-decoration:none;">Ombharadwa1336@gmail.com</a>
+        <span style="padding:8px 16px;border-radius:100px;background:rgba(127,119,221,0.08);border:0.5px solid var(--border);font-size:12px;color:var(--gray);">+91 92657 86549</span>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- SERVICES PAGE -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="page" id="page-services">
+  <div class="hero" style="min-height:320px;">
+    <div class="hero-bg"><div class="hero-bg-circle1"></div><div class="hero-grid"></div></div>
+    <div class="hero-content">
+      <div class="hero-badge"><span class="hero-badge-dot"></span>WHAT WE BUILD</div>
+      <h1 class="hero-title" style="font-size:clamp(32px,5vw,62px);">AI Products That<br><span class="accent">Deliver</span> Results</h1>
+    </div>
+  </div>
+
+  <section class="services-dark">
+    <p class="section-label">Our Products</p>
+    <h2 class="section-title" style="color:var(--white)">Four Products.<br>One <span class="accent">Platform.</span></h2>
+    <p class="section-sub">Each Clarivex product is designed to solve a specific business intelligence challenge. Together, they form a complete AI ecosystem for your organisation.</p>
+    <div class="services-grid" style="margin-top:3rem;">
+      <div class="service-card">
+        <div class="service-num">01</div>
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+        </div>
+        <div class="service-name">ClarivexInsight</div>
+        <div class="service-desc" style="margin-bottom:1.2rem;">Real-time business intelligence dashboards connected to any data source. No SQL needed — connect your spreadsheets, CRM, ERP or database and get live visual dashboards in minutes.</div>
+        <div style="font-size:12px;color:var(--purple);letter-spacing:1px;">Real-time · No-code · Any data source</div>
+      </div>
+      <div class="service-card">
+        <div class="service-num">02</div>
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+        </div>
+        <div class="service-name">ClarivexChat</div>
+        <div class="service-desc" style="margin-bottom:1.2rem;">Conversational AI interface — ask your data questions in plain language and get instant, accurate answers. No training required. Connects to your existing data infrastructure seamlessly.</div>
+        <div style="font-size:12px;color:var(--purple);letter-spacing:1px;">NLP · Conversational · Instant answers</div>
+      </div>
+      <div class="service-card">
+        <div class="service-num">03</div>
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+        </div>
+        <div class="service-name">ClarivexFlow</div>
+        <div class="service-desc" style="margin-bottom:1.2rem;">Intelligent automation engine that detects patterns in your data and triggers the right actions — automatically. Reduce manual work and let AI handle repetitive decisions at scale.</div>
+        <div style="font-size:12px;color:var(--purple);letter-spacing:1px;">Automation · Pattern detection · Workflows</div>
+      </div>
+      <div class="service-card">
+        <div class="service-num">04</div>
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        </div>
+        <div class="service-name">ClarivexPredict</div>
+        <div class="service-desc" style="margin-bottom:1.2rem;">Predictive analytics module that forecasts sales, customer churn, inventory demand, and more — using machine learning trained on your own historical data for maximum accuracy.</div>
+        <div style="font-size:12px;color:var(--purple);letter-spacing:1px;">Forecasting · ML · Business outcomes</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing -->
+  <section style="background:var(--cream)" class="fade-in">
+    <p class="section-label">Pricing</p>
+    <h2 class="section-title">Simple, Transparent<br><span class="accent">Pricing</span></h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.5rem;margin-top:3rem;">
+      <div style="background:var(--white);border:0.5px solid var(--border);border-radius:16px;padding:2rem;">
+        <div style="font-family:var(--font-display);font-size:13px;font-weight:700;color:var(--gray);letter-spacing:2px;margin-bottom:1rem;">STARTER</div>
+        <div style="font-family:var(--font-display);font-size:38px;font-weight:800;color:var(--navy2);">₹4,999<span style="font-size:16px;font-weight:400;color:var(--gray)">/mo</span></div>
+        <div style="font-size:12px;color:var(--gray);margin:1rem 0 1.5rem;">1 workspace · 3 integrations · 5 users</div>
+        <a href="#" onclick="showPage('contact')" class="btn-primary" style="display:block;text-align:center;background:var(--navy2);">Get Started</a>
+      </div>
+      <div style="background:var(--navy2);border:2px solid var(--purple);border-radius:16px;padding:2rem;position:relative;overflow:hidden;">
+        <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--purple),var(--coral))"></div>
+        <div style="font-size:11px;background:rgba(127,119,221,0.2);color:var(--purpleL);padding:4px 10px;border-radius:100px;display:inline-block;letter-spacing:1.5px;margin-bottom:.8rem;">MOST POPULAR</div>
+        <div style="font-family:var(--font-display);font-size:13px;font-weight:700;color:var(--purpleL);letter-spacing:2px;margin-bottom:1rem;">GROWTH</div>
+        <div style="font-family:var(--font-display);font-size:38px;font-weight:800;color:var(--white);">₹14,999<span style="font-size:16px;font-weight:400;color:var(--gray)">/mo</span></div>
+        <div style="font-size:12px;color:rgba(255,255,255,.4);margin:1rem 0 1.5rem;">Unlimited dashboards · 15 integrations · 25 users</div>
+        <a href="#" onclick="showPage('contact')" class="btn-primary" style="display:block;text-align:center;">Get Started</a>
+      </div>
+      <div style="background:var(--white);border:0.5px solid var(--border);border-radius:16px;padding:2rem;">
+        <div style="font-family:var(--font-display);font-size:13px;font-weight:700;color:var(--gray);letter-spacing:2px;margin-bottom:1rem;">ENTERPRISE</div>
+        <div style="font-family:var(--font-display);font-size:38px;font-weight:800;color:var(--navy2);">Custom</div>
+        <div style="font-size:12px;color:var(--gray);margin:1rem 0 1.5rem;">Dedicated AI · SLA · Unlimited users</div>
+        <a href="#" onclick="showPage('contact')" class="btn-primary" style="display:block;text-align:center;background:var(--navy2);">Contact Sales</a>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- CAREERS PAGE -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="page" id="page-careers">
+  <div class="hero" style="min-height:320px;">
+    <div class="hero-bg"><div class="hero-bg-circle1"></div><div class="hero-grid"></div></div>
+    <div class="hero-content">
+      <div class="hero-badge"><span class="hero-badge-dot"></span>JOIN THE TEAM</div>
+      <h1 class="hero-title" style="font-size:clamp(32px,5vw,62px);">Build the Future<br>of <span class="accent">AI</span> With Us</h1>
+    </div>
+  </div>
+
+  <section class="careers-section">
+    <p class="section-label">Open Positions</p>
+    <h2 class="section-title">We Are <span class="accent">Hiring</span></h2>
+    <p class="section-sub">We're looking for co-builders — people who take ownership, move fast, and want their name on something they're proud of.</p>
+
+    <div class="jobs-grid">
+      <!-- AI/ML -->
+      <div class="job-card">
+        <div class="job-left">
+          <div class="job-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
+          </div>
+          <div>
+            <div class="job-title">AI / ML Engineer</div>
+            <div class="job-tags">
+              <span class="job-tag remote">Remote / Ahmedabad</span>
+              <span class="job-tag type">Full-time</span>
+              <span class="job-tag exp">2+ Years</span>
+            </div>
+          </div>
+        </div>
+        <a href="mailto:Ombharadwa1336@gmail.com?subject=Application: AI/ML Engineer" class="job-apply">Apply Now</a>
+      </div>
+      <!-- Full Stack -->
+      <div class="job-card">
+        <div class="job-left">
+          <div class="job-icon">
+            <svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+          </div>
+          <div>
+            <div class="job-title">Full Stack Developer</div>
+            <div class="job-tags">
+              <span class="job-tag remote">Remote / Ahmedabad</span>
+              <span class="job-tag type">Full-time</span>
+              <span class="job-tag exp">2+ Years</span>
+            </div>
+          </div>
+        </div>
+        <a href="mailto:Ombharadwa1336@gmail.com?subject=Application: Full Stack Developer" class="job-apply">Apply Now</a>
+      </div>
+      <!-- Designer -->
+      <div class="job-card">
+        <div class="job-left">
+          <div class="job-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+          </div>
+          <div>
+            <div class="job-title">Product Designer (UI/UX)</div>
+            <div class="job-tags">
+              <span class="job-tag remote">Remote / Ahmedabad</span>
+              <span class="job-tag type">Full-time</span>
+              <span class="job-tag exp">2+ Years</span>
+            </div>
+          </div>
+        </div>
+        <a href="mailto:Ombharadwa1336@gmail.com?subject=Application: Product Designer" class="job-apply">Apply Now</a>
+      </div>
+      <!-- BizDev -->
+      <div class="job-card">
+        <div class="job-left">
+          <div class="job-icon">
+            <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+          </div>
+          <div>
+            <div class="job-title">Business Development Executive</div>
+            <div class="job-tags">
+              <span class="job-tag remote">Ahmedabad (Hybrid)</span>
+              <span class="job-tag type">Full-time</span>
+              <span class="job-tag exp">1–3 Years</span>
+            </div>
+          </div>
+        </div>
+        <a href="mailto:Ombharadwa1336@gmail.com?subject=Application: Business Development" class="job-apply">Apply Now</a>
+      </div>
+    </div>
+
+    <div class="careers-cta-box">
+      <div class="careers-cta-title">Don't see your role?</div>
+      <div class="careers-cta-sub">We always want to hear from talented people. Send us your profile and tell us how you'd contribute to Clarivex.AI.</div>
+      <a href="mailto:Ombharadwa1336@gmail.com?subject=Open Application — Clarivex.AI" class="btn-primary" style="display:inline-flex;">Send Open Application</a>
+    </div>
+  </section>
+</div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- CONTACT PAGE -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="page" id="page-contact">
+  <section class="contact-section" style="padding-top:120px">
+    <p class="section-label">Get In Touch</p>
+    <h2 class="section-title">Let's Build Something<br><span class="accent">Intelligent</span> Together</h2>
+    <p class="section-sub">Whether you're ready to transform your business with AI or just curious — we'd love to hear from you.</p>
+    <div class="contact-grid">
+      <div class="contact-info-card">
+        <div class="contact-item">
+          <div class="contact-item-icon">
+            <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.64A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
+          </div>
+          <div>
+            <div class="contact-item-label">PHONE</div>
+            <div class="contact-item-val">+91 92657 86549</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon">
+            <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <div>
+            <div class="contact-item-label">EMAIL</div>
+            <div class="contact-item-val">Ombharadwa1336@gmail.com</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon">
+            <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div>
+            <div class="contact-item-label">LOCATION</div>
+            <div class="contact-item-val">Ahmedabad, Gujarat, India</div>
+          </div>
+        </div>
+        <div style="margin-top:1rem;padding:1.5rem;background:rgba(127,119,221,0.08);border-radius:14px;border:0.5px solid rgba(127,119,221,0.2);">
+          <div style="font-family:var(--font-display);font-size:15px;font-weight:700;color:var(--white);margin-bottom:.5rem;">Response Time</div>
+          <div style="font-size:13px;color:rgba(255,255,255,.45);line-height:1.7;">We typically respond within 24 hours on business days. For urgent matters, please call directly.</div>
+        </div>
+      </div>
+
+      <div class="contact-form">
+        <div id="contact-form-wrap">
+          <div class="form-row">
+            <div class="form-group">
+              <label>FULL NAME</label>
+              <input type="text" placeholder="Your name" id="cf-name"/>
+            </div>
+            <div class="form-group">
+              <label>EMAIL ADDRESS</label>
+              <input type="email" placeholder="your@email.com" id="cf-email"/>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>COMPANY</label>
+            <input type="text" placeholder="Your company name (optional)" id="cf-company"/>
+          </div>
+          <div class="form-group">
+            <label>I'M INTERESTED IN</label>
+            <select id="cf-interest">
+              <option value="">Select a service…</option>
+              <option>ClarivexInsight — BI Dashboards</option>
+              <option>ClarivexChat — Conversational AI</option>
+              <option>ClarivexFlow — Automation</option>
+              <option>ClarivexPredict — Forecasting</option>
+              <option>Custom AI Solution</option>
+              <option>General Enquiry</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>MESSAGE</label>
+            <textarea placeholder="Tell us about your project or question…" id="cf-message"></textarea>
+          </div>
+          <button class="form-submit" onclick="submitForm()">Send Message →</button>
+        </div>
+        <div class="form-success" id="form-success">
+          <div class="form-success-icon">✓</div>
+          <div class="form-success-text" style="font-family:var(--font-display);font-size:20px;font-weight:700;color:var(--white);margin-bottom:.5rem;">Message Sent!</div>
+          <div style="font-size:14px;color:rgba(255,255,255,.45);">Thank you for reaching out. We'll get back to you within 24 hours.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-brand">CLARIVEX<span>.AI</span></div>
+  <div class="footer-tagline">CLARITY · INTELLIGENCE · IMPACT</div>
+  <div class="footer-copy">© 2025 Clarivex.AI · Ahmedabad, India</div>
+</footer>
+
+<script>
+function showPage(name) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+  document.getElementById('page-' + name).classList.add('active');
+  const navEl = document.getElementById('nav-' + name);
+  if (navEl) navEl.classList.add('active');
+  window.scrollTo({top:0, behavior:'smooth'});
+  observeFadeIns();
+}
+
+function submitForm() {
+  const name = document.getElementById('cf-name').value.trim();
+  const email = document.getElementById('cf-email').value.trim();
+  if (!name || !email) { alert('Please fill in your name and email.'); return; }
+  document.getElementById('contact-form-wrap').style.display = 'none';
+  document.getElementById('form-success').style.display = 'block';
+}
+
+function observeFadeIns() {
+  const els = document.querySelectorAll('.fade-in');
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  els.forEach(el => io.observe(el));
+}
+
+window.addEventListener('load', observeFadeIns);
+</script>
+
+<!-- ── WHATSAPP FLOATING BUTTON ── -->
+<style>
+  .wa-wrap {
+    position: fixed; bottom: 28px; right: 28px; z-index: 9999;
+    display: flex; flex-direction: column; align-items: flex-end; gap: 12px;
+  }
+  .wa-tooltip {
+    background: var(--navy2); color: var(--white);
+    font-family: var(--font-body); font-size: 13px; font-weight: 400;
+    padding: 10px 16px; border-radius: 12px;
+    border: 0.5px solid rgba(127,119,221,0.25);
+    white-space: nowrap; pointer-events: none;
+    opacity: 0; transform: translateY(6px) scale(0.96);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+    position: relative;
+  }
+  .wa-tooltip::after {
+    content: '';
+    position: absolute; bottom: -6px; right: 20px;
+    width: 12px; height: 12px;
+    background: var(--navy2);
+    border-right: 0.5px solid rgba(127,119,221,0.25);
+    border-bottom: 0.5px solid rgba(127,119,221,0.25);
+    transform: rotate(45deg);
+  }
+  .wa-wrap:hover .wa-tooltip,
+  .wa-wrap:focus-within .wa-tooltip {
+    opacity: 1; transform: translateY(0) scale(1);
+  }
+  .wa-btn {
+    width: 58px; height: 58px; border-radius: 50%;
+    background: #25D366;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 4px 20px rgba(37,211,102,0.35);
+    cursor: pointer; text-decoration: none;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    position: relative;
+    border: none;
+  }
+  .wa-btn:hover {
+    transform: scale(1.08) translateY(-2px);
+    box-shadow: 0 8px 28px rgba(37,211,102,0.45);
+  }
+  .wa-btn svg { width: 30px; height: 30px; fill: #fff; }
+  .wa-pulse {
+    position: absolute; top: 0; right: 0;
+    width: 14px; height: 14px; border-radius: 50%;
+    background: var(--coral);
+    border: 2px solid var(--cream);
+    animation: waPulse 2s infinite;
+  }
+  @keyframes waPulse {
+    0%   { transform: scale(1);   box-shadow: 0 0 0 0 rgba(216,90,48,0.6); }
+    60%  { transform: scale(1.1); box-shadow: 0 0 0 8px rgba(216,90,48,0); }
+    100% { transform: scale(1);   box-shadow: 0 0 0 0 rgba(216,90,48,0); }
+  }
+  @media(max-width:480px){
+    .wa-wrap { bottom: 18px; right: 18px; }
+    .wa-btn  { width: 52px; height: 52px; }
+    .wa-btn svg { width: 26px; height: 26px; }
+  }
+</style>
+
+<div class="wa-wrap">
+  <div class="wa-tooltip">💬 Chat with us on WhatsApp</div>
+  <a class="wa-btn"
+     href="https://wa.me/919265786549?text=Hi%20Clarivex.AI!%20I%27d%20like%20to%20know%20more%20about%20your%20AI%20services."
+     target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+    <div class="wa-pulse"></div>
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+    </svg>
+  </a>
+</div>
+
+</body>
+</html>
