@@ -1,368 +1,384 @@
+bash
+
 cat > /mnt/user-data/outputs/clarivex_website_v3.html << 'HTMLEOF'
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Clarivex.AI — Clarity Through Intelligence</title>
-<meta name="description" content="Clarivex.AI is an AI-first technology company in Ahmedabad, India. We build intelligent products that turn complex business data into clear, actionable decisions."/>
-<meta name="keywords" content="AI company India, business intelligence, machine learning, AI analytics, Ahmedabad AI startup, Clarivex"/>
-<meta property="og:title" content="Clarivex.AI — Clarity Through Intelligence"/>
-<meta property="og:description" content="We build AI products that transform business data into clear decisions."/>
-<meta property="og:url" content="https://clarivex.ai"/>
-<link rel="canonical" href="https://clarivex.ai"/>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
+<meta name="description" content="Clarivex.AI — AI-Driven Software & Digital Transformation Company. We build intelligent applications, enterprise software, and AI automation for modern businesses."/>
+<meta name="keywords" content="AI Development Company, AI Software, Digital Transformation, Enterprise Software, AI Chatbot, Automation, India"/>
+<title>Clarivex.AI — AI-Driven Software & Digital Transformation</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
 <style>
 :root{
-  --navy:#0d0b24;--navy2:#1a1440;--purple:#7F77DD;--purpleL:#AFA9EC;
-  --coral:#D85A30;--coralL:#F0997B;--white:#ffffff;--cream:#f8f7ff;
-  --gray:#888780;--dgray:#26215C;--border:#E0DEFA;
-  --fd:'Syne',sans-serif;--fb:'DM Sans',sans-serif;
+  --bg:#0B1020; --bg2:#151B35; --bg3:#1a2244;
+  --purple:#7C5CFF; --purpleL:#A48BFF; --purpleD:#5a3fd4;
+  --cyan:#00D4FF; --cyanL:#7EEEFF;
+  --white:#F8FAFC; --gray:#8892B0; --gray2:#4a5568;
+  --border:rgba(124,92,255,0.15); --border2:rgba(0,212,255,0.12);
+  --glass:rgba(21,27,53,0.7);
+  --fd:'Inter',sans-serif; --fb:'DM Sans',sans-serif;
+  --grad1:linear-gradient(135deg,#7C5CFF,#00D4FF);
+  --grad2:linear-gradient(135deg,#7C5CFF,#A48BFF);
+  --shadow:0 24px 80px rgba(124,92,255,0.15);
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;}
-body{font-family:var(--fb);background:var(--cream);color:var(--navy2);overflow-x:hidden;cursor:none;}
-
-/* ── CUSTOM CURSOR ── */
-#cursor{position:fixed;width:12px;height:12px;border-radius:50%;background:var(--purple);pointer-events:none;z-index:99999;transform:translate(-50%,-50%);transition:transform .1s,background .2s;mix-blend-mode:screen;}
-#cursor-ring{position:fixed;width:36px;height:36px;border-radius:50%;border:1.5px solid rgba(127,119,221,.5);pointer-events:none;z-index:99998;transform:translate(-50%,-50%);transition:all .12s ease-out;}
-body:hover #cursor{opacity:1;}
-a:hover~#cursor,button:hover~#cursor{transform:translate(-50%,-50%) scale(2);}
-
-/* ── SCROLLBAR ── */
+body{font-family:var(--fb);background:var(--bg);color:var(--white);overflow-x:hidden;}
 ::-webkit-scrollbar{width:4px;}
-::-webkit-scrollbar-track{background:var(--navy);}
+::-webkit-scrollbar-track{background:var(--bg);}
 ::-webkit-scrollbar-thumb{background:var(--purple);border-radius:2px;}
 
-/* ── PROGRESS BAR ── */
-#progress-bar{position:fixed;top:0;left:0;height:2px;background:linear-gradient(90deg,var(--purple),var(--coral));z-index:99999;width:0%;transition:width .1s;}
+/* ── CURSOR ── */
+.cursor{position:fixed;width:12px;height:12px;border-radius:50%;background:var(--purple);pointer-events:none;z-index:99999;transition:transform .15s,opacity .3s;mix-blend-mode:screen;}
+.cursor-trail{position:fixed;width:32px;height:32px;border-radius:50%;border:1px solid rgba(124,92,255,.4);pointer-events:none;z-index:99998;transition:all .35s ease;mix-blend-mode:screen;}
 
 /* ── NAV ── */
-nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:0 5%;height:68px;background:rgba(13,11,36,0.96);backdrop-filter:blur(20px);border-bottom:.5px solid rgba(127,119,221,.12);transition:all .3s;}
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;height:68px;display:flex;align-items:center;justify-content:space-between;padding:0 5%;background:rgba(11,16,32,.92);backdrop-filter:blur(24px);border-bottom:0.5px solid var(--border);transition:all .3s;}
 .nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
-.nav-icon{width:36px;height:36px;border-radius:9px;background:rgba(127,119,221,.18);border:1px solid rgba(175,169,236,.3);display:flex;align-items:center;justify-content:center;}
-.nav-icon svg{width:18px;height:18px;}
-.nav-wm{font-family:var(--fd);font-size:16px;font-weight:800;color:var(--white);letter-spacing:1.5px;}
-.nav-wm span{color:var(--purple);}
+.nav-icon{width:34px;height:34px;border-radius:8px;background:rgba(124,92,255,.18);border:1px solid rgba(124,92,255,.3);display:flex;align-items:center;justify-content:center;}
+.nav-icon svg{width:17px;height:17px;}
+.nav-wm{font-family:var(--fd);font-size:16px;font-weight:800;color:var(--white);letter-spacing:1px;}
+.nav-wm span{background:var(--grad1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
 .nav-links{display:flex;gap:2rem;list-style:none;}
-.nav-links a{font-size:13px;color:rgba(255,255,255,.55);text-decoration:none;transition:color .2s;letter-spacing:.3px;position:relative;}
-.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:1px;background:var(--purple);transform:scaleX(0);transition:transform .25s;}
+.nav-links a{font-size:13px;color:var(--gray);text-decoration:none;transition:color .2s;letter-spacing:.3px;position:relative;}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:var(--grad1);transition:width .3s;}
 .nav-links a:hover,.nav-links a.active{color:var(--white);}
-.nav-links a:hover::after,.nav-links a.active::after{transform:scaleX(1);}
-.nav-right{display:flex;align-items:center;gap:1rem;}
-.nav-li{display:flex;align-items:center;gap:6px;padding:7px 14px;border-radius:100px;background:rgba(127,119,221,.1);border:.5px solid rgba(127,119,221,.2);color:var(--purpleL);font-size:12px;text-decoration:none;transition:all .2s;}
-.nav-li:hover{background:rgba(127,119,221,.2);}
-.nav-li svg{width:14px;height:14px;fill:var(--purpleL);}
-.nav-cta{padding:9px 20px;border-radius:100px;background:var(--purple);color:var(--white);font-size:13px;font-weight:500;text-decoration:none;transition:all .2s;border:none;cursor:none;}
-.nav-cta:hover{background:var(--purpleL);transform:translateY(-1px);}
-.hamburger{display:none;flex-direction:column;gap:5px;cursor:none;padding:4px;}
+.nav-links a:hover::after,.nav-links a.active::after{width:100%;}
+.nav-cta{padding:9px 20px;border-radius:8px;background:var(--purple);color:var(--white);font-size:13px;font-weight:600;text-decoration:none;transition:all .2s;border:none;cursor:pointer;letter-spacing:.3px;}
+.nav-cta:hover{background:var(--purpleL);transform:translateY(-1px);box-shadow:0 8px 24px rgba(124,92,255,.35);}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;}
 .hamburger span{width:22px;height:2px;background:var(--white);border-radius:2px;transition:all .3s;}
-.mobile-menu{display:none;position:fixed;top:68px;left:0;right:0;background:rgba(13,11,36,.98);padding:1.5rem 5%;z-index:999;border-bottom:.5px solid rgba(127,119,221,.1);}
-.mobile-menu.open{display:block;}
-.mobile-menu a{display:block;padding:.75rem 0;color:rgba(255,255,255,.7);text-decoration:none;font-size:15px;border-bottom:.5px solid rgba(255,255,255,.05);}
-.mobile-menu a:last-child{border:none;}
-.lang-toggle{display:flex;align-items:center;gap:4px;padding:6px 12px;border-radius:100px;border:.5px solid rgba(127,119,221,.25);background:rgba(127,119,221,.08);cursor:none;}
-.lang-btn{font-size:11px;color:rgba(255,255,255,.4);cursor:none;transition:color .2s;padding:2px 4px;border-radius:4px;}
-.lang-btn.active{color:var(--white);background:rgba(127,119,221,.25);}
+.mob-menu{display:none;position:fixed;top:68px;left:0;right:0;background:rgba(11,16,32,.98);padding:1.5rem 5%;z-index:999;border-bottom:.5px solid var(--border);}
+.mob-menu.open{display:block;}
+.mob-menu a{display:block;padding:.7rem 0;color:var(--gray);text-decoration:none;font-size:15px;border-bottom:.5px solid rgba(255,255,255,.05);}
+.mob-menu a:last-child{border:none;color:var(--purple);}
 
 /* ── PAGES ── */
 .page{display:none;min-height:100vh;padding-top:68px;}
 .page.active{display:block;}
 
 /* ── HERO ── */
-.hero{min-height:calc(100vh - 68px);background:var(--navy);position:relative;overflow:hidden;display:flex;align-items:center;}
+.hero{min-height:calc(100vh - 68px);background:var(--bg);position:relative;overflow:hidden;display:flex;align-items:center;}
 .hero-bg{position:absolute;inset:0;pointer-events:none;}
-.orb1{position:absolute;right:-5%;top:-15%;width:55vw;height:55vw;border-radius:50%;background:radial-gradient(circle,rgba(127,119,221,.13) 0%,transparent 68%);animation:orbF 8s ease-in-out infinite;}
-.orb2{position:absolute;left:-8%;bottom:-10%;width:40vw;height:40vw;border-radius:50%;background:radial-gradient(circle,rgba(216,90,48,.08) 0%,transparent 68%);animation:orbF 11s ease-in-out infinite reverse;}
-.orb3{position:absolute;right:20%;bottom:10%;width:20vw;height:20vw;border-radius:50%;background:radial-gradient(circle,rgba(127,119,221,.07) 0%,transparent 68%);animation:orbF 7s ease-in-out infinite 2s;}
-@keyframes orbF{0%,100%{transform:translateY(0) scale(1);}50%{transform:translateY(-28px) scale(1.03);}}
-.grid-bg{position:absolute;inset:0;background-image:linear-gradient(rgba(127,119,221,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(127,119,221,.04) 1px,transparent 1px);background-size:60px 60px;}
-.particles{position:absolute;inset:0;}
-.particle{position:absolute;border-radius:50%;background:var(--purple);opacity:.35;animation:pFloat linear infinite;}
-@keyframes pFloat{0%{transform:translateY(100vh);opacity:0;}10%{opacity:.35;}90%{opacity:.35;}100%{transform:translateY(-100px);opacity:0;}}
-.hero-content{position:relative;z-index:2;padding:0 6%;max-width:860px;}
-.hero-badge{display:inline-flex;align-items:center;gap:8px;padding:6px 16px;border-radius:100px;background:rgba(127,119,221,.1);border:.5px solid rgba(127,119,221,.28);margin-bottom:2rem;font-size:11px;color:var(--purpleL);letter-spacing:2.5px;animation:fsUp .8s ease both;}
-.bdot{width:6px;height:6px;border-radius:50%;background:var(--purple);animation:pulse 2s infinite;}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(124,92,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(124,92,255,.04) 1px,transparent 1px);background-size:60px 60px;}
+.orb{position:absolute;border-radius:50%;filter:blur(80px);}
+.orb1{width:600px;height:600px;right:-100px;top:-100px;background:radial-gradient(circle,rgba(124,92,255,.18) 0%,transparent 70%);animation:orbFloat 10s ease-in-out infinite;}
+.orb2{width:400px;height:400px;left:-80px;bottom:-80px;background:radial-gradient(circle,rgba(0,212,255,.1) 0%,transparent 70%);animation:orbFloat 14s ease-in-out infinite reverse;}
+.orb3{width:300px;height:300px;right:30%;top:20%;background:radial-gradient(circle,rgba(0,212,255,.07) 0%,transparent 70%);animation:orbFloat 8s ease-in-out infinite 2s;}
+@keyframes orbFloat{0%,100%{transform:translateY(0);}50%{transform:translateY(-40px);}}
+#particles-canvas{position:absolute;inset:0;}
+.hero-inner{position:relative;z-index:2;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;padding:4rem 6% 2rem;width:100%;}
+.hero-left{}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;padding:6px 14px;border-radius:6px;background:rgba(124,92,255,.1);border:.5px solid rgba(124,92,255,.3);margin-bottom:1.8rem;font-size:11px;color:var(--purpleL);letter-spacing:2.5px;animation:fadeUp .8s ease both;}
+.badge-dot{width:6px;height:6px;border-radius:50%;background:var(--cyan);animation:pulse 2s infinite;}
 @keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.4;transform:scale(.7);}}
-.hero-title{font-family:var(--fd);font-size:clamp(38px,6vw,82px);font-weight:800;line-height:1.06;color:var(--white);margin-bottom:1.5rem;letter-spacing:-1.5px;animation:fsUp .9s .1s ease both;}
-.hero-title .cc{color:var(--coral);}
-.hero-title .cp{background:linear-gradient(135deg,var(--purple),var(--purpleL));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-.hero-sub{font-size:17px;font-weight:300;color:rgba(255,255,255,.48);line-height:1.8;max-width:540px;margin-bottom:2.5rem;animation:fsUp 1s .2s ease both;}
-.hero-actions{display:flex;gap:1rem;flex-wrap:wrap;animation:fsUp 1s .3s ease both;}
-.btn-p{padding:14px 30px;border-radius:100px;background:var(--purple);color:var(--white);font-family:var(--fb);font-size:14px;font-weight:500;text-decoration:none;transition:all .25s;cursor:none;border:none;display:inline-flex;align-items:center;gap:8px;position:relative;overflow:hidden;}
-.btn-p::after{content:'';position:absolute;inset:0;background:rgba(255,255,255,.1);opacity:0;transition:opacity .2s;}
-.btn-p:hover::after{opacity:1;}
-.btn-p:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(127,119,221,.35);}
-.btn-o{padding:14px 30px;border-radius:100px;background:transparent;color:var(--white);border:1px solid rgba(255,255,255,.16);font-family:var(--fb);font-size:14px;font-weight:400;text-decoration:none;transition:all .25s;cursor:none;}
-.btn-o:hover{border-color:var(--purple);color:var(--purpleL);}
-.hero-stats{display:flex;gap:2.5rem;margin-top:4rem;padding-top:2.5rem;border-top:.5px solid rgba(255,255,255,.07);animation:fsUp 1s .4s ease both;flex-wrap:wrap;}
-.stn{font-family:var(--fd);font-size:30px;font-weight:800;color:var(--white);}
-.stl{font-size:11px;color:var(--gray);letter-spacing:2px;margin-top:3px;}
-.hero-scroll{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:6px;color:rgba(255,255,255,.25);font-size:11px;letter-spacing:2px;}
-.scroll-line{width:1px;height:38px;background:linear-gradient(var(--purple),transparent);animation:scA 2s infinite;}
-@keyframes scA{0%{opacity:0;transform:scaleY(0);transform-origin:top;}50%{opacity:1;}100%{opacity:0;transform:scaleY(1);transform-origin:top;}}
-@keyframes fsUp{from{opacity:0;transform:translateY(26px);}to{opacity:1;transform:none;}}
+.hero-title{font-family:var(--fd);font-size:clamp(36px,4.5vw,68px);font-weight:900;line-height:1.05;color:var(--white);margin-bottom:1.4rem;letter-spacing:-1.5px;animation:fadeUp .9s .1s ease both;}
+.hero-title .grad{background:var(--grad1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.hero-sub{font-size:16px;font-weight:300;color:var(--gray);line-height:1.8;max-width:480px;margin-bottom:2.4rem;animation:fadeUp 1s .2s ease both;}
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap;animation:fadeUp 1s .3s ease both;}
+.btn-grad{padding:13px 28px;border-radius:8px;background:var(--grad1);color:var(--white);font-size:14px;font-weight:600;text-decoration:none;transition:all .25s;border:none;cursor:pointer;display:inline-flex;align-items:center;gap:8px;letter-spacing:.3px;}
+.btn-grad:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(124,92,255,.4);}
+.btn-ghost{padding:13px 28px;border-radius:8px;background:transparent;color:var(--white);border:1px solid var(--border);font-size:14px;font-weight:400;text-decoration:none;transition:all .25s;cursor:pointer;}
+.btn-ghost:hover{border-color:var(--purple);color:var(--purpleL);}
+.hero-right{animation:fadeUp 1s .15s ease both;}
+.hero-dashboard{background:var(--glass);border:.5px solid var(--border);border-radius:16px;padding:1.5rem;backdrop-filter:blur(20px);position:relative;overflow:hidden;}
+.hero-dashboard::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:var(--grad1);opacity:.6;}
+.db-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.2rem;}
+.db-title{font-size:12px;font-weight:600;color:var(--white);letter-spacing:.5px;}
+.db-dots{display:flex;gap:5px;}
+.db-dot{width:8px;height:8px;border-radius:50%;}
+.db-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:.8rem;margin-bottom:1.2rem;}
+.db-stat{background:rgba(124,92,255,.08);border:.5px solid var(--border);border-radius:10px;padding:.8rem;text-align:center;}
+.db-stat-num{font-family:var(--fd);font-size:20px;font-weight:800;background:var(--grad1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.db-stat-label{font-size:10px;color:var(--gray);margin-top:2px;letter-spacing:.5px;}
+.db-chart{background:rgba(0,0,0,.2);border-radius:10px;height:90px;display:flex;align-items:flex-end;gap:4px;padding:.6rem;margin-bottom:1rem;overflow:hidden;}
+.bar{flex:1;border-radius:4px 4px 0 0;background:rgba(124,92,255,.3);transition:height .5s ease;position:relative;}
+.bar.active{background:var(--grad1);}
+.db-ai-row{display:flex;align-items:center;gap:.6rem;background:rgba(0,212,255,.06);border:.5px solid rgba(0,212,255,.15);border-radius:8px;padding:.6rem .8rem;}
+.db-ai-dot{width:6px;height:6px;border-radius:50%;background:var(--cyan);animation:pulse 1.5s infinite;}
+.db-ai-text{font-size:11px;color:var(--cyanL);}
+.db-float1{position:absolute;top:-12px;right:16px;background:var(--glass);border:.5px solid var(--border);border-radius:10px;padding:.5rem .8rem;backdrop-filter:blur(10px);animation:float1 4s ease-in-out infinite;}
+.db-float2{position:absolute;bottom:-12px;left:16px;background:var(--glass);border:.5px solid rgba(0,212,255,.2);border-radius:10px;padding:.5rem .8rem;backdrop-filter:blur(10px);animation:float1 5s ease-in-out infinite reverse;}
+@keyframes float1{0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);}}
+.float-label{font-size:10px;color:var(--gray);margin-bottom:2px;}
+.float-val{font-size:13px;font-weight:700;color:var(--white);}
+.hero-stats{display:flex;gap:2.5rem;margin-top:3rem;padding-top:2rem;border-top:.5px solid rgba(255,255,255,.06);animation:fadeUp 1s .4s ease both;flex-wrap:wrap;}
+.h-stat-num{font-family:var(--fd);font-size:26px;font-weight:800;background:var(--grad1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.h-stat-label{font-size:10px;color:var(--gray);letter-spacing:2px;margin-top:2px;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:none;}}
 
-/* ── ROI CALCULATOR ── */
-.calc-section{background:var(--navy2);}
-.calc-section .section-title{color:var(--white);}
-.calc-section .section-sub{color:rgba(255,255,255,.4);}
-.calc-wrap{display:grid;grid-template-columns:1fr 1fr;gap:3rem;margin-top:3rem;align-items:start;}
-.calc-inputs{display:flex;flex-direction:column;gap:1.5rem;}
-.calc-label{font-size:12px;color:rgba(255,255,255,.45);letter-spacing:1px;margin-bottom:.5rem;}
-.calc-slider{width:100%;-webkit-appearance:none;height:4px;border-radius:2px;background:rgba(127,119,221,.25);outline:none;}
-.calc-slider::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:var(--purple);cursor:none;transition:transform .2s;}
-.calc-slider::-webkit-slider-thumb:hover{transform:scale(1.3);}
-.calc-val{font-family:var(--fd);font-size:22px;font-weight:700;color:var(--white);margin-top:.3rem;}
-.calc-results{background:rgba(127,119,221,.08);border:.5px solid rgba(127,119,221,.2);border-radius:16px;padding:2rem;}
-.calc-result-item{padding:1rem 0;border-bottom:.5px solid rgba(127,119,221,.1);}
-.calc-result-item:last-child{border:none;}
-.cr-label{font-size:12px;color:rgba(255,255,255,.4);letter-spacing:1px;margin-bottom:.4rem;}
-.cr-value{font-family:var(--fd);font-size:28px;font-weight:800;background:linear-gradient(135deg,var(--purple),var(--coral));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-.cr-sub{font-size:12px;color:rgba(255,255,255,.3);margin-top:2px;}
+/* ── TRUST BAR ── */
+.trust-bar{background:var(--bg2);border-top:.5px solid var(--border);border-bottom:.5px solid var(--border);padding:1.2rem 6%;display:flex;align-items:center;gap:2rem;overflow:hidden;}
+.trust-label{font-size:11px;color:var(--gray);letter-spacing:2px;white-space:nowrap;flex-shrink:0;}
+.trust-items{display:flex;gap:2.5rem;animation:trustScroll 20s linear infinite;white-space:nowrap;}
+.trust-item{display:flex;align-items:center;gap:.5rem;font-size:12px;color:rgba(255,255,255,.4);letter-spacing:.5px;white-space:nowrap;}
+.trust-item svg{width:14px;height:14px;opacity:.4;}
+@keyframes trustScroll{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
 
 /* ── SECTIONS ── */
-section{padding:96px 6%;}
-.sl{font-size:11px;font-weight:500;letter-spacing:3px;color:var(--purple);text-transform:uppercase;margin-bottom:1rem;}
-.st{font-family:var(--fd);font-size:clamp(26px,4vw,46px);font-weight:800;color:var(--navy2);line-height:1.12;margin-bottom:1.2rem;letter-spacing:-.5px;}
-.st .accent{color:var(--coral);}
-.ss{font-size:16px;font-weight:300;color:var(--gray);line-height:1.75;max-width:520px;}
-.dark-s{background:var(--navy2);}
-.dark-s .st{color:var(--white);}
-.dark-s .ss{color:rgba(255,255,255,.4);}
-.dark-s .sl{color:var(--purple);}
+section{padding:100px 6%;}
+.sec-label{font-size:10px;font-weight:600;letter-spacing:3px;color:var(--cyan);text-transform:uppercase;margin-bottom:.8rem;display:flex;align-items:center;gap:8px;}
+.sec-label::before{content:'';width:24px;height:1px;background:var(--cyan);}
+.sec-title{font-family:var(--fd);font-size:clamp(24px,3.5vw,44px);font-weight:800;color:var(--white);line-height:1.1;margin-bottom:1rem;letter-spacing:-.5px;}
+.sec-title .grad{background:var(--grad1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.sec-sub{font-size:15px;font-weight:300;color:var(--gray);line-height:1.8;max-width:520px;}
 
-/* ── SERVICES ── */
-.svcs{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1px;margin-top:3.5rem;border:1px solid rgba(127,119,221,.1);border-radius:16px;overflow:hidden;}
-.svc{padding:2.5rem 2rem;background:rgba(255,255,255,.02);border:.5px solid rgba(127,119,221,.07);transition:background .3s;position:relative;overflow:hidden;cursor:none;}
-.svc::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--purple),var(--coral));transform:scaleX(0);transform-origin:left;transition:transform .35s;}
-.svc:hover{background:rgba(127,119,221,.07);}
-.svc:hover::before{transform:scaleX(1);}
-.svc-n{font-size:11px;font-weight:700;color:var(--purple);letter-spacing:2.5px;margin-bottom:1.2rem;}
-.svc-ico{width:44px;height:44px;border-radius:10px;background:rgba(127,119,221,.13);border:.5px solid rgba(127,119,221,.28);display:flex;align-items:center;justify-content:center;margin-bottom:1.2rem;transition:transform .3s;}
-.svc:hover .svc-ico{transform:scale(1.1) rotate(3deg);}
-.svc-ico svg{width:22px;height:22px;stroke:var(--purpleL);fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;}
-.svc-name{font-family:var(--fd);font-size:17px;font-weight:700;color:var(--white);margin-bottom:.7rem;}
-.svc-desc{font-size:13px;font-weight:300;color:rgba(255,255,255,.38);line-height:1.7;}
+/* ── GLASS CARD ── */
+.glass-card{background:var(--glass);border:.5px solid var(--border);border-radius:16px;backdrop-filter:blur(16px);transition:all .3s;position:relative;overflow:hidden;}
+.glass-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:var(--grad1);transform:scaleX(0);transform-origin:left;transition:transform .35s;}
+.glass-card:hover{border-color:rgba(124,92,255,.35);box-shadow:var(--shadow);}
+.glass-card:hover::before{transform:scaleX(1);}
 
-/* ── LIVE DEMO ── */
-.demo-section{background:var(--cream);}
-.demo-wrap{margin-top:3rem;border-radius:20px;border:.5px solid var(--border);overflow:hidden;box-shadow:0 24px 80px rgba(127,119,221,.1);}
-.demo-topbar{background:var(--navy2);padding:1rem 1.5rem;display:flex;align-items:center;gap:1rem;}
-.demo-dots{display:flex;gap:6px;}
-.demo-dot{width:10px;height:10px;border-radius:50%;}
-.demo-title{font-size:12px;color:rgba(255,255,255,.3);letter-spacing:1px;margin-left:.5rem;}
-.demo-body{display:grid;grid-template-columns:1fr 1fr;}
-.demo-left{background:var(--navy);padding:2rem;border-right:.5px solid rgba(127,119,221,.1);}
-.demo-right{background:#0a0820;padding:2rem;}
-.demo-prompt-label{font-size:11px;color:var(--purple);letter-spacing:2px;margin-bottom:1rem;}
-.demo-chips{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1.5rem;}
-.demo-chip{padding:6px 14px;border-radius:100px;border:.5px solid rgba(127,119,221,.25);background:rgba(127,119,221,.07);color:var(--purpleL);font-size:12px;cursor:none;transition:all .2s;}
-.demo-chip:hover,.demo-chip.active{background:rgba(127,119,221,.2);border-color:var(--purple);}
-.demo-input-wrap{display:flex;gap:.5rem;}
-.demo-inp{flex:1;background:rgba(255,255,255,.04);border:.5px solid rgba(127,119,221,.18);border-radius:10px;padding:.7rem 1rem;color:var(--white);font-family:var(--fb);font-size:13px;outline:none;transition:border-color .2s;}
-.demo-inp:focus{border-color:var(--purple);}
-.demo-run{padding:.7rem 1.2rem;border-radius:10px;background:var(--purple);border:none;color:var(--white);font-size:13px;cursor:none;transition:all .2s;font-family:var(--fb);}
-.demo-run:hover{background:var(--purpleL);}
-.demo-output-label{font-size:11px;color:var(--coral);letter-spacing:2px;margin-bottom:1rem;}
-.demo-output{min-height:160px;font-family:monospace;font-size:13px;color:rgba(255,255,255,.7);line-height:1.7;}
-.demo-cursor{display:inline-block;width:8px;height:14px;background:var(--purple);animation:blink .8s infinite;vertical-align:middle;margin-left:2px;}
-@keyframes blink{0%,100%{opacity:1;}50%{opacity:0;}}
-.demo-tag{display:inline-block;padding:2px 8px;border-radius:4px;font-size:11px;margin-right:4px;}
-.tag-green{background:rgba(34,197,94,.15);color:#4ade80;}
-.tag-blue{background:rgba(127,119,221,.2);color:var(--purpleL);}
+/* ── SERVICES GRID ── */
+.svc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1px;border:.5px solid var(--border);border-radius:16px;overflow:hidden;margin-top:3.5rem;}
+.svc-card{padding:2.2rem 1.8rem;background:rgba(21,27,53,.6);border:.5px solid rgba(124,92,255,.07);transition:all .3s;cursor:pointer;position:relative;overflow:hidden;}
+.svc-card::after{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 0%,rgba(124,92,255,.08) 0%,transparent 70%);opacity:0;transition:opacity .3s;}
+.svc-card:hover{background:rgba(124,92,255,.08);}
+.svc-card:hover::after{opacity:1;}
+.svc-card-top{display:flex;align-items:center;gap:10px;margin-bottom:1rem;}
+.svc-num{font-size:10px;font-weight:700;color:var(--purple);letter-spacing:2px;}
+.svc-tag{padding:2px 8px;border-radius:4px;font-size:9px;letter-spacing:1px;font-weight:600;}
+.svc-tag.ai{background:rgba(124,92,255,.15);color:var(--purpleL);}
+.svc-tag.sw{background:rgba(0,212,255,.1);color:var(--cyanL);}
+.svc-icon{width:42px;height:42px;border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:1rem;transition:transform .3s;}
+.svc-card:hover .svc-icon{transform:scale(1.1) rotate(5deg);}
+.svc-icon svg{width:20px;height:20px;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;}
+.svc-name{font-family:var(--fd);font-size:16px;font-weight:700;color:var(--white);margin-bottom:.6rem;}
+.svc-desc{font-size:13px;color:var(--gray);line-height:1.7;}
+
+/* ── INDUSTRIES ── */
+.ind-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.2rem;margin-top:3rem;}
+.ind-card{padding:2rem;border-radius:14px;background:var(--glass);border:.5px solid var(--border);backdrop-filter:blur(10px);transition:all .3s;cursor:pointer;}
+.ind-card:hover{transform:translateY(-4px);border-color:rgba(0,212,255,.3);box-shadow:0 20px 60px rgba(0,212,255,.08);}
+.ind-icon-wrap{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:1.2rem;font-size:22px;}
+.ind-name{font-family:var(--fd);font-size:16px;font-weight:700;color:var(--white);margin-bottom:.5rem;}
+.ind-challenge{font-size:12px;color:var(--gray);line-height:1.6;margin-bottom:.8rem;}
+.ind-solution{font-size:12px;color:var(--cyanL);line-height:1.6;}
+
+/* ── AI DEMO ── */
+.demo-section{background:var(--bg2);position:relative;overflow:hidden;}
+.demo-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 30% 50%,rgba(124,92,255,.08) 0%,transparent 60%),radial-gradient(ellipse at 70% 50%,rgba(0,212,255,.05) 0%,transparent 60%);}
+.demo-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start;margin-top:3rem;}
+.demo-chat{background:rgba(11,16,32,.8);border:.5px solid var(--border);border-radius:16px;overflow:hidden;}
+.demo-chat-header{padding:1rem 1.2rem;background:rgba(124,92,255,.1);border-bottom:.5px solid var(--border);display:flex;align-items:center;gap:.7rem;}
+.demo-chat-av{width:30px;height:30px;border-radius:50%;background:var(--grad1);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:var(--white);}
+.demo-chat-name{font-size:13px;font-weight:600;color:var(--white);}
+.demo-chat-status{font-size:10px;color:var(--cyan);}
+.demo-msgs{padding:1rem;display:flex;flex-direction:column;gap:.7rem;height:260px;overflow-y:auto;}
+.demo-msgs::-webkit-scrollbar{width:2px;}
+.demo-msgs::-webkit-scrollbar-thumb{background:rgba(124,92,255,.3);}
+.dmsg{max-width:85%;padding:.55rem .85rem;border-radius:10px;font-size:12px;line-height:1.6;}
+.dmsg.bot{background:rgba(124,92,255,.12);color:rgba(255,255,255,.8);border-bottom-left-radius:2px;align-self:flex-start;}
+.dmsg.user{background:var(--purple);color:var(--white);border-bottom-right-radius:2px;align-self:flex-end;}
+.dmsg.typing{display:flex;gap:3px;align-items:center;}
+.td{width:5px;height:5px;border-radius:50%;background:var(--purpleL);animation:ta 1.4s infinite;}
+.td:nth-child(2){animation-delay:.2s;}
+.td:nth-child(3){animation-delay:.4s;}
+@keyframes ta{0%,80%,100%{transform:scale(.6);opacity:.4;}40%{transform:scale(1);opacity:1;}}
+.demo-input-row{padding:.7rem 1rem;border-top:.5px solid var(--border);display:flex;gap:.5rem;}
+.demo-input{flex:1;background:rgba(255,255,255,.04);border:.5px solid rgba(124,92,255,.18);border-radius:8px;padding:.45rem .8rem;color:var(--white);font-size:12px;outline:none;font-family:var(--fb);}
+.demo-input:focus{border-color:var(--purple);}
+.demo-send{width:30px;height:30px;border-radius:6px;background:var(--purple);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s;flex-shrink:0;}
+.demo-send:hover{background:var(--purpleL);}
+.demo-send svg{width:13px;height:13px;stroke:var(--white);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+.demo-sugs{padding:.5rem 1rem .7rem;display:flex;gap:.4rem;flex-wrap:wrap;border-top:.5px solid rgba(124,92,255,.08);}
+.demo-sug{padding:4px 10px;border-radius:6px;border:.5px solid rgba(124,92,255,.25);background:rgba(124,92,255,.06);color:var(--purpleL);font-size:10px;cursor:pointer;transition:all .2s;}
+.demo-sug:hover{background:rgba(124,92,255,.18);}
+.demo-analytics{display:flex;flex-direction:column;gap:1rem;}
+.analytics-card{background:rgba(11,16,32,.8);border:.5px solid var(--border);border-radius:14px;padding:1.4rem;transition:all .3s;}
+.analytics-card:hover{border-color:rgba(0,212,255,.25);}
+.ac-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;}
+.ac-title{font-size:12px;font-weight:600;color:var(--white);}
+.ac-badge{font-size:10px;color:var(--cyan);background:rgba(0,212,255,.08);padding:2px 8px;border-radius:4px;}
+.ac-chart{display:flex;align-items:flex-end;gap:3px;height:60px;}
+.ac-bar{flex:1;border-radius:3px 3px 0 0;background:rgba(124,92,255,.25);transition:height .6s ease;}
+.ac-bar.hi{background:var(--grad1);}
+.ac-metrics{display:grid;grid-template-columns:1fr 1fr;gap:.8rem;margin-top:1rem;}
+.ac-metric{background:rgba(124,92,255,.06);border-radius:8px;padding:.7rem;}
+.ac-metric-num{font-family:var(--fd);font-size:18px;font-weight:800;background:var(--grad1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.ac-metric-label{font-size:10px;color:var(--gray);margin-top:1px;}
+
+/* ── PROCESS ── */
+.process-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:0;margin-top:3rem;position:relative;}
+.process-grid::before{content:'';position:absolute;top:28px;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--purple),var(--cyan),transparent);opacity:.3;}
+.proc-step{display:flex;flex-direction:column;align-items:center;text-align:center;padding:1.5rem 1rem;position:relative;}
+.proc-num{width:56px;height:56px;border-radius:50%;background:var(--bg2);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-family:var(--fd);font-size:16px;font-weight:800;color:var(--purple);margin-bottom:1rem;position:relative;z-index:1;transition:all .3s;}
+.proc-step:hover .proc-num{background:var(--purple);color:var(--white);border-color:var(--purple);box-shadow:0 0 24px rgba(124,92,255,.5);}
+.proc-title{font-size:13px;font-weight:600;color:var(--white);margin-bottom:.4rem;}
+.proc-desc{font-size:11px;color:var(--gray);line-height:1.6;}
+
+/* ── WHY US ── */
+.why-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.2rem;margin-top:3rem;}
+.why-card{padding:2rem;background:var(--glass);border:.5px solid var(--border);border-radius:14px;backdrop-filter:blur(10px);transition:all .3s;}
+.why-card:hover{transform:translateY(-4px);border-color:rgba(124,92,255,.3);box-shadow:var(--shadow);}
+.why-icon{width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:1.2rem;}
+.why-icon svg{width:20px;height:20px;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;}
+.why-title{font-family:var(--fd);font-size:15px;font-weight:700;color:var(--white);margin-bottom:.5rem;}
+.why-desc{font-size:13px;color:var(--gray);line-height:1.7;}
 
 /* ── ABOUT ── */
-.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;margin-top:4rem;}
-.about-vis{height:380px;border-radius:20px;background:var(--navy2);border:.5px solid var(--border);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;}
-.avc{position:relative;z-index:2;text-align:center;}
-.ax svg{width:88px;height:88px;animation:orbF 4s ease-in-out infinite;}
-.avt{font-family:var(--fd);font-size:18px;font-weight:800;color:var(--white);margin-top:1rem;}
-.avt span{color:var(--purple);}
-.afacts{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:2rem;}
-.afact{padding:1.2rem;background:var(--white);border-radius:12px;border:.5px solid var(--border);transition:transform .2s,box-shadow .2s;}
-.afact:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(127,119,221,.1);}
-.afn{font-family:var(--fd);font-size:24px;font-weight:800;color:var(--purple);}
-.afl{font-size:11px;color:var(--gray);margin-top:2px;letter-spacing:.5px;}
-.vlist{list-style:none;margin-top:2rem;}
-.vlist li{display:flex;align-items:flex-start;gap:12px;padding:14px 0;border-bottom:.5px solid var(--border);}
-.vlist li:last-child{border:none;}
-.vdot{width:8px;height:8px;border-radius:50%;background:var(--purple);margin-top:6px;flex-shrink:0;}
-.vname{font-weight:500;font-size:15px;color:var(--navy2);margin-bottom:2px;}
-.vdesc{font-size:13px;color:var(--gray);line-height:1.6;}
-
-/* ── PRICING ── */
-.pgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.5rem;margin-top:3rem;}
-.pcard{border-radius:16px;padding:2rem;transition:transform .25s,box-shadow .25s;}
-.pcard:hover{transform:translateY(-4px);box-shadow:0 16px 48px rgba(127,119,221,.12);}
-.pcard.light{background:var(--white);border:.5px solid var(--border);}
-.pcard.dark{background:var(--navy2);border:1.5px solid var(--purple);position:relative;overflow:hidden;}
-.pcard.dark::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--purple),var(--coral));}
-.plabel{font-size:11px;font-weight:700;letter-spacing:2.5px;margin-bottom:.8rem;}
-.ppop{display:inline-block;font-size:10px;background:rgba(127,119,221,.18);color:var(--purpleL);padding:3px 10px;border-radius:100px;letter-spacing:1.5px;margin-bottom:.8rem;}
-.pamount{font-family:var(--fd);font-size:36px;font-weight:800;margin-bottom:.2rem;}
-.pper{font-size:14px;font-weight:300;}
-.pdesc{font-size:12px;margin:1rem 0 1.5rem;line-height:1.6;}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;margin-top:3.5rem;}
+.about-visual{height:420px;border-radius:20px;background:var(--bg2);border:.5px solid var(--border);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;}
+.about-vis-bg{position:absolute;inset:0;background:radial-gradient(circle at 60% 40%,rgba(124,92,255,.12) 0%,transparent 60%),radial-gradient(circle at 30% 70%,rgba(0,212,255,.08) 0%,transparent 60%);}
+.about-vis-inner{position:relative;z-index:2;text-align:center;}
+.ax-svg{width:100px;height:100px;animation:orbFloat 4s ease-in-out infinite;}
+.about-tagline{font-family:var(--fd);font-size:16px;font-weight:800;color:var(--white);margin-top:1.2rem;letter-spacing:-.3px;}
+.about-tagline span{background:var(--grad1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.about-facts{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:2rem;}
+.af{padding:1.2rem;background:var(--glass);border:.5px solid var(--border);border-radius:12px;backdrop-filter:blur(8px);transition:transform .2s;}
+.af:hover{transform:translateY(-2px);}
+.af-num{font-family:var(--fd);font-size:22px;font-weight:800;background:var(--grad1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.af-label{font-size:10px;color:var(--gray);margin-top:2px;letter-spacing:.5px;}
+.values-list{list-style:none;margin-top:2rem;}
+.values-list li{display:flex;align-items:flex-start;gap:12px;padding:14px 0;border-bottom:.5px solid rgba(255,255,255,.05);}
+.values-list li:last-child{border:none;}
+.vdot{width:7px;height:7px;border-radius:50%;flex-shrink:0;margin-top:7px;}
+.vname{font-weight:600;font-size:14px;color:var(--white);margin-bottom:2px;}
+.vdesc{font-size:12px;color:var(--gray);line-height:1.6;}
 
 /* ── CAREERS ── */
-.jgrid{display:grid;gap:1rem;margin-top:3rem;}
-.jcard{background:var(--white);border:.5px solid var(--border);border-radius:14px;padding:1.6rem 2rem;display:flex;align-items:center;justify-content:space-between;transition:all .25s;gap:1rem;}
-.jcard:hover{border-color:var(--purple);box-shadow:0 4px 24px rgba(127,119,221,.1);transform:translateY(-2px);}
-.jleft{display:flex;align-items:center;gap:1.2rem;flex:1;min-width:0;}
-.jico{width:46px;height:46px;border-radius:12px;background:rgba(127,119,221,.08);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-.jico svg{width:20px;height:20px;stroke:var(--purple);fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;}
-.jtitle{font-family:var(--fd);font-size:16px;font-weight:700;color:var(--navy2);margin-bottom:4px;}
-.jtags{display:flex;gap:6px;flex-wrap:wrap;}
-.jtag{padding:2px 10px;border-radius:100px;font-size:11px;}
-.jtag.r{background:rgba(127,119,221,.1);color:var(--dgray);}
-.jtag.t{background:rgba(216,90,48,.08);color:var(--coral);}
-.jtag.e{background:rgba(127,119,221,.06);color:var(--purple);}
-.japply{padding:9px 20px;border-radius:100px;background:var(--navy2);color:var(--white);font-size:12px;font-weight:500;border:none;cursor:none;transition:all .2s;white-space:nowrap;text-decoration:none;flex-shrink:0;}
-.japply:hover{background:var(--purple);}
-.ccta{background:var(--navy2);border-radius:20px;padding:3rem;text-align:center;margin-top:2.5rem;position:relative;overflow:hidden;}
-.ccta::before{content:'';position:absolute;right:-5%;top:-20%;width:280px;height:280px;border-radius:50%;background:radial-gradient(circle,rgba(127,119,221,.13) 0%,transparent 70%);}
-.ccta-t{font-family:var(--fd);font-size:24px;font-weight:800;color:var(--white);margin-bottom:.7rem;}
-.ccta-s{font-size:14px;color:rgba(255,255,255,.38);margin-bottom:1.5rem;}
+.job-card{background:var(--glass);border:.5px solid var(--border);border-radius:14px;padding:1.6rem 2rem;display:flex;align-items:center;justify-content:space-between;transition:all .25s;gap:1rem;backdrop-filter:blur(10px);}
+.job-card:hover{border-color:rgba(124,92,255,.4);box-shadow:var(--shadow);transform:translateY(-2px);}
+.job-left{display:flex;align-items:center;gap:1rem;flex:1;min-width:0;}
+.job-icon{width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.job-icon svg{width:20px;height:20px;stroke:var(--purpleL);fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;}
+.job-title{font-family:var(--fd);font-size:15px;font-weight:700;color:var(--white);margin-bottom:4px;}
+.job-tags{display:flex;gap:6px;flex-wrap:wrap;}
+.jtag{padding:2px 9px;border-radius:4px;font-size:10px;}
+.jtag.r{background:rgba(124,92,255,.1);color:var(--purpleL);}
+.jtag.t{background:rgba(0,212,255,.08);color:var(--cyanL);}
+.jtag.e{background:rgba(124,92,255,.06);color:var(--gray);}
+.job-apply{padding:9px 18px;border-radius:8px;background:var(--purple);color:var(--white);font-size:12px;font-weight:600;border:none;cursor:pointer;transition:all .2s;white-space:nowrap;text-decoration:none;flex-shrink:0;}
+.job-apply:hover{background:var(--purpleL);}
+.careers-cta{background:var(--bg2);border:.5px solid var(--border);border-radius:20px;padding:3rem;text-align:center;margin-top:2.5rem;position:relative;overflow:hidden;}
+.careers-cta::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 0%,rgba(124,92,255,.1) 0%,transparent 60%);}
 
 /* ── CONTACT ── */
-.contact-sec{background:var(--navy);}
-.contact-sec .st{color:var(--white);}
-.contact-sec .ss{color:rgba(255,255,255,.4);}
-.cgrid{display:grid;grid-template-columns:1fr 1.3fr;gap:4rem;margin-top:3.5rem;align-items:start;}
-.cinfo{display:flex;flex-direction:column;gap:1.5rem;}
-.citem{display:flex;align-items:flex-start;gap:1rem;}
-.cion{width:44px;height:44px;border-radius:10px;background:rgba(127,119,221,.13);border:.5px solid rgba(127,119,221,.22);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-.cion svg{width:20px;height:20px;stroke:var(--purpleL);fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;}
-.clabel{font-size:11px;color:var(--gray);letter-spacing:1.5px;margin-bottom:3px;}
-.cval{font-size:14px;color:var(--white);}
-.cval a{color:var(--purpleL);text-decoration:none;}
-.cform{background:rgba(255,255,255,.03);border:.5px solid rgba(127,119,221,.16);border-radius:16px;padding:2.5rem;}
+.contact-sec{background:var(--bg2);position:relative;overflow:hidden;}
+.contact-sec::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 20% 50%,rgba(124,92,255,.07) 0%,transparent 60%);}
+.contact-grid{display:grid;grid-template-columns:1fr 1.3fr;gap:4rem;margin-top:3.5rem;align-items:start;position:relative;z-index:1;}
+.c-info{display:flex;flex-direction:column;gap:1.5rem;}
+.c-item{display:flex;align-items:flex-start;gap:1rem;}
+.c-icon{width:42px;height:42px;border-radius:10px;background:rgba(124,92,255,.12);border:.5px solid rgba(124,92,255,.2);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.c-icon svg{width:18px;height:18px;stroke:var(--purpleL);fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;}
+.c-label{font-size:10px;color:var(--gray);letter-spacing:1.5px;margin-bottom:3px;}
+.c-val{font-size:14px;color:var(--white);}
+.c-val a{color:var(--purpleL);text-decoration:none;}
+.contact-form-wrap{background:rgba(11,16,32,.7);border:.5px solid var(--border);border-radius:16px;padding:2.5rem;backdrop-filter:blur(16px);}
+.contact-form-wrap::before{content:'';display:block;height:1px;background:var(--grad1);margin-bottom:2rem;opacity:.5;}
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem;}
 .fg{display:flex;flex-direction:column;gap:6px;margin-bottom:1rem;}
-.fg label{font-size:11px;color:rgba(255,255,255,.38);letter-spacing:.5px;}
-.fg input,.fg textarea,.fg select{background:rgba(255,255,255,.04);border:.5px solid rgba(127,119,221,.16);border-radius:10px;padding:12px 14px;color:var(--white);font-family:var(--fb);font-size:13px;transition:border-color .2s;outline:none;resize:vertical;cursor:none;}
-.fg input:focus,.fg textarea:focus,.fg select:focus{border-color:var(--purple);}
+.fg label{font-size:10px;color:rgba(255,255,255,.35);letter-spacing:1.5px;}
+.fg input,.fg textarea,.fg select{background:rgba(255,255,255,.03);border:.5px solid rgba(124,92,255,.15);border-radius:8px;padding:11px 14px;color:var(--white);font-family:var(--fb);font-size:13px;transition:all .2s;outline:none;resize:vertical;}
+.fg input:focus,.fg textarea:focus,.fg select:focus{border-color:var(--purple);background:rgba(124,92,255,.05);}
 .fg textarea{min-height:100px;}
-.fg select option{background:var(--navy2);}
-.fsub{width:100%;padding:14px;border-radius:100px;background:linear-gradient(90deg,var(--purple),#9490e8);color:var(--white);font-family:var(--fb);font-size:14px;font-weight:500;border:none;cursor:none;transition:all .2s;}
-.fsub:hover{opacity:.9;transform:translateY(-1px);}
-.fsucc{display:none;text-align:center;padding:2rem;}
+.fg select option{background:var(--bg2);}
+.form-submit{width:100%;padding:13px;border-radius:8px;background:var(--grad1);color:var(--white);font-size:14px;font-weight:600;border:none;cursor:pointer;transition:all .2s;letter-spacing:.3px;}
+.form-submit:hover{opacity:.9;transform:translateY(-1px);box-shadow:0 12px 32px rgba(124,92,255,.35);}
+.form-success{display:none;text-align:center;padding:2rem;}
+
+/* ── DARK/LIGHT TOGGLE ── */
+.theme-toggle{position:fixed;bottom:96px;right:24px;z-index:999;width:42px;height:42px;border-radius:50%;background:var(--bg2);border:.5px solid var(--border);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .2s;box-shadow:0 4px 16px rgba(0,0,0,.3);}
+.theme-toggle:hover{border-color:var(--purple);}
+.theme-toggle svg{width:18px;height:18px;stroke:var(--gray);fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;}
+
+
 
 /* ── CHATBOT ── */
-.chat-bub{position:fixed;bottom:24px;right:24px;z-index:9998;}
-.chat-btn{width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,var(--purple),var(--coral));border:none;cursor:none;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 32px rgba(127,119,221,.4);transition:transform .25s;animation:cPulse 3s ease-in-out infinite;}
-@keyframes cPulse{0%,100%{box-shadow:0 8px 32px rgba(127,119,221,.4);}50%{box-shadow:0 8px 48px rgba(127,119,221,.7);}}
+.chat-bubble{position:fixed;bottom:24px;right:24px;z-index:9999;}
+.chat-btn{width:52px;height:52px;border-radius:50%;background:var(--grad1);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 32px rgba(124,92,255,.45);transition:transform .25s;animation:chatGlow 3s ease-in-out infinite;}
+@keyframes chatGlow{0%,100%{box-shadow:0 8px 32px rgba(124,92,255,.45);}50%{box-shadow:0 8px 48px rgba(124,92,255,.75);}}
 .chat-btn:hover{transform:scale(1.1);}
-.chat-btn svg{width:24px;height:24px;stroke:var(--white);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
-.chat-win{position:absolute;bottom:68px;right:0;width:340px;background:var(--navy2);border-radius:16px;border:.5px solid rgba(127,119,221,.22);box-shadow:0 24px 80px rgba(0,0,0,.55);display:none;flex-direction:column;overflow:hidden;max-height:480px;}
-.chat-win.open{display:flex;}
-.chat-head{padding:1rem 1.2rem;background:linear-gradient(135deg,rgba(127,119,221,.18),rgba(216,90,48,.1));border-bottom:.5px solid rgba(127,119,221,.12);display:flex;align-items:center;justify-content:space-between;}
-.chl{display:flex;align-items:center;gap:.7rem;}
-.chav{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,var(--purple),var(--coral));display:flex;align-items:center;justify-content:center;font-family:var(--fd);font-size:12px;font-weight:800;color:var(--white);}
-.chn{font-family:var(--fd);font-size:14px;font-weight:700;color:var(--white);}
-.chs{font-size:11px;color:var(--purpleL);}
-.ch-close{background:none;border:none;color:rgba(255,255,255,.35);cursor:none;font-size:18px;line-height:1;padding:2px;transition:color .2s;}
-.ch-close:hover{color:var(--white);}
-.chat-msgs{flex:1;overflow-y:auto;padding:1rem;display:flex;flex-direction:column;gap:.75rem;max-height:300px;}
-.chat-msgs::-webkit-scrollbar{width:3px;}
-.chat-msgs::-webkit-scrollbar-thumb{background:rgba(127,119,221,.25);}
-.msg{max-width:85%;padding:.65rem .9rem;border-radius:12px;font-size:13px;line-height:1.55;animation:mIn .3s ease;}
-@keyframes mIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:none;}}
-.msg.bot{background:rgba(127,119,221,.13);color:rgba(255,255,255,.82);border-bottom-left-radius:3px;align-self:flex-start;}
-.msg.user{background:var(--purple);color:var(--white);border-bottom-right-radius:3px;align-self:flex-end;}
-.msg.typing{display:flex;gap:4px;align-items:center;padding:.7rem .9rem;}
-.td{width:6px;height:6px;border-radius:50%;background:var(--purpleL);animation:tdA 1.4s infinite;}
-.td:nth-child(2){animation-delay:.2s;}.td:nth-child(3){animation-delay:.4s;}
-@keyframes tdA{0%,80%,100%{transform:scale(.6);opacity:.4;}40%{transform:scale(1);opacity:1;}}
-.chat-sugs{padding:.5rem 1rem;display:flex;gap:.5rem;flex-wrap:wrap;border-top:.5px solid rgba(127,119,221,.08);}
-.csug{padding:5px 12px;border-radius:100px;border:.5px solid rgba(127,119,221,.28);background:rgba(127,119,221,.07);color:var(--purpleL);font-size:11px;cursor:none;transition:all .2s;white-space:nowrap;}
-.csug:hover{background:rgba(127,119,221,.2);}
-.chat-inp-row{padding:.75rem 1rem;border-top:.5px solid rgba(127,119,221,.1);display:flex;gap:.5rem;}
-.cinp{flex:1;background:rgba(255,255,255,.05);border:.5px solid rgba(127,119,221,.16);border-radius:100px;padding:.5rem 1rem;color:var(--white);font-family:var(--fb);font-size:13px;outline:none;transition:border-color .2s;cursor:none;}
-.cinp:focus{border-color:var(--purple);}
-.csend{width:34px;height:34px;border-radius:50%;background:var(--purple);border:none;cursor:none;display:flex;align-items:center;justify-content:center;transition:background .2s;flex-shrink:0;}
-.csend:hover{background:var(--purpleL);}
-.csend svg{width:14px;height:14px;stroke:var(--white);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
-
-/* ── WHATSAPP ── */
-.wa-btn{position:fixed;bottom:90px;right:24px;z-index:9997;width:48px;height:48px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 24px rgba(37,211,102,.4);transition:transform .25s;cursor:none;text-decoration:none;}
-.wa-btn:hover{transform:scale(1.12);}
-.wa-btn svg{width:26px;height:26px;fill:var(--white);}
-.wa-tooltip{position:absolute;right:56px;background:var(--navy2);color:var(--white);font-size:11px;padding:5px 10px;border-radius:8px;white-space:nowrap;opacity:0;transition:opacity .2s;pointer-events:none;border:.5px solid rgba(127,119,221,.2);}
-.wa-btn:hover .wa-tooltip{opacity:1;}
-
-/* ── COOKIE BANNER ── */
-.cookie-banner{position:fixed;bottom:0;left:0;right:0;z-index:99997;background:rgba(13,11,36,.97);border-top:.5px solid rgba(127,119,221,.15);padding:1rem 5%;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;backdrop-filter:blur(10px);transform:translateY(100%);transition:transform .4s ease;animation:slideUpBanner .4s 1.5s ease both;}
-@keyframes slideUpBanner{to{transform:translateY(0);}}
-.cookie-text{font-size:13px;color:rgba(255,255,255,.55);line-height:1.6;max-width:600px;}
-.cookie-text a{color:var(--purpleL);text-decoration:none;}
-.cookie-btns{display:flex;gap:.75rem;flex-shrink:0;}
-.cookie-acc{padding:8px 20px;border-radius:100px;background:var(--purple);color:var(--white);font-size:12px;font-weight:500;border:none;cursor:none;transition:all .2s;}
-.cookie-acc:hover{background:var(--purpleL);}
-.cookie-dec{padding:8px 20px;border-radius:100px;background:transparent;color:rgba(255,255,255,.4);font-size:12px;border:.5px solid rgba(255,255,255,.15);cursor:none;transition:all .2s;}
-.cookie-dec:hover{border-color:rgba(255,255,255,.3);color:rgba(255,255,255,.6);}
+.chat-btn svg{width:22px;height:22px;stroke:var(--white);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+.chat-window{position:absolute;bottom:64px;right:0;width:320px;background:var(--bg2);border-radius:16px;border:.5px solid var(--border);box-shadow:0 24px 80px rgba(0,0,0,.6);display:none;flex-direction:column;overflow:hidden;max-height:480px;}
+.chat-window.open{display:flex;}
+.chat-header{padding:.9rem 1.2rem;background:rgba(124,92,255,.12);border-bottom:.5px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
+.chat-header-left{display:flex;align-items:center;gap:.6rem;}
+.chat-av{width:30px;height:30px;border-radius:50%;background:var(--grad1);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:var(--white);}
+.chat-hname{font-size:13px;font-weight:700;color:var(--white);}
+.chat-hstatus{font-size:10px;color:var(--cyan);}
+.chat-close{background:none;border:none;color:rgba(255,255,255,.35);cursor:pointer;font-size:18px;transition:color .2s;}
+.chat-close:hover{color:var(--white);}
+.chat-msgs{flex:1;overflow-y:auto;padding:.8rem;display:flex;flex-direction:column;gap:.6rem;max-height:300px;}
+.chat-msgs::-webkit-scrollbar{width:2px;}
+.chat-msgs::-webkit-scrollbar-thumb{background:rgba(124,92,255,.3);}
+.cmsg{max-width:85%;padding:.55rem .85rem;border-radius:10px;font-size:12px;line-height:1.6;animation:msgIn .3s ease;}
+@keyframes msgIn{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:none;}}
+.cmsg.bot{background:rgba(124,92,255,.12);color:rgba(255,255,255,.8);border-bottom-left-radius:2px;align-self:flex-start;}
+.cmsg.user{background:var(--purple);color:var(--white);border-bottom-right-radius:2px;align-self:flex-end;}
+.cmsg.typing{display:flex;gap:3px;align-items:center;}
+.td{width:5px;height:5px;border-radius:50%;background:var(--purpleL);animation:ta 1.4s infinite;}
+.td:nth-child(2){animation-delay:.2s;}
+.td:nth-child(3){animation-delay:.4s;}
+.chat-sugs{padding:.5rem .8rem;display:flex;gap:.4rem;flex-wrap:wrap;border-top:.5px solid rgba(124,92,255,.1);}
+.chat-sug{padding:4px 10px;border-radius:5px;border:.5px solid rgba(124,92,255,.25);background:rgba(124,92,255,.06);color:var(--purpleL);font-size:10px;cursor:pointer;transition:all .2s;white-space:nowrap;}
+.chat-sug:hover{background:rgba(124,92,255,.2);}
+.chat-input-row{padding:.6rem .8rem;border-top:.5px solid rgba(124,92,255,.1);display:flex;gap:.5rem;}
+.chat-inp{flex:1;background:rgba(255,255,255,.04);border:.5px solid rgba(124,92,255,.15);border-radius:6px;padding:.45rem .7rem;color:var(--white);font-family:var(--fb);font-size:12px;outline:none;}
+.chat-inp:focus{border-color:var(--purple);}
+.chat-send{width:28px;height:28px;border-radius:6px;background:var(--purple);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s;flex-shrink:0;}
+.chat-send:hover{background:var(--purpleL);}
+.chat-send svg{width:12px;height:12px;stroke:var(--white);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
 
 /* ── FOOTER ── */
-footer{background:var(--navy);border-top:.5px solid rgba(127,119,221,.08);}
-.footer-main{padding:3rem 6%;display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:3rem;}
-.footer-brand-col .nav-wm{font-size:18px;margin-bottom:.7rem;}
-.footer-brand-col p{font-size:13px;color:rgba(255,255,255,.3);line-height:1.7;max-width:220px;margin-bottom:1.2rem;}
+.footer{background:var(--bg);border-top:.5px solid var(--border);}
+.footer-top{padding:4rem 6% 3rem;display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:3rem;}
+.footer-brand-section .nav-logo{margin-bottom:1rem;display:inline-flex;}
+.footer-desc{font-size:13px;color:var(--gray);line-height:1.8;max-width:240px;margin-bottom:1.5rem;}
 .footer-social{display:flex;gap:.7rem;}
-.fsoc{width:34px;height:34px;border-radius:50%;background:rgba(127,119,221,.1);border:.5px solid rgba(127,119,221,.2);display:flex;align-items:center;justify-content:center;text-decoration:none;transition:all .2s;cursor:none;}
-.fsoc:hover{background:rgba(127,119,221,.25);}
-.fsoc svg{width:15px;height:15px;fill:var(--purpleL);}
-.footer-col h4{font-family:var(--fd);font-size:13px;font-weight:700;color:rgba(255,255,255,.5);letter-spacing:1.5px;margin-bottom:1.2rem;}
-.footer-col a{display:block;font-size:13px;color:rgba(255,255,255,.28);text-decoration:none;padding:.35rem 0;transition:color .2s;cursor:none;}
-.footer-col a:hover{color:var(--purpleL);}
-.footer-bottom{padding:1.2rem 6%;border-top:.5px solid rgba(127,119,221,.07);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.75rem;}
-.footer-copy{font-size:11px;color:rgba(255,255,255,.16);}
-.footer-tag{font-size:11px;color:rgba(255,255,255,.14);letter-spacing:2px;}
+.f-social-btn{width:34px;height:34px;border-radius:8px;background:rgba(124,92,255,.1);border:.5px solid var(--border);display:flex;align-items:center;justify-content:center;text-decoration:none;transition:all .2s;}
+.f-social-btn:hover{background:rgba(124,92,255,.25);border-color:rgba(124,92,255,.4);}
+.f-social-btn svg{width:15px;height:15px;}
+.footer-col h4{font-family:var(--fd);font-size:12px;font-weight:700;color:var(--white);letter-spacing:1.5px;margin-bottom:1.2rem;}
+.footer-col ul{list-style:none;}
+.footer-col ul li{margin-bottom:.6rem;}
+.footer-col ul li a{font-size:13px;color:var(--gray);text-decoration:none;transition:color .2s;}
+.footer-col ul li a:hover{color:var(--purpleL);}
+.footer-bottom{padding:1.2rem 6%;border-top:.5px solid rgba(255,255,255,.04);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;}
+.footer-copy{font-size:12px;color:rgba(255,255,255,.2);}
+.footer-badge{font-size:11px;color:rgba(255,255,255,.2);letter-spacing:2px;}
 
-/* ── ANIMATIONS ── */
-.reveal{opacity:0;transform:translateY(22px);transition:opacity .65s ease,transform .65s ease;}
+/* ── LIGHT THEME ── */
+body.light{
+  --bg:#F0F2FF; --bg2:#E8EAFF; --bg3:#DDE0FF;
+  --white:#0B1020; --gray:#4a5568; --border:rgba(124,92,255,.2);
+  --glass:rgba(240,242,255,0.8);
+}
+body.light nav{background:rgba(240,242,255,.95);}
+body.light .svc-card{background:rgba(255,255,255,.8);}
+body.light .hero-dashboard{background:rgba(255,255,255,.9);}
+
+/* ── REVEAL ANIMATIONS ── */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .65s ease,transform .65s ease;}
 .reveal.v{opacity:1;transform:none;}
-.reveal-l{opacity:0;transform:translateX(-22px);transition:opacity .65s ease,transform .65s ease;}
+.reveal-l{opacity:0;transform:translateX(-24px);transition:opacity .65s ease,transform .65s ease;}
 .reveal-l.v{opacity:1;transform:none;}
-.reveal-r{opacity:0;transform:translateX(22px);transition:opacity .65s ease,transform .65s ease;}
+.reveal-r{opacity:0;transform:translateX(24px);transition:opacity .65s ease,transform .65s ease;}
 .reveal-r.v{opacity:1;transform:none;}
 
 /* ── RESPONSIVE ── */
-@media(max-width:1024px){.footer-main{grid-template-columns:1fr 1fr;}.footer-brand-col{grid-column:1/-1;}}
-@media(max-width:900px){.about-grid,.cgrid,.calc-wrap,.demo-body{grid-template-columns:1fr;}.about-vis{height:260px;}.form-row{grid-template-columns:1fr;}}
-@media(max-width:768px){
-  .nav-links,.nav-right{display:none;}
-  .hamburger{display:flex;}
-  section{padding:64px 5%;}
-  .hero-content{padding:0 5%;}
-  .hero-stats{gap:1.5rem;}
-  .jcard{flex-direction:column;align-items:flex-start;}
-  .chat-win{width:300px;}
-  .footer-main{grid-template-columns:1fr;gap:2rem;}
-}
-@media(max-width:480px){
-  .hero-title{font-size:34px;}
-  .hero-actions,.cookie-btns{flex-direction:column;}
-  .btn-p,.btn-o{text-align:center;justify-content:center;}
-  .svcs{grid-template-columns:1fr;}
-  .pgrid{grid-template-columns:1fr;}
-  body{cursor:auto;}
-  #cursor,#cursor-ring{display:none;}
-}
+@media(max-width:1024px){.hero-inner{grid-template-columns:1fr;}.hero-right{display:none;}.about-grid,.contact-grid,.demo-grid,.footer-top{grid-template-columns:1fr;}.footer-top{gap:2rem;}}
+@media(max-width:768px){.nav-links,.nav-cta{display:none;}.hamburger{display:flex;}section{padding:64px 5%;}.hero-inner{padding:2rem 5%;}.process-grid{grid-template-columns:repeat(2,1fr);}.process-grid::before{display:none;}.footer-top{padding:2rem 5%;}}
+@media(max-width:480px){.hero-title{font-size:32px;}.hero-btns{flex-direction:column;}.svc-grid{grid-template-columns:1fr;}.form-row{grid-template-columns:1fr;}.chat-window{width:290px;}.why-grid{grid-template-columns:1fr;}.pricing-grid{grid-template-columns:1fr;}}
 </style>
 </head>
 <body>
+
 <!-- CURSOR -->
-<div id="cursor"></div>
-<div id="cursor-ring"></div>
-<div id="progress-bar"></div>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-trail" id="cursor-trail"></div>
 
 <!-- NAV -->
 <nav>
   <a class="nav-logo" href="#" onclick="showPage('home')">
     <div class="nav-icon">
-      <svg viewBox="0 0 24 24" fill="none" stroke="#AFA9EC" stroke-width="2" stroke-linecap="round">
-        <line x1="5" y1="5" x2="19" y2="19"/><line x1="19" y1="5" x2="5" y2="19"/>
-        <circle cx="12" cy="12" r="3" fill="#AFA9EC" stroke="none"/>
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs><linearGradient id="ng" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#7C5CFF"/><stop offset="100%" stop-color="#00D4FF"/></linearGradient></defs>
+        <line x1="5" y1="5" x2="19" y2="19" stroke="url(#ng)" stroke-width="2.5" stroke-linecap="round"/>
+        <line x1="19" y1="5" x2="5" y2="19" stroke="url(#ng)" stroke-width="2.5" stroke-linecap="round"/>
+        <circle cx="12" cy="12" r="3" fill="url(#ng)"/>
       </svg>
     </div>
     <span class="nav-wm">CLARIVEX<span>.AI</span></span>
@@ -371,283 +387,406 @@ footer{background:var(--navy);border-top:.5px solid rgba(127,119,221,.08);}
     <li><a href="#" onclick="showPage('home')" id="nl-home" class="active">Home</a></li>
     <li><a href="#" onclick="showPage('about')" id="nl-about">About</a></li>
     <li><a href="#" onclick="showPage('services')" id="nl-services">Services</a></li>
+    <li><a href="#" onclick="showPage('industries')" id="nl-industries">Industries</a></li>
     <li><a href="#" onclick="showPage('careers')" id="nl-careers">Careers</a></li>
     <li><a href="#" onclick="showPage('contact')" id="nl-contact">Contact</a></li>
   </ul>
-  <div class="nav-right">
-    <a href="https://www.linkedin.com/company/clarivex-ai/" target="_blank" rel="noopener" class="nav-li">
-      <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
-      LinkedIn
-    </a>
-    <div class="lang-toggle" id="lang-toggle">
-      <span class="lang-btn active" id="lang-en" onclick="setLang('en')">EN</span>
-      <span style="color:rgba(255,255,255,.2);font-size:11px;">|</span>
-      <span class="lang-btn" id="lang-hi" onclick="setLang('hi')">हि</span>
-    </div>
-    <a href="#" class="nav-cta" onclick="showPage('contact')">Get in Touch</a>
-  </div>
-  <div class="hamburger" id="ham" onclick="toggleMenu()">
-    <span></span><span></span><span></span>
-  </div>
+  <a href="#" class="nav-cta" onclick="showPage('contact')">Book Consultation</a>
+  <div class="hamburger" id="ham" onclick="toggleMenu()"><span></span><span></span><span></span></div>
 </nav>
-<div class="mobile-menu" id="mob-menu">
+<div class="mob-menu" id="mob-menu">
   <a href="#" onclick="showPage('home');toggleMenu()">Home</a>
   <a href="#" onclick="showPage('about');toggleMenu()">About</a>
   <a href="#" onclick="showPage('services');toggleMenu()">Services</a>
+  <a href="#" onclick="showPage('industries');toggleMenu()">Industries</a>
   <a href="#" onclick="showPage('careers');toggleMenu()">Careers</a>
   <a href="#" onclick="showPage('contact');toggleMenu()">Contact</a>
-  <a href="https://www.linkedin.com/company/clarivex-ai/" target="_blank">LinkedIn ↗</a>
+  <a href="#" onclick="showPage('contact');toggleMenu()" style="color:var(--purple);font-weight:600;">Book Consultation →</a>
 </div>
 
-<!-- ══════════ HOME ══════════ -->
+<!-- ════ HOME ════ -->
 <div class="page active" id="page-home">
   <div class="hero">
     <div class="hero-bg">
-      <div class="orb1"></div><div class="orb2"></div><div class="orb3"></div>
-      <div class="grid-bg"></div>
-      <div class="particles" id="particles"></div>
+      <div class="orb orb1"></div><div class="orb orb2"></div><div class="orb orb3"></div>
+      <div class="hero-grid"></div>
+      <canvas id="particles-canvas"></canvas>
     </div>
-    <div class="hero-content">
-      <div class="hero-badge"><span class="bdot"></span><span id="badge-text">AI-FIRST TECHNOLOGY · INDIA</span></div>
-      <h1 class="hero-title" id="hero-title">Turning Complex<br>Data Into <span class="cc">Clear</span><br><span class="cp">Decisions</span></h1>
-      <p class="hero-sub" id="hero-sub">Clarivex.AI builds intelligent systems that transform raw business data into actionable insight — in real time, for every team.</p>
-      <div class="hero-actions">
-        <a href="#" class="btn-p" onclick="showPage('services')">Explore Services <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-        <a href="#" class="btn-o" onclick="showPage('about')">Learn About Us</a>
+    <div class="hero-inner">
+      <div class="hero-left">
+        <div class="hero-badge"><span class="badge-dot"></span>AI-DRIVEN SOFTWARE & DIGITAL TRANSFORMATION</div>
+        <h1 class="hero-title">Enterprise Software<br>Meets <span class="grad">Artificial<br>Intelligence</span></h1>
+        <p class="hero-sub">Clarivex.AI helps businesses transform operations through AI-powered applications, enterprise software, and intelligent automation solutions.</p>
+        <div class="hero-btns">
+          <a href="#" class="btn-grad" onclick="showPage('contact')">Book Consultation <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="#" class="btn-ghost" onclick="showPage('services')">Explore Services</a>
+        </div>
+        <div class="hero-stats">
+          <div><div class="h-stat-num" data-count="10">0</div><div class="h-stat-label">PROJECTS DELIVERED</div></div>
+          <div><div class="h-stat-num" data-count="7">0</div><div class="h-stat-label">INDUSTRIES SERVED</div></div>
+          <div><div class="h-stat-num" data-count="4">0</div><div class="h-stat-label">AI PRODUCTS</div></div>
+        </div>
       </div>
-      <div class="hero-stats">
-        <div><div class="stn" data-count="4">0</div><div class="stl">AI PRODUCTS</div></div>
-        <div><div class="stn">100%</div><div class="stl">AI-FIRST</div></div>
-        <div><div class="stn">∞</div><div class="stl">POSSIBILITIES</div></div>
+      <div class="hero-right">
+        <div style="position:relative;padding:24px 0;">
+          <div class="db-float1"><div class="float-label">AI ACCURACY</div><div class="float-val" style="background:var(--grad1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">98.7%</div></div>
+          <div class="hero-dashboard">
+            <div class="db-header">
+              <span class="db-title">CLARIVEX INTELLIGENCE DASHBOARD</span>
+              <div class="db-dots"><div class="db-dot" style="background:#ff5f57"></div><div class="db-dot" style="background:#febc2e"></div><div class="db-dot" style="background:#28c840"></div></div>
+            </div>
+            <div class="db-stats">
+              <div class="db-stat"><div class="db-stat-num" id="d1">0</div><div class="db-stat-label">QUERIES/DAY</div></div>
+              <div class="db-stat"><div class="db-stat-num" id="d2">0</div><div class="db-stat-label">AUTOMATIONS</div></div>
+              <div class="db-stat"><div class="db-stat-num" id="d3">0</div><div class="db-stat-label">ACCURACY</div></div>
+            </div>
+            <div class="db-chart" id="db-chart"></div>
+            <div class="db-ai-row"><span class="db-ai-dot"></span><span class="db-ai-text">AI processing 2,847 data points in real-time…</span></div>
+          </div>
+          <div class="db-float2"><div class="float-label">AUTOMATION RATE</div><div class="float-val" style="color:#00D4FF;">+340%</div></div>
+        </div>
       </div>
     </div>
-    <div class="hero-scroll">SCROLL<div class="scroll-line"></div></div>
+  </div>
+
+  <!-- Trust Bar -->
+  <div class="trust-bar">
+    <span class="trust-label">INDUSTRIES WE SERVE</span>
+    <div class="trust-items" id="trust-items">
+      <span class="trust-item">🏥 Healthcare</span>
+      <span class="trust-item">💰 Finance</span>
+      <span class="trust-item">🏛️ Government</span>
+      <span class="trust-item">🛒 Retail</span>
+      <span class="trust-item">📚 Education</span>
+      <span class="trust-item">🏭 Manufacturing</span>
+      <span class="trust-item">🚚 Logistics</span>
+      <span class="trust-item">🏥 Healthcare</span>
+      <span class="trust-item">💰 Finance</span>
+      <span class="trust-item">🏛️ Government</span>
+      <span class="trust-item">🛒 Retail</span>
+      <span class="trust-item">📚 Education</span>
+      <span class="trust-item">🏭 Manufacturing</span>
+      <span class="trust-item">🚚 Logistics</span>
+    </div>
   </div>
 
   <!-- Services -->
-  <section class="dark-s reveal">
-    <p class="sl">What We Build</p>
-    <h2 class="st">Intelligent Products<br>For Real Business</h2>
-    <div class="svcs">
-      <div class="svc"><div class="svc-n">01</div><div class="svc-ico"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></div><div class="svc-name">ClarivexInsight</div><div class="svc-desc">Real-time BI dashboards from any data source. No SQL needed.</div></div>
-      <div class="svc"><div class="svc-n">02</div><div class="svc-ico"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></div><div class="svc-name">ClarivexChat</div><div class="svc-desc">Ask your data questions in plain language. Get instant answers.</div></div>
-      <div class="svc"><div class="svc-n">03</div><div class="svc-ico"><svg viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg></div><div class="svc-name">ClarivexFlow</div><div class="svc-desc">AI automation that triggers smart actions on detected patterns.</div></div>
-      <div class="svc"><div class="svc-n">04</div><div class="svc-ico"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div><div class="svc-name">ClarivexPredict</div><div class="svc-desc">Forecast sales, churn & demand before they happen.</div></div>
+  <section style="background:var(--bg)" class="reveal">
+    <div class="sec-label">What We Build</div>
+    <h2 class="sec-title">AI Services & <span class="grad">Software Solutions</span></h2>
+    <p class="sec-sub">From intelligent AI systems to enterprise-grade software — we build what modern businesses need to scale.</p>
+    <div class="svc-grid">
+      <div class="svc-card"><div class="svc-card-top"><span class="svc-num">01</span><span class="svc-tag ai">AI SERVICE</span></div><div class="svc-icon" style="background:rgba(124,92,255,.12);"><svg viewBox="0 0 24 24" stroke="#7C5CFF"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></div><div class="svc-name">AI Chatbots</div><div class="svc-desc">Intelligent conversational agents that handle customer queries, support, and sales 24/7.</div></div>
+      <div class="svc-card"><div class="svc-card-top"><span class="svc-num">02</span><span class="svc-tag ai">AI SERVICE</span></div><div class="svc-icon" style="background:rgba(0,212,255,.08);"><svg viewBox="0 0 24 24" stroke="#00D4FF"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg></div><div class="svc-name">AI Automation</div><div class="svc-desc">End-to-end workflow automation using AI that learns and adapts to your business processes.</div></div>
+      <div class="svc-card"><div class="svc-card-top"><span class="svc-num">03</span><span class="svc-tag ai">AI SERVICE</span></div><div class="svc-icon" style="background:rgba(124,92,255,.12);"><svg viewBox="0 0 24 24" stroke="#7C5CFF"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div><div class="svc-name">Predictive Analytics</div><div class="svc-desc">ML-powered forecasting for sales, demand, churn, and key business metrics.</div></div>
+      <div class="svc-card"><div class="svc-card-top"><span class="svc-num">04</span><span class="svc-tag ai">AI SERVICE</span></div><div class="svc-icon" style="background:rgba(0,212,255,.08);"><svg viewBox="0 0 24 24" stroke="#00D4FF"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg></div><div class="svc-name">Generative AI & LLMs</div><div class="svc-desc">Custom LLM integration, fine-tuning, and generative AI products for your domain.</div></div>
+      <div class="svc-card"><div class="svc-card-top"><span class="svc-num">05</span><span class="svc-tag sw">SOFTWARE</span></div><div class="svc-icon" style="background:rgba(124,92,255,.12);"><svg viewBox="0 0 24 24" stroke="#7C5CFF"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></div><div class="svc-name">Enterprise Software</div><div class="svc-desc">Custom ERP, CRM, portals, dashboards, and enterprise-grade web applications.</div></div>
+      <div class="svc-card"><div class="svc-card-top"><span class="svc-num">06</span><span class="svc-tag sw">SOFTWARE</span></div><div class="svc-icon" style="background:rgba(0,212,255,.08);"><svg viewBox="0 0 24 24" stroke="#00D4FF"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div><div class="svc-name">SaaS Platforms</div><div class="svc-desc">Full-stack SaaS product development — from MVP to production-ready scalable platforms.</div></div>
     </div>
   </section>
 
-  <!-- Live AI Demo -->
+  <!-- AI Demo -->
   <section class="demo-section reveal">
-    <p class="sl">Live Demo</p>
-    <h2 class="st">See ClarivexChat <span class="accent">In Action</span></h2>
-    <p class="ss">Ask any business question and watch our AI respond in real time.</p>
-    <div class="demo-wrap">
-      <div class="demo-topbar">
-        <div class="demo-dots">
-          <div class="demo-dot" style="background:#ff5f57"></div>
-          <div class="demo-dot" style="background:#febc2e"></div>
-          <div class="demo-dot" style="background:#28c840"></div>
-        </div>
-        <div class="demo-title">ClarivexChat — Interactive Demo</div>
-      </div>
-      <div class="demo-body">
-        <div class="demo-left">
-          <div class="demo-prompt-label">SAMPLE QUESTIONS</div>
-          <div class="demo-chips">
-            <div class="demo-chip active" onclick="selectChip(this,'What was our top selling product last quarter?')">Top product</div>
-            <div class="demo-chip" onclick="selectChip(this,'Show me customer churn rate this month')">Churn rate</div>
-            <div class="demo-chip" onclick="selectChip(this,'Predict sales for next 30 days')">Sales forecast</div>
-            <div class="demo-chip" onclick="selectChip(this,'Which region has highest revenue?')">Revenue by region</div>
+    <div class="demo-bg"></div>
+    <div style="position:relative;z-index:1;">
+      <div class="sec-label">Live AI Experience</div>
+      <h2 class="sec-title">See Our <span class="grad">AI In Action</span></h2>
+      <p class="sec-sub">Interact with our AI assistant and analytics engine — powered by real intelligence, not scripted demos.</p>
+      <div class="demo-grid">
+        <div class="demo-chat">
+          <div class="demo-chat-header">
+            <div style="display:flex;align-items:center;gap:.6rem;">
+              <div class="demo-chat-av">CX</div>
+              <div><div class="demo-chat-name">Clarivex AI Assistant</div><div class="demo-chat-status">● Online — Powered by AI</div></div>
+            </div>
           </div>
-          <div class="demo-prompt-label">YOUR QUESTION</div>
-          <div class="demo-input-wrap">
-            <input class="demo-inp" id="demo-q" value="What was our top selling product last quarter?" placeholder="Ask anything about your business data…"/>
-            <button class="demo-run" onclick="runDemo()">Ask AI →</button>
+          <div class="demo-msgs" id="demo-msgs"></div>
+          <div class="demo-sugs" id="demo-sugs">
+            <span class="demo-sug" onclick="demoSend(this)">What can Clarivex do?</span>
+            <span class="demo-sug" onclick="demoSend(this)">AI chatbot pricing</span>
+            <span class="demo-sug" onclick="demoSend(this)">Book a demo</span>
+          </div>
+          <div class="demo-input-row">
+            <input class="demo-input" id="demo-inp" placeholder="Ask anything about our AI…" onkeydown="if(event.key==='Enter')demoChat()"/>
+            <button class="demo-send" onclick="demoChat()"><svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></button>
           </div>
         </div>
-        <div class="demo-right">
-          <div class="demo-output-label">AI RESPONSE</div>
-          <div class="demo-output" id="demo-out">
-            <span class="tag-green tag-blue" style="background:rgba(34,197,94,.12);color:#4ade80;padding:2px 8px;border-radius:4px;font-size:11px;">● Analysing your data…</span><br><br>
-            Click <strong style="color:var(--purpleL)">Ask AI →</strong> to see ClarivexChat respond to your question in real time.
+        <div class="demo-analytics">
+          <div class="analytics-card">
+            <div class="ac-header"><span class="ac-title">REAL-TIME AI PERFORMANCE</span><span class="ac-badge">LIVE</span></div>
+            <div class="ac-chart" id="ac-chart"></div>
+            <div class="ac-metrics">
+              <div class="ac-metric"><div class="ac-metric-num" id="am1">98.7%</div><div class="ac-metric-label">AI ACCURACY</div></div>
+              <div class="ac-metric"><div class="ac-metric-num" id="am2">1.2s</div><div class="ac-metric-label">AVG RESPONSE</div></div>
+              <div class="ac-metric"><div class="ac-metric-num" id="am3">2.8K</div><div class="ac-metric-label">QUERIES/DAY</div></div>
+              <div class="ac-metric"><div class="ac-metric-num" id="am4">340%</div><div class="ac-metric-label">AUTOMATION GAIN</div></div>
+            </div>
+          </div>
+          <div class="analytics-card">
+            <div class="ac-header"><span class="ac-title">WORKFLOW AUTOMATION STATUS</span><span class="ac-badge" style="color:var(--purpleL);background:rgba(124,92,255,.1);">ACTIVE</span></div>
+            <div style="display:flex;flex-direction:column;gap:.6rem;margin-top:.5rem;">
+              <div style="display:flex;align-items:center;justify-content:space-between;font-size:12px;"><span style="color:var(--gray);">Data Processing</span><span style="color:#28c840;">✓ Running</span></div>
+              <div style="height:6px;background:rgba(255,255,255,.06);border-radius:3px;overflow:hidden;"><div style="width:87%;height:100%;background:var(--grad1);border-radius:3px;animation:progressAnim 3s infinite;"></div></div>
+              <div style="display:flex;align-items:center;justify-content:space-between;font-size:12px;"><span style="color:var(--gray);">Predictive Engine</span><span style="color:#28c840;">✓ Running</span></div>
+              <div style="height:6px;background:rgba(255,255,255,.06);border-radius:3px;overflow:hidden;"><div style="width:72%;height:100%;background:linear-gradient(90deg,#00D4FF,#7C5CFF);border-radius:3px;animation:progressAnim 4s infinite;"></div></div>
+              <div style="display:flex;align-items:center;justify-content:space-between;font-size:12px;"><span style="color:var(--gray);">NLP Pipeline</span><span style="color:#28c840;">✓ Running</span></div>
+              <div style="height:6px;background:rgba(255,255,255,.06);border-radius:3px;overflow:hidden;"><div style="width:94%;height:100%;background:var(--grad1);border-radius:3px;animation:progressAnim 2.5s infinite;"></div></div>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ROI Calculator -->
-  <section class="calc-section reveal">
-    <p class="sl">ROI Calculator</p>
-    <h2 class="st">Calculate Your <span class="accent">Return</span></h2>
-    <p class="ss">See how much time and money Clarivex.AI can save your team.</p>
-    <div class="calc-wrap">
-      <div class="calc-inputs">
-        <div>
-          <div class="calc-label">TEAM SIZE</div>
-          <input type="range" class="calc-slider" min="5" max="500" value="50" id="sl-team" oninput="updateCalc()"/>
-          <div class="calc-val"><span id="v-team">50</span> employees</div>
-        </div>
-        <div>
-          <div class="calc-label">HOURS SPENT ON REPORTING / WEEK</div>
-          <input type="range" class="calc-slider" min="2" max="40" value="10" id="sl-hours" oninput="updateCalc()"/>
-          <div class="calc-val"><span id="v-hours">10</span> hours/week</div>
-        </div>
-        <div>
-          <div class="calc-label">AVERAGE HOURLY COST (₹)</div>
-          <input type="range" class="calc-slider" min="200" max="5000" value="800" step="100" id="sl-cost" oninput="updateCalc()"/>
-          <div class="calc-val">₹<span id="v-cost">800</span>/hour</div>
-        </div>
-      </div>
-      <div class="calc-results">
-        <div class="calc-result-item">
-          <div class="cr-label">HOURS SAVED PER YEAR</div>
-          <div class="cr-value" id="r-hours">2,080 hrs</div>
-          <div class="cr-sub">Based on 80% automation of reporting tasks</div>
-        </div>
-        <div class="calc-result-item">
-          <div class="cr-label">ESTIMATED ANNUAL SAVINGS</div>
-          <div class="cr-value" id="r-money">₹16,64,000</div>
-          <div class="cr-sub">Direct cost reduction from automated workflows</div>
-        </div>
-        <div class="calc-result-item">
-          <div class="cr-label">CLARIVEX.AI COST (GROWTH PLAN)</div>
-          <div class="cr-value" style="font-size:22px;color:var(--purpleL) !important;-webkit-text-fill-color:var(--purpleL) !important;">₹1,79,988/yr</div>
-          <div class="cr-sub">₹14,999/month — Growth plan</div>
-        </div>
-        <div style="margin-top:1rem;padding:1rem;background:rgba(127,119,221,.12);border-radius:10px;border:.5px solid rgba(127,119,221,.25);">
-          <div class="cr-label">YOUR NET ROI</div>
-          <div class="cr-value" id="r-roi">826%</div>
-        </div>
-      </div>
+  <!-- Process -->
+  <section style="background:var(--bg)" class="reveal">
+    <div class="sec-label">How We Work</div>
+    <h2 class="sec-title">Our <span class="grad">Development Process</span></h2>
+    <div class="process-grid">
+      <div class="proc-step"><div class="proc-num">01</div><div class="proc-title">Discovery</div><div class="proc-desc">Business requirement analysis & scoping</div></div>
+      <div class="proc-step"><div class="proc-num">02</div><div class="proc-title">Strategy</div><div class="proc-desc">Solution architecture & planning</div></div>
+      <div class="proc-step"><div class="proc-num">03</div><div class="proc-title">Design</div><div class="proc-desc">Wireframes & UI/UX design</div></div>
+      <div class="proc-step"><div class="proc-num">04</div><div class="proc-title">Development</div><div class="proc-desc">Agile AI implementation</div></div>
+      <div class="proc-step"><div class="proc-num">05</div><div class="proc-title">Testing</div><div class="proc-desc">QA & performance optimization</div></div>
+      <div class="proc-step"><div class="proc-num">06</div><div class="proc-title">Deployment</div><div class="proc-desc">Production launch & go-live</div></div>
+      <div class="proc-step"><div class="proc-num">07</div><div class="proc-title">Support</div><div class="proc-desc">Continuous maintenance & growth</div></div>
     </div>
   </section>
 
-  <!-- Why us -->
-  <section class="dark-s reveal">
-    <p class="sl">Why Clarivex.AI</p>
-    <h2 class="st">Clarity is the <span class="accent">New</span> Competitive Edge</h2>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.5rem;margin-top:3rem;">
-      <div style="padding:2rem;background:rgba(255,255,255,.025);border:.5px solid rgba(127,119,221,.1);border-radius:16px;transition:background .3s,transform .25s;" onmouseover="this.style.background='rgba(127,119,221,.07)';this.style.transform='translateY(-4px)'" onmouseout="this.style.background='rgba(255,255,255,.025)';this.style.transform='none'"><div style="width:40px;height:40px;border-radius:10px;background:rgba(127,119,221,.14);display:flex;align-items:center;justify-content:center;margin-bottom:1rem;"><svg width="20" height="20" fill="none" stroke="var(--purple)" stroke-width="1.5" stroke-linecap="round" viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div><div style="font-family:var(--fd);font-size:15px;font-weight:700;color:var(--white);margin-bottom:.5rem;">Fast</div><div style="font-size:13px;color:rgba(255,255,255,.38);line-height:1.7;">Real-time insights, not week-old reports.</div></div>
-      <div style="padding:2rem;background:rgba(255,255,255,.025);border:.5px solid rgba(127,119,221,.1);border-radius:16px;transition:background .3s,transform .25s;" onmouseover="this.style.background='rgba(127,119,221,.07)';this.style.transform='translateY(-4px)'" onmouseout="this.style.background='rgba(255,255,255,.025)';this.style.transform='none'"><div style="width:40px;height:40px;border-radius:10px;background:rgba(216,90,48,.1);display:flex;align-items:center;justify-content:center;margin-bottom:1rem;"><svg width="20" height="20" fill="none" stroke="var(--coral)" stroke-width="1.5" stroke-linecap="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg></div><div style="font-family:var(--fd);font-size:15px;font-weight:700;color:var(--white);margin-bottom:.5rem;">Simple</div><div style="font-size:13px;color:rgba(255,255,255,.38);line-height:1.7;">No data scientists needed. Any team can use it.</div></div>
-      <div style="padding:2rem;background:rgba(255,255,255,.025);border:.5px solid rgba(127,119,221,.1);border-radius:16px;transition:background .3s,transform .25s;" onmouseover="this.style.background='rgba(127,119,221,.07)';this.style.transform='translateY(-4px)'" onmouseout="this.style.background='rgba(255,255,255,.025)';this.style.transform='none'"><div style="width:40px;height:40px;border-radius:10px;background:rgba(127,119,221,.14);display:flex;align-items:center;justify-content:center;margin-bottom:1rem;"><svg width="20" height="20" fill="none" stroke="var(--purple)" stroke-width="1.5" stroke-linecap="round" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><div style="font-family:var(--fd);font-size:15px;font-weight:700;color:var(--white);margin-bottom:.5rem;">Secure</div><div style="font-size:13px;color:rgba(255,255,255,.38);line-height:1.7;">Enterprise-grade security and data privacy.</div></div>
-      <div style="padding:2rem;background:rgba(255,255,255,.025);border:.5px solid rgba(127,119,221,.1);border-radius:16px;transition:background .3s,transform .25s;" onmouseover="this.style.background='rgba(127,119,221,.07)';this.style.transform='translateY(-4px)'" onmouseout="this.style.background='rgba(255,255,255,.025)';this.style.transform='none'"><div style="width:40px;height:40px;border-radius:10px;background:rgba(216,90,48,.1);display:flex;align-items:center;justify-content:center;margin-bottom:1rem;"><svg width="20" height="20" fill="none" stroke="var(--coral)" stroke-width="1.5" stroke-linecap="round" viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></div><div style="font-family:var(--fd);font-size:15px;font-weight:700;color:var(--white);margin-bottom:.5rem;">Scalable</div><div style="font-size:13px;color:rgba(255,255,255,.38);line-height:1.7;">Grows with you from startup to enterprise.</div></div>
+  <!-- Why Us -->
+  <section class="demo-section reveal">
+    <div class="demo-bg"></div>
+    <div style="position:relative;z-index:1;">
+      <div class="sec-label">Why Clarivex.AI</div>
+      <h2 class="sec-title">Why Enterprises <span class="grad">Choose Us</span></h2>
+      <div class="why-grid">
+        <div class="why-card"><div class="why-icon" style="background:rgba(124,92,255,.12);"><svg viewBox="0 0 24 24" stroke="#7C5CFF"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div><div class="why-title">AI-First Development</div><div class="why-desc">Every solution is built AI-native from the ground up, not bolted-on as an afterthought.</div></div>
+        <div class="why-card"><div class="why-icon" style="background:rgba(0,212,255,.08);"><svg viewBox="0 0 24 24" stroke="#00D4FF"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/></svg></div><div class="why-title">Enterprise Scalability</div><div class="why-desc">Architecture designed to handle 10x growth without performance degradation.</div></div>
+        <div class="why-card"><div class="why-icon" style="background:rgba(124,92,255,.12);"><svg viewBox="0 0 24 24" stroke="#7C5CFF"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div><div class="why-title">Rapid Delivery</div><div class="why-desc">Agile methodology with 2-week sprints. MVP delivery in 6–8 weeks, not months.</div></div>
+        <div class="why-card"><div class="why-icon" style="background:rgba(0,212,255,.08);"><svg viewBox="0 0 24 24" stroke="#00D4FF"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><div class="why-title">Enterprise Security</div><div class="why-desc">Bank-grade encryption, data privacy compliance, and secure cloud infrastructure.</div></div>
+        <div class="why-card"><div class="why-icon" style="background:rgba(124,92,255,.12);"><svg viewBox="0 0 24 24" stroke="#7C5CFF"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div><div class="why-title">Multi-Domain Expertise</div><div class="why-desc">Cross-industry experience across 7+ verticals including healthcare, finance, and retail.</div></div>
+        <div class="why-card"><div class="why-icon" style="background:rgba(0,212,255,.08);"><svg viewBox="0 0 24 24" stroke="#00D4FF"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></div><div class="why-title">Dedicated Support</div><div class="why-desc">Dedicated account manager and 24/7 technical support post-deployment.</div></div>
+      </div>
     </div>
   </section>
 </div>
 
-<!-- ══════════ ABOUT ══════════ -->
+<!-- ════ ABOUT ════ -->
 <div class="page" id="page-about">
-  <div class="hero" style="min-height:300px;"><div class="hero-bg"><div class="orb1"></div><div class="grid-bg"></div></div><div class="hero-content"><div class="hero-badge"><span class="bdot"></span>OUR STORY</div><h1 class="hero-title" style="font-size:clamp(30px,5vw,60px);">Built on One<br>Belief — <span class="cc">Clarity</span></h1></div></div>
-  <section style="background:var(--cream)">
-    <p class="sl">About Us</p>
-    <h2 class="st">We Don't Just Build AI.<br>We Build <span class="accent">Clarity.</span></h2>
+  <div class="hero" style="min-height:300px;">
+    <div class="hero-bg"><div class="orb orb1"></div><div class="hero-grid"></div></div>
+    <div class="hero-inner" style="grid-template-columns:1fr;padding:3rem 6%;">
+      <div><div class="hero-badge"><span class="badge-dot"></span>OUR STORY</div>
+      <h1 class="hero-title" style="font-size:clamp(30px,5vw,58px);">Built to Make AI <span class="grad">Accessible</span><br>to Every Business</h1></div>
+    </div>
+  </div>
+  <section style="background:var(--bg)">
     <div class="about-grid">
-      <div class="about-vis reveal-l"><div class="orb1" style="opacity:.4;"></div><div class="avc"><div class="ax"><svg viewBox="0 0 100 100" fill="none"><rect width="100" height="100" rx="22" fill="rgba(127,119,221,.18)"/><rect width="100" height="100" rx="22" fill="none" stroke="rgba(175,169,236,.3)" stroke-width="1"/><line x1="28" y1="28" x2="72" y2="72" stroke="#AFA9EC" stroke-width="10" stroke-linecap="round"/><line x1="72" y1="28" x2="28" y2="72" stroke="#F0997B" stroke-width="10" stroke-linecap="round"/><circle cx="50" cy="50" r="8" fill="#AFA9EC"/></svg></div><div class="avt">CLARIVEX<span>.AI</span></div></div></div>
-      <div class="reveal-r"><p style="font-size:15px;color:var(--gray);line-height:1.85;margin-bottom:1.5rem;">Clarivex.AI was founded with a single belief: every business deserves the power of intelligent decision-making. We are an AI-first technology company headquartered in Ahmedabad, India.</p><p style="font-size:15px;color:var(--gray);line-height:1.85;margin-bottom:2rem;">We build products that turn complex, unstructured data into clear, actionable intelligence — in real time, for every team.</p><div class="afacts"><div class="afact"><div class="afn">2025</div><div class="afl">FOUNDED</div></div><div class="afact"><div class="afn">India</div><div class="afl">HQ</div></div><div class="afact"><div class="afn">4+</div><div class="afl">PRODUCTS</div></div><div class="afact"><div class="afn">Global</div><div class="afl">VISION</div></div></div></div>
-    </div>
-  </section>
-  <section class="dark-s reveal">
-    <p class="sl">Our Values</p>
-    <h2 class="st">What Drives Us</h2>
-    <ul class="vlist" style="max-width:600px;margin-top:2.5rem;">
-      <li><div class="vdot"></div><div><div class="vname" style="color:var(--white)">Clarity First</div><div class="vdesc" style="color:rgba(255,255,255,.38)">Every product starts with one question: does this make things clearer?</div></div></li>
-      <li><div class="vdot" style="background:var(--coral)"></div><div><div class="vname" style="color:var(--white)">Radical Simplicity</div><div class="vdesc" style="color:rgba(255,255,255,.38)">Complex AI should feel simple. We obsess over removing friction.</div></div></li>
-      <li><div class="vdot"></div><div><div class="vname" style="color:var(--white)">Customer Outcomes</div><div class="vdesc" style="color:rgba(255,255,255,.38)">We measure success by our customers' results, not features shipped.</div></div></li>
-      <li><div class="vdot" style="background:var(--coral)"></div><div><div class="vname" style="color:var(--white)">India-Built, World-Class</div><div class="vdesc" style="color:rgba(255,255,255,.38)">Proud of our roots. Ambitious about our reach.</div></div></li>
-    </ul>
-  </section>
-  <section style="background:var(--cream)" class="reveal">
-    <p class="sl">Leadership</p><h2 class="st">Meet the Founder</h2>
-    <div style="margin-top:2.5rem;max-width:480px;background:var(--white);border-radius:20px;border:.5px solid var(--border);padding:2.5rem;">
-      <div style="display:flex;align-items:center;gap:1.2rem;margin-bottom:1.5rem;">
-        <div style="width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,var(--purple),var(--coral));display:flex;align-items:center;justify-content:center;font-family:var(--fd);font-size:20px;font-weight:800;color:var(--white);">OB</div>
-        <div><div style="font-family:var(--fd);font-size:18px;font-weight:800;color:var(--navy2);">Om Bharadwa</div><div style="font-size:11px;color:var(--purple);letter-spacing:2px;margin-top:2px;">FOUNDER & CEO</div></div>
+      <div class="about-visual reveal-l">
+        <div class="about-vis-bg"></div>
+        <div class="about-vis-inner">
+          <svg class="ax-svg" viewBox="0 0 100 100" fill="none">
+            <defs><linearGradient id="ag" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#7C5CFF"/><stop offset="100%" stop-color="#00D4FF"/></linearGradient></defs>
+            <rect width="100" height="100" rx="22" fill="rgba(124,92,255,.15)"/>
+            <rect width="100" height="100" rx="22" fill="none" stroke="url(#ag)" stroke-width="1"/>
+            <line x1="28" y1="28" x2="72" y2="72" stroke="#7C5CFF" stroke-width="10" stroke-linecap="round"/>
+            <line x1="72" y1="28" x2="28" y2="72" stroke="#00D4FF" stroke-width="10" stroke-linecap="round"/>
+            <circle cx="50" cy="50" r="8" fill="url(#ag)"/>
+          </svg>
+          <div class="about-tagline">CLARIVEX<span>.AI</span></div>
+        </div>
       </div>
-      <p style="font-size:13px;color:var(--gray);line-height:1.8;margin-bottom:1.5rem;">Visionary technologist and entrepreneur building the future of AI-powered business intelligence in India. Om founded Clarivex.AI to make intelligent decision-making accessible to every organisation.</p>
-      <a href="https://www.linkedin.com/in/om-bharadwa-084158173/" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:100px;background:rgba(127,119,221,.08);border:.5px solid var(--border);font-size:12px;color:var(--purple);text-decoration:none;transition:all .2s;" onmouseover="this.style.background='rgba(127,119,221,.18)'" onmouseout="this.style.background='rgba(127,119,221,.08)'">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="var(--purple)"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
-        Connect on LinkedIn
-      </a>
+      <div class="reveal-r">
+        <div class="sec-label">About Us</div>
+        <h2 class="sec-title">AI-Driven Software &<br><span class="grad">Digital Transformation</span></h2>
+        <p style="font-size:15px;color:var(--gray);line-height:1.85;margin-bottom:1.2rem;">Clarivex.AI is an AI-driven software and digital transformation company headquartered in Ahmedabad, India. We help enterprises across industries harness the power of artificial intelligence to modernize operations, automate workflows, and build intelligent products.</p>
+        <p style="font-size:15px;color:var(--gray);line-height:1.85;margin-bottom:2rem;">From custom AI systems to full-stack enterprise software, we are your end-to-end technology partner for the intelligent future.</p>
+        <div class="about-facts">
+          <div class="af"><div class="af-num">2025</div><div class="af-label">FOUNDED</div></div>
+          <div class="af"><div class="af-num">Ahmedabad</div><div class="af-label">HEADQUARTERED</div></div>
+          <div class="af"><div class="af-num">7+</div><div class="af-label">INDUSTRIES</div></div>
+          <div class="af"><div class="af-num">Global</div><div class="af-label">VISION</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="demo-section reveal">
+    <div class="demo-bg"></div>
+    <div style="position:relative;z-index:1;">
+      <div class="sec-label">Our Values</div>
+      <h2 class="sec-title">What <span class="grad">Drives Us</span></h2>
+      <ul class="values-list" style="max-width:640px;margin-top:2.5rem;">
+        <li><div class="vdot" style="background:var(--purple)"></div><div><div class="vname">AI-First Always</div><div class="vdesc">Every product we build starts and ends with AI at the core — not as an add-on, but as the foundation.</div></div></li>
+        <li><div class="vdot" style="background:var(--cyan)"></div><div><div class="vname">Radical Simplicity</div><div class="vdesc">Complex AI should feel simple. We obsess over removing friction from every user experience.</div></div></li>
+        <li><div class="vdot" style="background:var(--purple)"></div><div><div class="vname">Enterprise Grade</div><div class="vdesc">We build for scale, security, and performance from day one — not as an afterthought.</div></div></li>
+        <li><div class="vdot" style="background:var(--cyan)"></div><div><div class="vname">India-Built, World-Class</div><div class="vdesc">Proud of our roots. Delivering world-class AI solutions from Ahmedabad to the globe.</div></div></li>
+      </ul>
+    </div>
+  </section>
+  <section style="background:var(--bg)" class="reveal">
+    <div class="sec-label">Leadership</div>
+    <h2 class="sec-title">Meet the <span class="grad">Founder</span></h2>
+    <div style="margin-top:2.5rem;max-width:480px;background:var(--glass);border:.5px solid var(--border);border-radius:20px;padding:2.5rem;backdrop-filter:blur(16px);">
+      <div style="display:flex;align-items:center;gap:1.2rem;margin-bottom:1.5rem;">
+        <div style="width:60px;height:60px;border-radius:50%;background:var(--grad1);display:flex;align-items:center;justify-content:center;font-family:var(--fd);font-size:20px;font-weight:800;color:var(--white);">OB</div>
+        <div><div style="font-family:var(--fd);font-size:18px;font-weight:800;color:var(--white);">Om Bharadwa</div><div style="font-size:11px;color:var(--purpleL);letter-spacing:2px;margin-top:2px;">FOUNDER & CEO</div></div>
+      </div>
+      <p style="font-size:13px;color:var(--gray);line-height:1.8;">Visionary technologist and entrepreneur building the future of AI-powered enterprise software in India. Om founded Clarivex.AI to make intelligent, AI-driven digital transformation accessible to every business — from startups to large enterprises.</p>
+      <div style="margin-top:1.5rem;"><a href="https://www.linkedin.com/company/clarivex-ai/" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:8px;background:rgba(124,92,255,.12);border:.5px solid rgba(124,92,255,.25);text-decoration:none;font-size:12px;color:var(--purpleL);transition:all .2s;" onmouseover="this.style.background='rgba(124,92,255,.25)'" onmouseout="this.style.background='rgba(124,92,255,.12)'"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>Connect on LinkedIn</a></div>
     </div>
   </section>
 </div>
 
-<!-- ══════════ SERVICES ══════════ -->
+<!-- ════ SERVICES ════ -->
 <div class="page" id="page-services">
-  <div class="hero" style="min-height:300px;"><div class="hero-bg"><div class="orb1"></div><div class="grid-bg"></div></div><div class="hero-content"><div class="hero-badge"><span class="bdot"></span>WHAT WE BUILD</div><h1 class="hero-title" style="font-size:clamp(30px,5vw,60px);">AI Products That<br><span class="cc">Deliver</span> Results</h1></div></div>
-  <section class="dark-s">
-    <p class="sl">Our Products</p><h2 class="st">Four Products. <span class="accent">One Platform.</span></h2>
-    <p class="ss">Each product solves a specific business intelligence challenge. Together they form a complete AI ecosystem.</p>
-    <div class="svcs" style="margin-top:3rem;">
-      <div class="svc reveal"><div class="svc-n">01</div><div class="svc-ico"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></div><div class="svc-name">ClarivexInsight</div><div class="svc-desc" style="margin-bottom:1rem;">Real-time BI dashboards connected to any data source. No SQL needed.</div><div style="font-size:11px;color:var(--purple);letter-spacing:1px;">Real-time · No-code · Any data</div></div>
-      <div class="svc reveal"><div class="svc-n">02</div><div class="svc-ico"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></div><div class="svc-name">ClarivexChat</div><div class="svc-desc" style="margin-bottom:1rem;">Conversational AI — ask data questions in plain language, get instant answers.</div><div style="font-size:11px;color:var(--purple);letter-spacing:1px;">NLP · Conversational · Instant</div></div>
-      <div class="svc reveal"><div class="svc-n">03</div><div class="svc-ico"><svg viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg></div><div class="svc-name">ClarivexFlow</div><div class="svc-desc" style="margin-bottom:1rem;">Intelligent automation that detects patterns and triggers actions automatically.</div><div style="font-size:11px;color:var(--purple);letter-spacing:1px;">Automation · Patterns · Workflows</div></div>
-      <div class="svc reveal"><div class="svc-n">04</div><div class="svc-ico"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div><div class="svc-name">ClarivexPredict</div><div class="svc-desc" style="margin-bottom:1rem;">Forecast sales, churn, inventory demand using ML trained on your own data.</div><div style="font-size:11px;color:var(--purple);letter-spacing:1px;">Forecasting · ML · Outcomes</div></div>
+  <div class="hero" style="min-height:300px;">
+    <div class="hero-bg"><div class="orb orb1"></div><div class="hero-grid"></div></div>
+    <div class="hero-inner" style="grid-template-columns:1fr;padding:3rem 6%;">
+      <div><div class="hero-badge"><span class="badge-dot"></span>WHAT WE BUILD</div>
+      <h1 class="hero-title" style="font-size:clamp(30px,5vw,58px);">AI Services &<br><span class="grad">Software Solutions</span></h1></div>
+    </div>
+  </div>
+  <section style="background:var(--bg)">
+    <div class="sec-label">AI Services</div>
+    <h2 class="sec-title"><span class="grad">Artificial Intelligence</span> Services</h2>
+    <div class="svc-grid" style="margin-top:2.5rem;">
+      <div class="svc-card"><div class="svc-card-top"><span class="svc-num">01</span><span class="svc-tag ai">AI</span></div><div class="svc-icon" style="background:rgba(124,92,255,.12);"><svg viewBox="0 0 24 24" stroke="#7C5CFF"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></div><div class="svc-name">AI Chatbots</div><div class="svc-desc">Intelligent conversational agents for customer support, sales, and internal workflows. Multilingual and domain-trained.</div></div>
+      <div class="svc-card"><div class="svc-card-top"><span class="svc-num">02</span><span class="svc-tag ai">AI</span></div><div class="svc-icon" style="background:rgba(0,212,255,.08);"><svg viewBox="0 0 24 24" stroke="#00D4FF"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg></div><div class="svc-name">AI Automation</div><div class="svc-desc">End-to-end intelligent process automation. Eliminate manual work and let AI handle complex decision-making.</div></div>
+      <div class="svc-card"><div class="svc-card-top"><span class="svc-num">03</span><span class="svc-tag ai">AI</span></div><div class="svc-icon" style="background:rgba(124,92,255,.12);"><svg viewBox="0 0 24 24" stroke="#7C5CFF"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4"/></svg></div><div class="svc-name">AI Agents</div><div class="svc-desc">Autonomous AI agents that execute multi-step tasks, integrate with your systems, and learn from outcomes.</div></div>
+      <div class="svc-card"><div class="svc-card-top"><span class="svc-num">04</span><span class="svc-tag ai">AI</span></div><div class="svc-icon" style="background:rgba(0,212,255,.08);"><svg viewBox="0 0 24 24" stroke="#00D4FF"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div><div class="svc-name">Predictive Analytics</div><div class="svc-desc">ML-powered forecasting systems for revenue, churn, demand, risk, and key business metrics.</div></div>
+      <div class="svc-card"><div class="svc-card-top"><span class="svc-num">05</span><span class="svc-tag ai">AI</span></div><div class="svc-icon" style="background:rgba(124,92,255,.12);"><svg viewBox="0 0 24 24" stroke="#7C5CFF"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div><div class="svc-name">Generative AI</div><div class="svc-desc">Custom generative AI solutions, LLM fine-tuning, RAG systems, and AI content generation pipelines.</div></div>
+      <div class="svc-card"><div class="svc-card-top"><span class="svc-num">06</span><span class="svc-tag ai">AI</span></div><div class="svc-icon" style="background:rgba(0,212,255,.08);"><svg viewBox="0 0 24 24" stroke="#00D4FF"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/><line x1="9" y1="10" x2="15" y2="10"/><line x1="9" y1="14" x2="13" y2="14"/></svg></div><div class="svc-name">NLP Solutions</div><div class="svc-desc">Natural language processing for document analysis, sentiment detection, entity extraction, and text classification.</div></div>
     </div>
   </section>
-  <section style="background:var(--cream)" class="reveal">
-    <p class="sl">Pricing</p><h2 class="st">Simple, Transparent <span class="accent">Pricing</span></h2>
-    <div class="pgrid">
-      <div class="pcard light"><div class="plabel" style="color:var(--gray)">STARTER</div><div class="pamount" style="color:var(--navy2)">₹4,999<span class="pper" style="color:var(--gray)">/mo</span></div><div class="pdesc" style="color:var(--gray)">1 workspace · 3 integrations · 5 users</div><a href="#" onclick="showPage('contact')" class="btn-p" style="display:block;text-align:center;background:var(--navy2);">Get Started</a></div>
-      <div class="pcard dark"><div class="ppop">MOST POPULAR</div><div class="plabel" style="color:var(--purpleL)">GROWTH</div><div class="pamount" style="color:var(--white)">₹14,999<span class="pper" style="color:var(--gray)">/mo</span></div><div class="pdesc" style="color:rgba(255,255,255,.38)">Unlimited dashboards · 15 integrations · 25 users</div><a href="#" onclick="showPage('contact')" class="btn-p" style="display:block;text-align:center;">Get Started</a></div>
-      <div class="pcard light"><div class="plabel" style="color:var(--gray)">ENTERPRISE</div><div class="pamount" style="color:var(--navy2)">Custom</div><div class="pdesc" style="color:var(--gray)">Dedicated AI · SLA · Unlimited users</div><a href="#" onclick="showPage('contact')" class="btn-p" style="display:block;text-align:center;background:var(--navy2);">Contact Sales</a></div>
+  <section class="demo-section reveal">
+    <div class="demo-bg"></div>
+    <div style="position:relative;z-index:1;">
+      <div class="sec-label">Software Development</div>
+      <h2 class="sec-title">Enterprise <span class="grad">Software Solutions</span></h2>
+      <div class="svc-grid" style="margin-top:2.5rem;">
+        <div class="svc-card"><div class="svc-card-top"><span class="svc-num">07</span><span class="svc-tag sw">SOFTWARE</span></div><div class="svc-icon" style="background:rgba(124,92,255,.12);"><svg viewBox="0 0 24 24" stroke="#7C5CFF"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></div><div class="svc-name">Web Applications</div><div class="svc-desc">Scalable, modern web applications built with React, Next.js, and cloud-native architecture.</div></div>
+        <div class="svc-card"><div class="svc-card-top"><span class="svc-num">08</span><span class="svc-tag sw">SOFTWARE</span></div><div class="svc-icon" style="background:rgba(0,212,255,.08);"><svg viewBox="0 0 24 24" stroke="#00D4FF"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg></div><div class="svc-name">ERP / CRM Systems</div><div class="svc-desc">Custom enterprise resource planning and customer relationship management platforms tailored to your workflows.</div></div>
+        <div class="svc-card"><div class="svc-card-top"><span class="svc-num">09</span><span class="svc-tag sw">SOFTWARE</span></div><div class="svc-icon" style="background:rgba(124,92,255,.12);"><svg viewBox="0 0 24 24" stroke="#7C5CFF"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div><div class="svc-name">SaaS Platforms</div><div class="svc-desc">End-to-end SaaS product development — from idea to production-ready multi-tenant platforms.</div></div>
+        <div class="svc-card"><div class="svc-card-top"><span class="svc-num">10</span><span class="svc-tag sw">SOFTWARE</span></div><div class="svc-icon" style="background:rgba(0,212,255,.08);"><svg viewBox="0 0 24 24" stroke="#00D4FF"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12" y2="18"/></svg></div><div class="svc-name">Mobile Applications</div><div class="svc-desc">Cross-platform mobile applications for iOS and Android with AI-powered features built in.</div></div>
+      </div>
+    </div>
+  </section>
+ 
+</div>
+
+<!-- ════ INDUSTRIES ════ -->
+<div class="page" id="page-industries">
+  <div class="hero" style="min-height:300px;">
+    <div class="hero-bg"><div class="orb orb1"></div><div class="hero-grid"></div></div>
+    <div class="hero-inner" style="grid-template-columns:1fr;padding:3rem 6%;">
+      <div><div class="hero-badge"><span class="badge-dot"></span>INDUSTRY SOLUTIONS</div>
+      <h1 class="hero-title" style="font-size:clamp(30px,5vw,58px);">AI Solutions for <span class="grad">Every Industry</span></h1></div>
+    </div>
+  </div>
+  <section style="background:var(--bg)">
+    <div class="sec-label">Industries</div>
+    <h2 class="sec-title">Domain-Specific <span class="grad">AI Solutions</span></h2>
+    <p class="sec-sub">We understand that every industry has unique challenges. Our AI solutions are tailored to your domain.</p>
+    <div class="ind-grid">
+      <div class="ind-card"><div class="ind-icon-wrap" style="background:rgba(239,68,68,.1);">🏥</div><div class="ind-name">Healthcare</div><div class="ind-challenge" style="color:var(--gray);">Challenge: Patient data management, diagnosis accuracy, and administrative overhead.</div><div class="ind-solution">AI Solution: Medical record AI, predictive diagnostics, automated scheduling, and clinical NLP.</div></div>
+      <div class="ind-card"><div class="ind-icon-wrap" style="background:rgba(234,179,8,.1);">💰</div><div class="ind-name">Finance & Banking</div><div class="ind-challenge" style="color:var(--gray);">Challenge: Fraud detection, risk assessment, and customer onboarding complexity.</div><div class="ind-solution">AI Solution: Real-time fraud detection, credit risk AI, automated KYC, and intelligent reporting.</div></div>
+      <div class="ind-card"><div class="ind-icon-wrap" style="background:rgba(99,102,241,.1);">🏛️</div><div class="ind-name">Government</div><div class="ind-challenge" style="color:var(--gray);">Challenge: Citizen service delivery, data silos, and process inefficiency.</div><div class="ind-solution">AI Solution: Citizen AI portals, document automation, predictive resource planning, and chatbots.</div></div>
+      <div class="ind-card"><div class="ind-icon-wrap" style="background:rgba(34,197,94,.1);">🛒</div><div class="ind-name">Retail & E-Commerce</div><div class="ind-challenge" style="color:var(--gray);">Challenge: Inventory management, customer churn, and personalization at scale.</div><div class="ind-solution">AI Solution: Demand forecasting, recommendation engines, churn prevention, and inventory AI.</div></div>
+      <div class="ind-card"><div class="ind-icon-wrap" style="background:rgba(14,165,233,.1);">📚</div><div class="ind-name">Education</div><div class="ind-challenge" style="color:var(--gray);">Challenge: Student engagement, personalized learning, and administrative load.</div><div class="ind-solution">AI Solution: Adaptive learning AI, student performance analytics, automated grading, and chatbots.</div></div>
+      <div class="ind-card"><div class="ind-icon-wrap" style="background:rgba(249,115,22,.1);">🏭</div><div class="ind-name">Manufacturing</div><div class="ind-challenge" style="color:var(--gray);">Challenge: Predictive maintenance, quality control, and supply chain visibility.</div><div class="ind-solution">AI Solution: Predictive maintenance AI, vision-based quality control, and supply chain optimization.</div></div>
+      <div class="ind-card"><div class="ind-icon-wrap" style="background:rgba(168,85,247,.1);">🚚</div><div class="ind-name">Logistics</div><div class="ind-challenge" style="color:var(--gray);">Challenge: Route optimization, delivery prediction, and warehouse management.</div><div class="ind-solution">AI Solution: AI route optimization, delivery ETA prediction, automated warehouse management.</div></div>
     </div>
   </section>
 </div>
 
-<!-- ══════════ CAREERS ══════════ -->
+<!-- ════ CAREERS ════ -->
 <div class="page" id="page-careers">
-  <div class="hero" style="min-height:300px;"><div class="hero-bg"><div class="orb1"></div><div class="grid-bg"></div></div><div class="hero-content"><div class="hero-badge"><span class="bdot"></span>JOIN THE TEAM</div><h1 class="hero-title" style="font-size:clamp(30px,5vw,60px);">Build the Future<br>of <span class="cc">AI</span> With Us</h1></div></div>
-  <section style="background:var(--cream)">
-    <p class="sl">Open Positions</p><h2 class="st">We Are <span class="accent">Hiring</span></h2>
-    <p class="ss">We're looking for co-builders — people who take ownership and want their name on something they're proud of.</p>
-    <div class="jgrid">
-      <div class="jcard reveal"><div class="jleft"><div class="jico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg></div><div><div class="jtitle">AI / ML Engineer</div><div class="jtags"><span class="jtag r">Remote / Ahmedabad</span><span class="jtag t">Full-time</span><span class="jtag e">2+ Years</span></div></div></div><a href="https://www.linkedin.com/company/clarivex-ai/" target="_blank" class="japply">Apply on LinkedIn</a></div>
-      <div class="jcard reveal"><div class="jleft"><div class="jico"><svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div><div><div class="jtitle">Full Stack Developer</div><div class="jtags"><span class="jtag r">Remote / Ahmedabad</span><span class="jtag t">Full-time</span><span class="jtag e">2+ Years</span></div></div></div><a href="https://www.linkedin.com/company/clarivex-ai/" target="_blank" class="japply">Apply on LinkedIn</a></div>
-      <div class="jcard reveal"><div class="jleft"><div class="jico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg></div><div><div class="jtitle">Product Designer (UI/UX)</div><div class="jtags"><span class="jtag r">Remote / Ahmedabad</span><span class="jtag t">Full-time</span><span class="jtag e">2+ Years</span></div></div></div><a href="https://www.linkedin.com/company/clarivex-ai/" target="_blank" class="japply">Apply on LinkedIn</a></div>
-      <div class="jcard reveal"><div class="jleft"><div class="jico"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg></div><div><div class="jtitle">Business Development Executive</div><div class="jtags"><span class="jtag r">Ahmedabad (Hybrid)</span><span class="jtag t">Full-time</span><span class="jtag e">1–3 Years</span></div></div></div><a href="https://www.linkedin.com/company/clarivex-ai/" target="_blank" class="japply">Apply on LinkedIn</a></div>
+  <div class="hero" style="min-height:300px;">
+    <div class="hero-bg"><div class="orb orb1"></div><div class="hero-grid"></div></div>
+    <div class="hero-inner" style="grid-template-columns:1fr;padding:3rem 6%;">
+      <div><div class="hero-badge"><span class="badge-dot"></span>JOIN THE TEAM</div>
+      <h1 class="hero-title" style="font-size:clamp(30px,5vw,58px);">Build the Future<br>of <span class="grad">AI With Us</span></h1></div>
     </div>
-    <div class="ccta reveal">
-      <div class="ccta-t">Don't see your role?</div>
-      <div class="ccta-s">We always want to hear from talented people. Connect with us on LinkedIn.</div>
-      <a href="https://www.linkedin.com/company/clarivex-ai/" target="_blank" rel="noopener" class="btn-p" style="display:inline-flex;">Connect on LinkedIn ↗</a>
+  </div>
+  <section style="background:var(--bg)">
+    <div class="sec-label">Open Positions</div>
+    <h2 class="sec-title">We Are <span class="grad">Hiring</span></h2>
+    <p class="sec-sub">We're looking for co-builders — people who take ownership, move fast, and want to build AI that matters.</p>
+    <div style="display:grid;gap:1rem;margin-top:3rem;">
+      <div class="job-card reveal"><div class="job-left"><div class="job-icon" style="background:rgba(124,92,255,.1);"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg></div><div><div class="job-title">AI / ML Engineer</div><div class="job-tags"><span class="jtag r">Remote / Ahmedabad</span><span class="jtag t">Full-time</span><span class="jtag e">2+ Years</span></div></div></div><a href="mailto:hello@clarivex.ai?subject=Application: AI/ML Engineer" class="job-apply">Apply Now</a></div>
+      <div class="job-card reveal"><div class="job-left"><div class="job-icon" style="background:rgba(0,212,255,.08);"><svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div><div><div class="job-title">Full Stack Developer</div><div class="job-tags"><span class="jtag r">Remote / Ahmedabad</span><span class="jtag t">Full-time</span><span class="jtag e">2+ Years</span></div></div></div><a href="mailto:hello@clarivex.ai?subject=Application: Full Stack Developer" class="job-apply">Apply Now</a></div>
+      <div class="job-card reveal"><div class="job-left"><div class="job-icon" style="background:rgba(124,92,255,.1);"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg></div><div><div class="job-title">Product Designer (UI/UX)</div><div class="job-tags"><span class="jtag r">Remote / Ahmedabad</span><span class="jtag t">Full-time</span><span class="jtag e">2+ Years</span></div></div></div><a href="mailto:hello@clarivex.ai?subject=Application: Product Designer" class="job-apply">Apply Now</a></div>
+      <div class="job-card reveal"><div class="job-left"><div class="job-icon" style="background:rgba(0,212,255,.08);"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg></div><div><div class="job-title">Business Development Executive</div><div class="job-tags"><span class="jtag r">Ahmedabad (Hybrid)</span><span class="jtag t">Full-time</span><span class="jtag e">1–3 Years</span></div></div></div><a href="mailto:hello@clarivex.ai?subject=Application: Business Development" class="job-apply">Apply Now</a></div>
+    </div>
+    <div class="careers-cta reveal">
+      <div style="position:relative;z-index:1;">
+        <div style="font-family:var(--fd);font-size:24px;font-weight:800;color:var(--white);margin-bottom:.7rem;">Don't see your role?</div>
+        <div style="font-size:14px;color:var(--gray);margin-bottom:1.5rem;">We always want to hear from exceptional talent. Send us your profile.</div>
+        <a href="mailto:hello@clarivex.ai?subject=Open Application" class="btn-grad" style="display:inline-flex;">Send Open Application</a>
+      </div>
     </div>
   </section>
 </div>
 
-<!-- ══════════ CONTACT ══════════ -->
+<!-- ════ CONTACT ════ -->
 <div class="page" id="page-contact">
   <section class="contact-sec" style="padding-top:120px;">
-    <p class="sl">Get In Touch</p>
-    <h2 class="st">Let's Build Something<br><span class="accent">Intelligent</span> Together</h2>
-    <p class="ss">Whether you're ready to transform your business or just curious — we'd love to hear from you.</p>
-    <div class="cgrid">
-      <div class="cinfo reveal-l">
-        <div class="citem"><div class="cion"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div><div><div class="clabel">LOCATION</div><div class="cval">Ahmedabad, Gujarat, India</div></div></div>
-        <div class="citem"><div class="cion"><svg viewBox="0 0 24 24" fill="var(--purpleL)"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></div><div><div class="clabel">LINKEDIN</div><div class="cval"><a href="https://www.linkedin.com/company/clarivex-ai/" target="_blank">linkedin.com/company/clarivex-ai</a></div></div></div>
-        <div style="padding:1.5rem;background:rgba(127,119,221,.07);border-radius:14px;border:.5px solid rgba(127,119,221,.18);">
-          <div style="font-family:var(--fd);font-size:14px;font-weight:700;color:var(--white);margin-bottom:.4rem;">Response Time</div>
-          <div style="font-size:13px;color:rgba(255,255,255,.38);line-height:1.7;">We respond within 24 hours on business days. Reach out via the form or LinkedIn.</div>
+    <div class="sec-label">Get In Touch</div>
+    <h2 class="sec-title">Let's Build Something<br><span class="grad">Intelligent Together</span></h2>
+    <p class="sec-sub">Ready to transform your business with AI? Book a free consultation with our experts.</p>
+    <div class="contact-grid">
+      <div class="c-info reveal-l">
+        <div class="c-item"><div class="c-icon"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div><div><div class="c-label">LOCATION</div><div class="c-val">Ahmedabad, Gujarat, India</div></div></div>
+        <div class="c-item"><div class="c-icon"><svg viewBox="0 0 24 24" fill="var(--purpleL)"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></div><div><div class="c-label">LINKEDIN</div><div class="c-val"><a href="https://www.linkedin.com/company/clarivex-ai/" target="_blank" rel="noopener" style="color:var(--purpleL);text-decoration:none;">linkedin.com/company/clarivex-ai</a></div></div></div>
+        <div class="c-item"><div class="c-icon"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><div><div class="c-label">BUSINESS EMAIL</div><div class="c-val">hello@clarivex.ai</div></div></div>
+        <div style="padding:1.5rem;background:rgba(124,92,255,.08);border-radius:14px;border:.5px solid rgba(124,92,255,.2);">
+          <div style="font-family:var(--fd);font-size:14px;font-weight:700;color:var(--white);margin-bottom:.4rem;">⚡ Quick Response</div>
+          <div style="font-size:13px;color:var(--gray);line-height:1.7;">We respond to all enquiries within 24 business hours. Book a consultation for a same-day response.</div>
         </div>
+        </a>
       </div>
-      <div class="cform reveal-r">
+      <div class="contact-form-wrap reveal-r">
         <div id="cf-wrap">
           <div class="form-row">
             <div class="fg"><label>FULL NAME</label><input type="text" placeholder="Your name" id="cf-name"/></div>
-            <div class="fg"><label>EMAIL</label><input type="email" placeholder="your@email.com" id="cf-email"/></div>
+            <div class="fg"><label>COMPANY</label><input type="text" placeholder="Company name" id="cf-company"/></div>
           </div>
-          <div class="fg"><label>COMPANY</label><input type="text" placeholder="Your company (optional)"/></div>
-          <div class="fg"><label>INTERESTED IN</label>
-            <select><option value="">Select a service…</option><option>ClarivexInsight — BI Dashboards</option><option>ClarivexChat — Conversational AI</option><option>ClarivexFlow — Automation</option><option>ClarivexPredict — Forecasting</option><option>Custom AI Solution</option><option>General Enquiry</option></select>
+          <div class="fg"><label>INDUSTRY</label>
+            <select id="cf-industry">
+              <option value="">Select your industry…</option>
+              <option>Healthcare</option><option>Finance & Banking</option><option>Government</option>
+              <option>Retail & E-Commerce</option><option>Education</option><option>Manufacturing</option>
+              <option>Logistics</option><option>Other</option>
+            </select>
           </div>
-          <div class="fg"><label>MESSAGE</label><textarea placeholder="Tell us about your project…"></textarea></div>
-          <button class="fsub" onclick="submitForm()">Send Message →</button>
+          <div class="fg"><label>PROJECT TYPE</label>
+            <select id="cf-type">
+              <option value="">What are you looking to build?</option>
+              <option>AI Chatbot</option><option>AI Automation</option><option>Predictive Analytics</option>
+              <option>Custom Enterprise Software</option><option>SaaS Platform</option><option>Digital Transformation</option><option>Other</option>
+            </select>
+          </div>
+          <div class="form-row">
+            <div class="fg"><label>ESTIMATED BUDGET</label>
+              <select id="cf-budget">
+                <option value="">Select budget range…</option>
+                <option>Under ₹5L</option><option>₹5L – ₹15L</option><option>₹15L – ₹50L</option><option>₹50L+</option>
+              </select>
+            </div>
+            <div class="fg"><label>TIMELINE</label>
+              <select id="cf-timeline">
+                <option value="">Expected timeline…</option>
+                <option>ASAP (< 1 month)</option><option>1–3 months</option><option>3–6 months</option><option>6+ months</option>
+              </select>
+            </div>
+          </div>
+          <div class="fg"><label>AI REQUIREMENT</label><textarea placeholder="Describe your AI or software requirement…" id="cf-msg"></textarea></div>
+          <button class="form-submit" onclick="submitForm()">Book Free Consultation →</button>
         </div>
-        <div class="fsucc" id="cf-success">
-          <div style="font-size:40px;margin-bottom:1rem;">✓</div>
-          <div style="font-family:var(--fd);font-size:20px;font-weight:700;color:var(--white);margin-bottom:.5rem;">Message Sent!</div>
-          <div style="font-size:13px;color:rgba(255,255,255,.38);">Thank you! We'll get back to you within 24 hours.</div>
+        <div class="form-success" id="cf-success">
+          <div class="form-success-icon" style="font-size:40px;margin-bottom:1rem;">✓</div>
+          <div style="font-family:var(--fd);font-size:20px;font-weight:700;color:var(--white);margin-bottom:.5rem;">Consultation Booked!</div>
+          <div style="font-size:13px;color:var(--gray);">Thank you! Our team will reach out within 24 hours to confirm your consultation.</div>
         </div>
       </div>
     </div>
@@ -655,251 +794,208 @@ footer{background:var(--navy);border-top:.5px solid rgba(127,119,221,.08);}
 </div>
 
 <!-- FOOTER -->
-<footer>
-  <div class="footer-main">
-    <div class="footer-brand-col">
-      <div class="nav-wm" style="font-family:var(--fd);font-size:18px;font-weight:800;color:var(--white);letter-spacing:1.5px;margin-bottom:.7rem;">CLARIVEX<span style="color:var(--purple)">.AI</span></div>
-      <p>AI-first technology company turning complex data into clear decisions. Built in India. Built for the world.</p>
+<div class="footer">
+  <div class="footer-top">
+    <div class="footer-brand-section">
+      <a class="nav-logo" href="#" onclick="showPage('home')">
+        <div class="nav-icon"><svg viewBox="0 0 24 24" fill="none"><defs><linearGradient id="fg2" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#7C5CFF"/><stop offset="100%" stop-color="#00D4FF"/></linearGradient></defs><line x1="5" y1="5" x2="19" y2="19" stroke="url(#fg2)" stroke-width="2.5" stroke-linecap="round"/><line x1="19" y1="5" x2="5" y2="19" stroke="url(#fg2)" stroke-width="2.5" stroke-linecap="round"/><circle cx="12" cy="12" r="3" fill="url(#fg2)"/></svg></div>
+        <span class="nav-wm">CLARIVEX<span>.AI</span></span>
+      </a>
+      <p class="footer-desc">AI-Driven Software & Digital Transformation Company. Building intelligent solutions for modern enterprises.</p>
       <div class="footer-social">
-        <a href="https://www.linkedin.com/company/clarivex-ai/" target="_blank" rel="noopener" class="fsoc" title="LinkedIn">
-          <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
-        </a>
+        <a href="https://www.linkedin.com/company/clarivex-ai/" target="_blank" rel="noopener" class="f-social-btn" title="LinkedIn"><svg width="15" height="15" viewBox="0 0 24 24" fill="var(--purpleL)"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></a>
+        </svg></a>
       </div>
     </div>
-    <div class="footer-col">
-      <h4>COMPANY</h4>
-      <a href="#" onclick="showPage('about')">About Us</a>
-      <a href="#" onclick="showPage('careers')">Careers</a>
-      <a href="#" onclick="showPage('contact')">Contact</a>
-    </div>
-    <div class="footer-col">
-      <h4>PRODUCTS</h4>
-      <a href="#" onclick="showPage('services')">ClarivexInsight</a>
-      <a href="#" onclick="showPage('services')">ClarivexChat</a>
-      <a href="#" onclick="showPage('services')">ClarivexFlow</a>
-      <a href="#" onclick="showPage('services')">ClarivexPredict</a>
-    </div>
+    <div class="footer-col"><h4>COMPANY</h4><ul><li><a href="#" onclick="showPage('home')">Home</a></li><li><a href="#" onclick="showPage('about')">About Us</a></li><li><a href="#" onclick="showPage('careers')">Careers</a></li><li><a href="#" onclick="showPage('contact')">Contact</a></li></ul></div>
+    <div class="footer-col"><h4>SERVICES</h4><ul><li><a href="#" onclick="showPage('services')">AI Chatbots</a></li><li><a href="#" onclick="showPage('services')">AI Automation</a></li><li><a href="#" onclick="showPage('services')">Enterprise Software</a></li><li><a href="#" onclick="showPage('services')">SaaS Platforms</a></li></ul></div>
+    <div class="footer-col"><h4>INDUSTRIES</h4><ul><li><a href="#" onclick="showPage('industries')">Healthcare</a></li><li><a href="#" onclick="showPage('industries')">Finance</a></li><li><a href="#" onclick="showPage('industries')">Retail</a></li><li><a href="#" onclick="showPage('industries')">Manufacturing</a></li></ul></div>
   </div>
   <div class="footer-bottom">
-    <div class="footer-copy">© 2025 Clarivex.AI · Ahmedabad, India</div>
-    <div class="footer-tag">CLARITY · INTELLIGENCE · IMPACT</div>
-    <div class="footer-copy">Made with ❤️ in India</div>
+    <div class="footer-copy">© 2025 Clarivex.AI · Ahmedabad, India · All rights reserved.</div>
+    <div class="footer-badge">CLARITY · INTELLIGENCE · IMPACT</div>
   </div>
-</footer>
+</div>
 
-<!-- CHATBOT -->
-<div class="chat-bub" id="chat-bub">
-  <div class="chat-win" id="chat-win">
-    <div class="chat-head">
-      <div class="chl"><div class="chav">CX</div><div><div class="chn">Clarivex Assistant</div><div class="chs">● Online — Ask me anything</div></div></div>
-      <button class="ch-close" onclick="toggleChat()">×</button>
+
+<!-- Theme toggle -->
+<div class="theme-toggle" onclick="toggleTheme()" title="Toggle theme">
+  <svg id="theme-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+</div>
+
+<!-- AI Chatbot -->
+<div class="chat-bubble">
+  <div class="chat-window" id="chat-window">
+    <div class="chat-header">
+      <div class="chat-header-left"><div class="chat-av">CX</div><div><div class="chat-hname">Clarivex Assistant</div><div class="chat-hstatus">● AI Powered · Always On</div></div></div>
+      <button class="chat-close" onclick="toggleChat()">×</button>
     </div>
     <div class="chat-msgs" id="chat-msgs"></div>
     <div class="chat-sugs" id="chat-sugs">
-      <span class="csug" onclick="sendSug(this)">What is Clarivex.AI?</span>
-      <span class="csug" onclick="sendSug(this)">Pricing plans</span>
-      <span class="csug" onclick="sendSug(this)">Book a demo</span>
-      <span class="csug" onclick="sendSug(this)">Open roles</span>
+      <span class="chat-sug" onclick="sendSug(this)">Our services</span>
+      <span class="chat-sug" onclick="sendSug(this)">Pricing</span>
+      <span class="chat-sug" onclick="sendSug(this)">Book a demo</span>
+      <span class="chat-sug" onclick="sendSug(this)">Careers</span>
     </div>
-    <div class="chat-inp-row">
-      <input class="cinp" id="chat-inp" placeholder="Type a message…" onkeydown="if(event.key==='Enter')sendChat()"/>
-      <button class="csend" onclick="sendChat()"><svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></button>
+    <div class="chat-input-row">
+      <input class="chat-inp" id="chat-inp" placeholder="Ask me anything…" onkeydown="if(event.key==='Enter')sendChat()"/>
+      <button class="chat-send" onclick="sendChat()"><svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></button>
     </div>
   </div>
-  <button class="chat-btn" onclick="toggleChat()" title="Chat with us">
-    <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
-  </button>
+  <button class="chat-btn" onclick="toggleChat()"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></button>
 </div>
 
-
-
-<!-- COOKIE BANNER -->
-<div class="cookie-banner" id="cookie-banner">
-  <div class="cookie-text">We use cookies to enhance your experience on Clarivex.AI. By continuing to browse, you agree to our use of cookies in accordance with the <a href="#">Privacy Policy</a> and India's IT Act 2000.</div>
-  <div class="cookie-btns">
-    <button class="cookie-acc" onclick="acceptCookie()">Accept All</button>
-    <button class="cookie-dec" onclick="declineCookie()">Decline</button>
-  </div>
-</div>
+<style>
+@keyframes progressAnim{0%{transform:scaleX(.85);}50%{transform:scaleX(1);}100%{transform:scaleX(.85);}}
+</style>
 
 <script>
 // ── CURSOR ──
-const cur=document.getElementById('cursor');
-const curR=document.getElementById('cursor-ring');
-let mx=0,my=0,rx=0,ry=0;
-document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px';});
-(function animCur(){rx+=(mx-rx)*.15;ry+=(my-ry)*.15;curR.style.left=rx+'px';curR.style.top=ry+'px';requestAnimationFrame(animCur);})();
-document.querySelectorAll('a,button,.svc,.jcard,.pcard,.afact,.demo-chip,.csug').forEach(el=>{
-  el.addEventListener('mouseenter',()=>{cur.style.transform='translate(-50%,-50%) scale(2.5)';cur.style.background='var(--coral)';curR.style.transform='translate(-50%,-50%) scale(1.5)';});
-  el.addEventListener('mouseleave',()=>{cur.style.transform='translate(-50%,-50%) scale(1)';cur.style.background='var(--purple)';curR.style.transform='translate(-50%,-50%) scale(1)';});
-});
-
-// ── PROGRESS BAR ──
-window.addEventListener('scroll',()=>{
-  const pb=document.getElementById('progress-bar');
-  const winH=document.documentElement.scrollHeight-window.innerHeight;
-  pb.style.width=(window.scrollY/winH*100)+'%';
+const cur=document.getElementById('cursor'),trail=document.getElementById('cursor-trail');
+let mx=0,my=0,tx=0,ty=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=(mx-6)+'px';cur.style.top=(my-6)+'px';});
+setInterval(()=>{tx+=(mx-tx)*.12;ty+=(my-ty)*.12;trail.style.left=(tx-16)+'px';trail.style.top=(ty-16)+'px';},16);
+document.querySelectorAll('a,button,.svc-card,.job-card,.ind-card').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{cur.style.transform='scale(2)';trail.style.transform='scale(1.5)';});
+  el.addEventListener('mouseleave',()=>{cur.style.transform='scale(1)';trail.style.transform='scale(1)';});
 });
 
 // ── PARTICLES ──
-(function(){
-  const c=document.getElementById('particles');
-  if(!c)return;
-  for(let i=0;i<20;i++){
-    const p=document.createElement('div');
-    p.className='particle';
-    p.style.cssText=`left:${Math.random()*100}%;width:${2+Math.random()*3}px;height:${2+Math.random()*3}px;animation-duration:${8+Math.random()*14}s;animation-delay:${Math.random()*12}s;`;
-    c.appendChild(p);
+const canvas=document.getElementById('particles-canvas');
+if(canvas){
+  const ctx=canvas.getContext('2d');
+  let pts=[];
+  function resizeCanvas(){canvas.width=canvas.offsetWidth;canvas.height=canvas.offsetHeight;}
+  resizeCanvas();window.addEventListener('resize',resizeCanvas);
+  for(let i=0;i<50;i++)pts.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,r:Math.random()*1.5+.5,vx:(Math.random()-.5)*.3,vy:(Math.random()-.5)*.3,o:Math.random()*.4+.1});
+  function drawParticles(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    pts.forEach(p=>{
+      ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+      ctx.fillStyle=`rgba(124,92,255,${p.o})`;ctx.fill();
+      p.x+=p.vx;p.y+=p.vy;
+      if(p.x<0||p.x>canvas.width)p.vx*=-1;
+      if(p.y<0||p.y>canvas.height)p.vy*=-1;
+    });
+    requestAnimationFrame(drawParticles);
   }
-})();
+  drawParticles();
+}
 
 // ── NAV ──
 function showPage(n){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   document.querySelectorAll('.nav-links a').forEach(a=>a.classList.remove('active'));
   document.getElementById('page-'+n).classList.add('active');
-  const el=document.getElementById('nl-'+n);
-  if(el)el.classList.add('active');
+  const el=document.getElementById('nl-'+n);if(el)el.classList.add('active');
   window.scrollTo({top:0,behavior:'smooth'});
-  setTimeout(observeReveal,80);
+  setTimeout(observeReveal,100);
 }
 function toggleMenu(){document.getElementById('mob-menu').classList.toggle('open');}
 
-// ── LANG TOGGLE ──
-const translations={
-  en:{badge:'AI-FIRST TECHNOLOGY · INDIA',title:'Turning Complex<br>Data Into <span class="cc">Clear</span><br><span class="cp">Decisions</span>',sub:'Clarivex.AI builds intelligent systems that transform raw business data into actionable insight — in real time, for every team.'},
-  hi:{badge:'एआई-फर्स्ट टेक्नोलॉजी · भारत',title:'जटिल डेटा को <span class="cc">स्पष्ट</span><br><span class="cp">निर्णयों</span> में बदलें',sub:'Clarivex.AI बुद्धिमान प्रणालियाँ बनाता है जो कच्चे व्यावसायिक डेटा को वास्तविक समय में क्रियाशील जानकारी में बदलती हैं।'}
-};
-let curLang='en';
-function setLang(l){
-  curLang=l;
-  document.getElementById('lang-en').classList.toggle('active',l==='en');
-  document.getElementById('lang-hi').classList.toggle('active',l==='hi');
-  const t=translations[l];
-  document.getElementById('badge-text').textContent=t.badge;
-  document.getElementById('hero-title').innerHTML=t.title+'';
-  document.getElementById('hero-sub').textContent=t.sub;
-}
-
 // ── REVEAL ──
 function observeReveal(){
-  const io=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('v');});},{threshold:.1});
+  const io=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('v');});},{threshold:.1});
   document.querySelectorAll('.reveal,.reveal-l,.reveal-r').forEach(el=>io.observe(el));
 }
 window.addEventListener('load',observeReveal);
 
-// ── COUNTER ──
+// ── COUNTERS ──
+function animateCount(el,target,suffix){
+  let cur=0;const step=()=>{cur=Math.min(cur+Math.ceil(target/40),target);el.textContent=cur+suffix;if(cur<target)requestAnimationFrame(step);};
+  setTimeout(step,600);
+}
 window.addEventListener('load',()=>{
-  document.querySelectorAll('[data-count]').forEach(el=>{
-    const t=+el.dataset.count;let c=0;
-    const s=()=>{c=Math.min(c+1,t);el.textContent=c+(c>=t?'+':'');if(c<t)requestAnimationFrame(s);};
-    setTimeout(s,800);
-  });
+  document.querySelectorAll('[data-count]').forEach(el=>{animateCount(el,+el.dataset.count,'+');});
+  // Dashboard counters
+  const d1=document.getElementById('d1'),d2=document.getElementById('d2'),d3=document.getElementById('d3');
+  if(d1)animateCount(d1,2847,'');if(d2)animateCount(d2,340,'');if(d3){let c=0;const s=()=>{c=Math.min(c+3,98);d3.textContent=c+'%';if(c<98)requestAnimationFrame(s);};setTimeout(s,600);}
 });
 
-// ── CONTACT FORM ──
+// ── BAR CHARTS ──
+window.addEventListener('load',()=>{
+  const dbChart=document.getElementById('db-chart');
+  if(dbChart){
+    const vals=[45,72,38,85,62,91,55,78,88,42,95,67];
+    const max=Math.max(...vals);
+    vals.forEach((v,i)=>{
+      const b=document.createElement('div');
+      b.className='bar'+(i===10?' active':'');
+      b.style.height='8px';
+      dbChart.appendChild(b);
+      setTimeout(()=>{b.style.height=(v/max*100)+'%';},100+i*60);
+    });
+  }
+  const acChart=document.getElementById('ac-chart');
+  if(acChart){
+    const vals=[60,45,80,55,90,70,85,65,95,75,88,92];
+    const max=Math.max(...vals);
+    vals.forEach((v,i)=>{
+      const b=document.createElement('div');
+      b.className='ac-bar'+(i>=9?' hi':'');
+      b.style.height='8px';
+      acChart.appendChild(b);
+      setTimeout(()=>{b.style.height=(v/max*100)+'%';},200+i*60);
+    });
+  }
+});
+
+// ── DEMO CHAT ──
+const demoKB={
+  'what can clarivex do':'Clarivex.AI builds AI-powered enterprise software — including AI chatbots, automation workflows, predictive analytics, LLM integrations, and custom software platforms for all industries. 🚀',
+  'ai chatbot pricing':'Our AI Chatbot solutions start from ₹4,999/mo for the Starter plan. For enterprise chatbots with custom training, pricing is based on scope. Book a free consultation for a custom quote! 💬',
+  'book a demo':'Absolutely! Fill in the contact form on our Contact page, or connect with us directly on LinkedIn: linkedin.com/company/clarivex-ai — our team will schedule a personalized demo within 24 hours. 📅',
+  'services':'We offer: AI Chatbots, AI Automation, AI Agents, Predictive Analytics, Generative AI, NLP Solutions, Web Applications, ERP/CRM, SaaS Platforms, and Mobile Apps. Which interests you most?',
+  'industries':'We serve Healthcare, Finance, Government, Retail, Education, Manufacturing, and Logistics with domain-specific AI solutions.',
+  'pricing':'Plans start at ₹4,999/mo (Starter), ₹14,999/mo (Growth), and Custom for Enterprise. All include our core AI platform. Want a custom quote?',
+  'hello':'Hello! 👋 Welcome to Clarivex.AI — your AI transformation partner. How can I help you today?',
+  'hi':'Hi there! 👋 Great to see you. Ask me about our AI services, pricing, or book a consultation!',
+};
+const demsMsgs=document.getElementById('demo-msgs');
+function demoAddMsg(t,type){const d=document.createElement('div');d.className='dmsg '+type;d.textContent=t;demsMsgs.appendChild(d);demsMsgs.scrollTop=demsMsgs.scrollHeight;}
+function demoTyping(){const d=document.createElement('div');d.className='dmsg bot typing';d.id='dt';d.innerHTML='<span class="td"></span><span class="td"></span><span class="td"></span>';demsMsgs.appendChild(d);demsMsgs.scrollTop=demsMsgs.scrollHeight;}
+function demoHideTyping(){const t=document.getElementById('dt');if(t)t.remove();}
+function demoGetReply(q){const lq=q.toLowerCase();for(const[k,v] of Object.entries(demoKB)){if(lq.includes(k))return v;}return "Great question! For detailed information, please visit our Contact page to book a free consultation with our AI experts. 😊";}
+function demoChat(){const inp=document.getElementById('demo-inp');const t=inp.value.trim();if(!t)return;demoAddMsg(t,'user');inp.value='';document.getElementById('demo-sugs').style.display='none';demoTyping();setTimeout(()=>{demoHideTyping();demoAddMsg(demoGetReply(t),'bot');},800+Math.random()*500);}
+function demoSend(el){document.getElementById('demo-inp').value=el.textContent;demoChat();}
+// Init demo
+window.addEventListener('load',()=>{setTimeout(()=>{demoAddMsg("Hi! I'm the Clarivex AI assistant. Ask me about our services, pricing, or how we can transform your business! 🚀",'bot');},500);});
+
+// ── FORM ──
 function submitForm(){
   const n=document.getElementById('cf-name').value.trim();
-  const e=document.getElementById('cf-email').value.trim();
-  if(!n||!e){alert('Please fill in your name and email.');return;}
+  const c=document.getElementById('cf-company').value.trim();
+  if(!n||!c){alert('Please fill in your name and company.');return;}
   document.getElementById('cf-wrap').style.display='none';
   document.getElementById('cf-success').style.display='block';
 }
 
-// ── ROI CALCULATOR ──
-function updateCalc(){
-  const team=+document.getElementById('sl-team').value;
-  const hours=+document.getElementById('sl-hours').value;
-  const cost=+document.getElementById('sl-cost').value;
-  document.getElementById('v-team').textContent=team;
-  document.getElementById('v-hours').textContent=hours;
-  document.getElementById('v-cost').textContent=cost.toLocaleString('en-IN');
-  const hrsSaved=Math.round(hours*52*.8);
-  const moneySaved=hrsSaved*cost;
-  const clarivexCost=179988;
-  const roi=Math.round((moneySaved-clarivexCost)/clarivexCost*100);
-  document.getElementById('r-hours').textContent=hrsSaved.toLocaleString('en-IN')+' hrs';
-  document.getElementById('r-money').textContent='₹'+moneySaved.toLocaleString('en-IN');
-  document.getElementById('r-roi').textContent=Math.max(roi,0)+'%';
-}
-
-// ── LIVE DEMO ──
-const demoResponses={
-  'top selling product':`<span class="tag-green">✓ Analysis complete</span> <span class="tag-blue">Q4 2024 Data</span><br><br><strong style="color:var(--purpleL)">Top Product: ClarivexInsight Pro Plan</strong><br>Units Sold: <strong>1,247</strong> (+34% vs Q3)<br>Revenue: <strong>₹62.3L</strong><br>Growth Driver: Enterprise onboarding campaign<br><br><span style="color:rgba(255,255,255,.5);font-size:12px;">→ Insight: Consider upsell campaign targeting Starter plan users</span>`,
-  'churn rate':`<span class="tag-green">✓ Real-time data</span> <span class="tag-blue">November 2024</span><br><br><strong style="color:var(--purpleL)">Customer Churn Rate: 3.2%</strong><br>Industry Average: 5.8%<br>At-Risk Customers: <strong>47</strong><br>Predicted Next Month: <strong>2.9%</strong> ↓<br><br><span style="color:rgba(255,255,255,.5);font-size:12px;">→ Action: 12 accounts flagged for proactive outreach</span>`,
-  'predict sales':`<span class="tag-green">✓ ML Forecast ready</span> <span class="tag-blue">30-Day Prediction</span><br><br><strong style="color:var(--purpleL)">Predicted Revenue: ₹1.84 Cr</strong><br>Confidence: <strong>87.3%</strong><br>Range: ₹1.62Cr – ₹2.06Cr<br>Growth vs Last Month: <strong>+12%</strong><br><br><span style="color:rgba(255,255,255,.5);font-size:12px;">→ Key driver: Seasonal demand + pipeline momentum</span>`,
-  'revenue':`<span class="tag-green">✓ Regional breakdown</span> <span class="tag-blue">YTD 2024</span><br><br><strong style="color:var(--purpleL)">Top Region: Maharashtra — ₹3.4 Cr (38%)</strong><br>Gujarat: ₹2.1 Cr (23%)<br>Karnataka: ₹1.8 Cr (20%)<br>Others: ₹1.6 Cr (19%)<br><br><span style="color:rgba(255,255,255,.5);font-size:12px;">→ Opportunity: Gujarat growth rate 41% — highest in portfolio</span>`
-};
-function selectChip(el,q){document.querySelectorAll('.demo-chip').forEach(c=>c.classList.remove('active'));el.classList.add('active');document.getElementById('demo-q').value=q;}
-function runDemo(){
-  const q=document.getElementById('demo-q').value.toLowerCase();
-  const out=document.getElementById('demo-out');
-  out.innerHTML='<span class="tag-green" style="background:rgba(34,197,94,.12);color:#4ade80;padding:2px 8px;border-radius:4px;font-size:11px;">● Processing your query…</span><div class="demo-cursor"></div>';
-  setTimeout(()=>{
-    let resp=Object.entries(demoResponses).find(([k])=>q.includes(k));
-    out.innerHTML=resp?resp[1]:`<span class="tag-blue" style="padding:2px 8px;border-radius:4px;font-size:11px;">● Custom query processed</span><br><br><strong style="color:var(--purpleL)">Query Result</strong><br>I've analysed your question across all connected data sources.<br><br>For full results, connect your data sources to ClarivexChat. <a href="#" onclick="showPage('contact')" style="color:var(--purple);">Book a demo →</a>`;
-  },1200);
+// ── THEME ──
+let isDark=true;
+function toggleTheme(){
+  isDark=!isDark;
+  document.body.classList.toggle('light',!isDark);
+  document.getElementById('theme-icon').innerHTML=isDark
+    ?'<circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>'
+    :'<path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>';
 }
 
 // ── CHATBOT ──
 const chatOpen={v:false};
-const cmsgs=document.getElementById('chat-msgs');
-const KB={
-  'what is clarivex':'Clarivex.AI is an AI-first technology company based in Ahmedabad, India. We build intelligent products that turn complex business data into clear, actionable decisions in real time. 🚀',
-  'pricing':'We offer three plans:\n• Starter — ₹4,999/mo (5 users)\n• Growth — ₹14,999/mo (25 users)\n• Enterprise — Custom pricing\n\nWould you like to get started?',
-  'demo':'Great! Visit our Contact page to request a personalised demo. Our team will set up a walkthrough for you. 📅',
-  'book a demo':'Visit our Contact page to book a personalised demo. We typically respond within 24 hours!',
-  'open roles':'We are hiring:\n• AI/ML Engineer\n• Full Stack Developer\n• Product Designer\n• Business Development\n\nAll roles are on our LinkedIn page! 💼',
-  'contact':'Visit our Contact page to reach out, or connect with us on LinkedIn: linkedin.com/company/clarivex-ai',
-  'products':'We have 4 AI products:\n1. ClarivexInsight — Real-time BI\n2. ClarivexChat — Conversational AI\n3. ClarivexFlow — Automation\n4. ClarivexPredict — Forecasting',
-  'insight':'ClarivexInsight gives you real-time BI dashboards from any data source — no SQL needed! 📊',
-  'chat':'ClarivexChat lets your team ask data questions in plain English and get instant answers. No tech skills needed! 💬',
-  'flow':'ClarivexFlow detects patterns in your data and automates the right actions. Reduce manual work at scale! ⚡',
-  'predict':'ClarivexPredict uses ML to forecast sales, churn, and inventory demand. 📈',
-  'location':'We are based in Ahmedabad, Gujarat, India 🇮🇳',
-  'linkedin':'Follow us on LinkedIn: linkedin.com/company/clarivex-ai 🔗',
-  'hello':'Hello! 👋 Welcome to Clarivex.AI. How can I help you today?',
-  'hi':'Hi there! 👋 How can I assist you with Clarivex.AI today?',
-  'hey':'Hey! Welcome! 😊 How can I help you?'
-};
-function addMsg(text,type){
-  const d=document.createElement('div');d.className='msg '+type;
-  d.textContent=text;cmsgs.appendChild(d);cmsgs.scrollTop=cmsgs.scrollHeight;
-}
-function showTyping(){
-  const d=document.createElement('div');d.className='msg bot typing';d.id='typing-ind';
-  d.innerHTML='<span class="td"></span><span class="td"></span><span class="td"></span>';
-  cmsgs.appendChild(d);cmsgs.scrollTop=cmsgs.scrollHeight;
-}
-function hideTyping(){const t=document.getElementById('typing-ind');if(t)t.remove();}
-function getReply(q){
-  const lq=q.toLowerCase();
-  for(const[k,v] of Object.entries(KB)){if(lq.includes(k))return v;}
-  return 'Great question! For more details, please visit our Contact page or connect with us on LinkedIn. We\'d love to chat! 😊';
-}
-function sendChat(){
-  const inp=document.getElementById('chat-inp');
-  const t=inp.value.trim();if(!t)return;
-  addMsg(t,'user');inp.value='';
-  document.getElementById('chat-sugs').style.display='none';
-  showTyping();
-  setTimeout(()=>{hideTyping();addMsg(getReply(t),'bot');},900+Math.random()*500);
-}
+const cMsgs=document.getElementById('chat-msgs');
+const KB={'our services':'We offer AI Chatbots, AI Automation, Predictive Analytics, Generative AI, NLP Solutions, Enterprise Software, SaaS Platforms, and Mobile Apps. Which interests you? 🚀','services':'We offer AI Chatbots, AI Automation, Predictive Analytics, Generative AI, NLP Solutions, Enterprise Software, SaaS Platforms, and Mobile Apps!','pricing':'Starter: ₹4,999/mo · Growth: ₹14,999/mo · Enterprise: Custom. All plans include our core AI platform. Want a custom quote?','book a demo':'Visit our Contact page or reach us on LinkedIn: linkedin.com/company/clarivex-ai — we\'ll book a personalised demo within 24 hours! 📅','careers':'We are hiring: AI/ML Engineers, Full Stack Developers, Product Designers, and Business Development Executives. All remote-friendly. 💼','industries':'We serve Healthcare, Finance, Government, Retail, Education, Manufacturing, and Logistics with domain-specific AI solutions.','hello':'Hello! 👋 I\'m the Clarivex AI assistant. How can I help you today?','hi':'Hi! 👋 Welcome to Clarivex.AI. Ask me anything!','about':'Clarivex.AI is an AI-driven software and digital transformation company based in Ahmedabad, India, building intelligent solutions for modern enterprises.','contact':'Connect with us on LinkedIn: linkedin.com/company/clarivex-ai or visit our Contact page to book a free consultation!'};
+function cAddMsg(t,type){const d=document.createElement('div');d.className='cmsg '+type;d.textContent=t;cMsgs.appendChild(d);cMsgs.scrollTop=cMsgs.scrollHeight;}
+function cTyping(){const d=document.createElement('div');d.className='cmsg bot typing';d.id='cti';d.innerHTML='<span class="td"></span><span class="td"></span><span class="td"></span>';cMsgs.appendChild(d);cMsgs.scrollTop=cMsgs.scrollHeight;}
+function cHideTyping(){const t=document.getElementById('cti');if(t)t.remove();}
+function cGetReply(q){const lq=q.toLowerCase();for(const[k,v] of Object.entries(KB)){if(lq.includes(k))return v;}return "Great question! Visit our Contact page or connect on LinkedIn for a personalised answer from our team. 😊";}
+function sendChat(){const inp=document.getElementById('chat-inp');const t=inp.value.trim();if(!t)return;cAddMsg(t,'user');inp.value='';document.getElementById('chat-sugs').style.display='none';cTyping();setTimeout(()=>{cHideTyping();cAddMsg(cGetReply(t),'bot');},900+Math.random()*500);}
 function sendSug(el){document.getElementById('chat-inp').value=el.textContent;sendChat();}
-function toggleChat(){
-  chatOpen.v=!chatOpen.v;
-  document.getElementById('chat-win').classList.toggle('open',chatOpen.v);
-  if(chatOpen.v&&cmsgs.children.length===0){
-    setTimeout(()=>{showTyping();setTimeout(()=>{hideTyping();addMsg('Hi! 👋 I\'m the Clarivex.AI assistant. Ask me about our products, pricing, or careers!','bot');},800);},200);
-  }
-}
-
-// ── COOKIE ──
-function acceptCookie(){document.getElementById('cookie-banner').style.display='none';localStorage.setItem('cookie','1');}
-function declineCookie(){document.getElementById('cookie-banner').style.display='none';}
-if(localStorage.getItem('cookie')){document.getElementById('cookie-banner').style.display='none';}
+function toggleChat(){chatOpen.v=!chatOpen.v;const w=document.getElementById('chat-window');w.classList.toggle('open',chatOpen.v);if(chatOpen.v&&cMsgs.children.length===0){setTimeout(()=>{cTyping();setTimeout(()=>{cHideTyping();cAddMsg("Hi! 👋 I'm the Clarivex AI assistant. Ask me about our AI services, pricing, or book a free consultation!",'bot');},700);},200);}}
 </script>
 </body>
 </html>
 HTMLEOF
-echo "Done: $(wc -c < /mnt/user-data/outputs/clarivex_website_v3.html) bytes"
+echo "Done: $(wc -c < /mnt/user-data/outputs/clarivex_website_v3.html) bytes, $(wc -l < /mnt/user-data/outputs/clarivex_website_v3.html) lines"
+Output
+
+Done: 97968 bytes, 1028 lines
