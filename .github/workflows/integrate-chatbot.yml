@@ -1,0 +1,56 @@
+name: Integrate Clarivex Chatbot
+
+on:
+  push:
+    branches: ["upgrade/2026-product-ui"]
+
+permissions:
+  contents: write
+
+jobs:
+  integrate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Integrate chatbot script and normalize HTML
+        shell: python
+        run: |
+          from pathlib import Path
+          import re
+
+          path = Path("index.html")
+          text = path.read_text(encoding="utf-8")
+
+          # The current file was accidentally saved as a shell heredoc artifact.
+          # Extract the actual HTML so Vercel serves a real document.
+          marker = "<!DOCTYPE html>"
+          if marker in text and "<html" in text:
+              text = text[text.index(marker):]
+              if "HTMLEOF" in text:
+                  text = text.split("HTMLEOF", 1)[0]
+
+          # Remove any previous chatbot.js include before adding one canonical include.
+          text = re.sub(r'\s*<script[^>]+src=["\']/?chatbot\.js["\'][^>]*></script>', '', text, flags=re.I)
+
+          include = '\n<script src="/chatbot.js" defer></script>\n'
+          if "</body>" in text:
+              text = text.replace("</body>", include + "</body>", 1)
+          else:
+              text += include
+
+          path.write_text(text, encoding="utf-8")
+
+      - name: Commit integration
+        shell: bash
+        run: |
+          if git diff --quiet -- index.html; then
+            echo "No integration changes needed."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          git commit -m "fix: connect website chatbot to ChatGPT API"
+          git push
