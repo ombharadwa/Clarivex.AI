@@ -1,6 +1,3 @@
-bash
-
-cat > /mnt/user-data/outputs/clarivex_website_v3.html << 'HTMLEOF'
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -992,5 +989,7 @@ function sendChat(){const inp=document.getElementById('chat-inp');const t=inp.va
 function sendSug(el){document.getElementById('chat-inp').value=el.textContent;sendChat();}
 function toggleChat(){chatOpen.v=!chatOpen.v;const w=document.getElementById('chat-window');w.classList.toggle('open',chatOpen.v);if(chatOpen.v&&cMsgs.children.length===0){setTimeout(()=>{cTyping();setTimeout(()=>{cHideTyping();cAddMsg("Hi! 👋 I'm the Clarivex AI assistant. Ask me about our AI services, pricing, or book a free consultation!",'bot');},700);},200);}}
 </script>
+
+<script src="/chatbot.js" defer></script>
 </body>
 </html>
