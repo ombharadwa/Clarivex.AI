@@ -37,10 +37,9 @@ BEHAVIOR:
       method: 'POST',
       headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${apiKey}` },
       body: JSON.stringify({
-        model: process.env.OPENAI_MODEL || 'gpt-5-mini',
+        model: process.env.OPENAI_MODEL || 'gpt-5.6-luna',
         instructions: system,
         input: safeMessages,
-        temperature: 0.4,
         max_output_tokens: 900
       })
     });
