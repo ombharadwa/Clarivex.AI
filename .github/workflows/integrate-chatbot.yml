@@ -23,17 +23,15 @@ jobs:
           path = Path("index.html")
           text = path.read_text(encoding="utf-8")
 
-          # The current file was accidentally saved as a shell heredoc artifact.
-          # Extract the actual HTML so Vercel serves a real document.
+          # Normalize accidental shell/heredoc wrapping if present.
           marker = "<!DOCTYPE html>"
           if marker in text and "<html" in text:
               text = text[text.index(marker):]
               if "HTMLEOF" in text:
                   text = text.split("HTMLEOF", 1)[0]
 
-          # Remove any previous chatbot.js include before adding one canonical include.
+          # Ensure the ChatGPT-powered client is loaded exactly once.
           text = re.sub(r'\s*<script[^>]+src=["\']/?chatbot\.js["\'][^>]*></script>', '', text, flags=re.I)
-
           include = '\n<script src="/chatbot.js" defer></script>\n'
           if "</body>" in text:
               text = text.replace("</body>", include + "</body>", 1)
@@ -54,3 +52,7 @@ jobs:
           git add index.html
           git commit -m "fix: connect website chatbot to ChatGPT API"
           git push
+
+      # Force a fresh workflow revision so the integration runs on the next push.
+      - name: Integration status
+        run: echo "Clarivex ChatGPT integration workflow active"
