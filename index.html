@@ -373,7 +373,43 @@ body.light .hero-dashboard{background:rgba(255,255,255,.9);}
 @media (max-width:768px){.cursor,.cursor-trail{display:none!important}}
 @media (prefers-reduced-motion:reduce), .reduce-motion *{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}
 </style>
-</head>
+<style>
+/* Premium Clarivex 2.0 visual layer */
+:root{
+  --max:1240px;
+  --surface:rgba(18,25,49,.78);
+  --surface2:rgba(255,255,255,.035);
+}
+body{background:#070b17}
+nav{height:74px;padding:0 max(5%,24px);transition:background .3s,box-shadow .3s}
+nav.scrolled{background:rgba(7,11,23,.82);box-shadow:0 10px 40px rgba(0,0,0,.22)}
+.hero{min-height:calc(100vh - 74px)}
+.hero-inner{max-width:1400px;margin:auto;padding-top:5.5rem;padding-bottom:4rem}
+.hero-badge{box-shadow:0 0 30px rgba(124,92,255,.08)}
+.hero-title{font-size:clamp(42px,5.4vw,78px);letter-spacing:-2.8px}
+.hero-sub{font-size:17px;max-width:560px}
+.btn-grad{box-shadow:0 10px 35px rgba(124,92,255,.18)}
+.hero-dashboard{box-shadow:0 30px 100px rgba(0,0,0,.28),0 0 60px rgba(124,92,255,.08)}
+.trust-bar{justify-content:center;min-height:70px}
+.trust-items{animation-duration:28s}
+section{max-width:1400px;margin:0 auto}
+.svc-card,.ind-card,.why-card,.pricing-card,.analytics-card{box-shadow:0 12px 50px rgba(0,0,0,.08)}
+.svc-card:hover,.ind-card:hover,.why-card:hover{transform:translateY(-6px)}
+.section-intro{display:flex;align-items:end;justify-content:space-between;gap:2rem}
+.section-kicker{font-size:11px;color:var(--cyan);letter-spacing:2px;text-transform:uppercase}
+.metric-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;margin-top:4rem;border:1px solid var(--border);border-radius:18px;overflow:hidden}
+.metric-strip>div{padding:1.6rem;background:rgba(124,92,255,.045);text-align:center}
+.metric-strip strong{display:block;font:800 26px var(--fd);background:var(--grad1);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.metric-strip span{font-size:10px;color:var(--gray);letter-spacing:1.5px}
+.final-cta{margin:40px 6% 100px;padding:4rem;border-radius:24px;border:1px solid var(--border);background:radial-gradient(circle at 80% 20%,rgba(0,212,255,.10),transparent 35%),radial-gradient(circle at 20% 80%,rgba(124,92,255,.14),transparent 40%),var(--surface);text-align:center;position:relative;overflow:hidden}
+.final-cta h2{font:800 clamp(30px,4vw,50px)/1.05 var(--fd);letter-spacing:-1px;margin-bottom:1rem}
+.final-cta p{color:var(--gray);max-width:620px;margin:0 auto 1.8rem;line-height:1.8}
+@media(max-width:800px){
+ .metric-strip{grid-template-columns:repeat(2,1fr)}
+ .section-intro{display:block}
+ .final-cta{margin-left:5%;margin-right:5%;padding:2.5rem 1.5rem}
+}
+</style></head>
 <body>
 
 <!-- CURSOR -->
@@ -459,6 +495,12 @@ body.light .hero-dashboard{background:rgba(255,255,255,.9);}
     </div>
   </div>
 
+  <div class="metric-strip">
+    <div><strong>AI + SaaS</strong><span>PRODUCT ENGINEERING</span></div>
+    <div><strong>24/7</strong><span>AUTOMATION READY</span></div>
+    <div><strong>API-first</strong><span>INTEGRATION READY</span></div>
+    <div><strong>India</strong><span>DELIVERY HUB</span></div>
+  </div>
   <!-- Trust Bar -->
   <div class="trust-bar">
     <span class="trust-label">INDUSTRIES WE SERVE</span>
@@ -802,6 +844,13 @@ body.light .hero-dashboard{background:rgba(255,255,255,.9);}
     </div>
   </section>
 </div>
+
+<section class="final-cta">
+  <div class="section-kicker">START YOUR AI JOURNEY</div>
+  <h2>Turn complex operations into<br><span class="grad">intelligent systems.</span></h2>
+  <p>Tell us what you want to automate, build, or transform. We’ll help shape the right AI and software solution around your business.</p>
+  <a href="#" class="btn-grad" onclick="showPage('contact')">Talk to Clarivex.AI <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+</section>
 
 <!-- FOOTER -->
 <div class="footer">
