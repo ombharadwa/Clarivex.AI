@@ -1,10 +1,18 @@
-/* Clarivex.AI — ChatGPT-powered website chatbot
- * The API key stays server-side in Vercel.
- * The script automatically replaces the old keyword-only sendChat() handler.
+/* Clarivex.AI — production chatbot client
+ * The API key remains server-side in Vercel.
  */
 (function () {
   const history = [];
   const API = window.CLARIVEX_CHAT_API || '/api/chat';
+
+  function loadProfessionalStyles() {
+    if (document.getElementById('clarivex-professional-css')) return;
+    const link = document.createElement('link');
+    link.id = 'clarivex-professional-css';
+    link.rel = 'stylesheet';
+    link.href = '/professional.css';
+    document.head.appendChild(link);
+  }
 
   function addMessage(text, type) {
     if (typeof window.cAddMsg === 'function') {
@@ -44,9 +52,7 @@
     });
 
     const data = await response.json().catch(() => ({}));
-    if (!response.ok) {
-      throw new Error(data.error || 'Chat request failed');
-    }
+    if (!response.ok) throw new Error(data.error || 'Chat request failed');
 
     const reply = data.reply || 'I could not generate a response. Please try again.';
     history.push({ role: 'assistant', content: reply });
@@ -56,7 +62,6 @@
   async function sendChat() {
     const input = document.getElementById('chat-inp');
     if (!input) return;
-
     const text = input.value.trim();
     if (!text) return;
 
@@ -72,7 +77,7 @@
       hideTyping();
       addMessage(reply, 'bot');
     } catch (error) {
-      console.error('Clarivex ChatGPT error:', error);
+      console.error('Clarivex chatbot error:', error);
       hideTyping();
       addMessage('I’m having trouble connecting right now. Please try again in a moment.', 'bot');
     }
@@ -82,9 +87,7 @@
     history.splice(0);
   }
 
-  // Expose the API for future UI integrations.
+  loadProfessionalStyles();
   window.ClarivexChat = { ask, sendChat, reset };
-
-  // Replace the old keyword-based global handler once this deferred script runs.
   window.sendChat = sendChat;
 })();
