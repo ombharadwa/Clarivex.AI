@@ -3,7 +3,15 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<meta name="description" content="Clarivex.AI — AI-Driven Software & Digital Transformation Company. We build intelligent applications, enterprise software, and AI automation for modern businesses."/>
+<meta name="description" content="Clarivex.AI builds AI-powered software, intelligent automation, enterprise applications, and digital transformation solutions for modern businesses."/>
+<meta name="robots" content="index,follow"/>
+<meta name="theme-color" content="#0B1020"/>
+<meta property="og:type" content="website"/>
+<meta property="og:title" content="Clarivex.AI — AI-Driven Software & Digital Transformation"/>
+<meta property="og:description" content="Build smarter with AI-powered software, automation, enterprise applications, and digital transformation."/>
+<meta property="og:url" content="https://clarivex.ai/"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<link rel="canonical" href="https://clarivex.ai/"/>
 <meta name="keywords" content="AI Development Company, AI Software, Digital Transformation, Enterprise Software, AI Chatbot, Automation, India"/>
 <title>Clarivex.AI — AI-Driven Software & Digital Transformation</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
@@ -359,6 +367,11 @@ body.light .hero-dashboard{background:rgba(255,255,255,.9);}
 @media(max-width:1024px){.hero-inner{grid-template-columns:1fr;}.hero-right{display:none;}.about-grid,.contact-grid,.demo-grid,.footer-top{grid-template-columns:1fr;}.footer-top{gap:2rem;}}
 @media(max-width:768px){.nav-links,.nav-cta{display:none;}.hamburger{display:flex;}section{padding:64px 5%;}.hero-inner{padding:2rem 5%;}.process-grid{grid-template-columns:repeat(2,1fr);}.process-grid::before{display:none;}.footer-top{padding:2rem 5%;}}
 @media(max-width:480px){.hero-title{font-size:32px;}.hero-btns{flex-direction:column;}.svc-grid{grid-template-columns:1fr;}.form-row{grid-template-columns:1fr;}.chat-window{width:290px;}.why-grid{grid-template-columns:1fr;}.pricing-grid{grid-template-columns:1fr;}}
+</style>
+<style>
+.form-submit:disabled{opacity:.65;cursor:wait;transform:none!important}
+@media (max-width:768px){.cursor,.cursor-trail{display:none!important}}
+@media (prefers-reduced-motion:reduce), .reduce-motion *{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}
 </style>
 </head>
 <body>
@@ -801,7 +814,7 @@ body.light .hero-dashboard{background:rgba(255,255,255,.9);}
       <p class="footer-desc">AI-Driven Software & Digital Transformation Company. Building intelligent solutions for modern enterprises.</p>
       <div class="footer-social">
         <a href="https://www.linkedin.com/company/clarivex-ai/" target="_blank" rel="noopener" class="f-social-btn" title="LinkedIn"><svg width="15" height="15" viewBox="0 0 24 24" fill="var(--purpleL)"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></a>
-        </svg></a>
+        </a>
       </div>
     </div>
     <div class="footer-col"><h4>COMPANY</h4><ul><li><a href="#" onclick="showPage('home')">Home</a></li><li><a href="#" onclick="showPage('about')">About Us</a></li><li><a href="#" onclick="showPage('careers')">Careers</a></li><li><a href="#" onclick="showPage('contact')">Contact</a></li></ul></div>
@@ -809,7 +822,7 @@ body.light .hero-dashboard{background:rgba(255,255,255,.9);}
     <div class="footer-col"><h4>INDUSTRIES</h4><ul><li><a href="#" onclick="showPage('industries')">Healthcare</a></li><li><a href="#" onclick="showPage('industries')">Finance</a></li><li><a href="#" onclick="showPage('industries')">Retail</a></li><li><a href="#" onclick="showPage('industries')">Manufacturing</a></li></ul></div>
   </div>
   <div class="footer-bottom">
-    <div class="footer-copy">© 2025 Clarivex.AI · Ahmedabad, India · All rights reserved.</div>
+    <div class="footer-copy">© 2026 Clarivex.AI · Ahmedabad, India · All rights reserved.</div>
     <div class="footer-badge">CLARITY · INTELLIGENCE · IMPACT</div>
   </div>
 </div>
@@ -959,12 +972,28 @@ function demoSend(el){document.getElementById('demo-inp').value=el.textContent;d
 window.addEventListener('load',()=>{setTimeout(()=>{demoAddMsg("Hi! I'm the Clarivex AI assistant. Ask me about our services, pricing, or how we can transform your business! 🚀",'bot');},500);});
 
 // ── FORM ──
-function submitForm(){
+async function submitForm(){
   const n=document.getElementById('cf-name').value.trim();
   const c=document.getElementById('cf-company').value.trim();
-  if(!n||!c){alert('Please fill in your name and company.');return;}
-  document.getElementById('cf-wrap').style.display='none';
-  document.getElementById('cf-success').style.display='block';
+  const email=document.getElementById('cf-email')?.value.trim()||'';
+  const phone=document.getElementById('cf-phone')?.value.trim()||'';
+  const timeline=document.getElementById('cf-timeline')?.value.trim()||'';
+  const msg=document.getElementById('cf-msg')?.value.trim()||'';
+  if(!n||!c||!email){alert('Please fill in your name, company, and email.');return;}
+  const button=document.querySelector('.form-submit');
+  const originalLabel=button?.textContent;
+  if(button){button.disabled=true;button.textContent='Submitting…';}
+  try{
+    const response=await fetch('/api/contact',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name:n,company:c,email,phone,timeline,message:msg})});
+    const data=await response.json().catch(()=>({}));
+    if(!response.ok) throw new Error(data.error||'Unable to submit the request.');
+    document.getElementById('cf-wrap').style.display='none';
+    document.getElementById('cf-success').style.display='block';
+  }catch(error){
+    console.error('Contact form error:',error);
+    alert(error.message||'Unable to submit right now. Please try again.');
+    if(button){button.disabled=false;button.textContent=originalLabel||'Book Free Consultation →';}
+  }
 }
 
 // ── THEME ──
@@ -991,5 +1020,14 @@ function toggleChat(){chatOpen.v=!chatOpen.v;const w=document.getElementById('ch
 </script>
 
 <script src="/chatbot.js" defer></script>
+<script>
+(function(){
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+    document.documentElement.classList.add('reduce-motion');
+  }
+  const nav=document.querySelector('nav');
+  window.addEventListener('scroll',()=>{ if(nav) nav.classList.toggle('scrolled',window.scrollY>12); },{passive:true});
+})();
+</script>
 </body>
 </html>
