@@ -970,14 +970,19 @@ function submitForm(){
 }
 
 // ── THEME ──
-let isDark=true;
-function toggleTheme(){
-  isDark=!isDark;
+let isDark=localStorage.getItem('clarivex_theme')!=='light';
+function applyTheme(){
   document.body.classList.toggle('light',!isDark);
   document.getElementById('theme-icon').innerHTML=isDark
     ?'<circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>'
     :'<path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>';
 }
+function toggleTheme(){
+  isDark=!isDark;
+  localStorage.setItem('clarivex_theme',isDark?'dark':'light');
+  applyTheme();
+}
+applyTheme();
 
 // ── CHATBOT ──
 const chatOpen={v:false};
