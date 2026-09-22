@@ -161,3 +161,54 @@ body.light .cursor-trail{border-color:rgba(124,92,255,.25);mix-blend-mode:multip
 @media (max-width:640px){
   body.light .chat-window{box-shadow:0 20px 50px rgba(15,23,42,.18)}
 }
+
+
+/* ── PREMIUM SAAS POLISH ── */
+:root{
+  --cx-focus:rgba(124,92,255,.42);
+  --cx-shadow-soft:0 18px 55px rgba(15,23,42,.08);
+}
+body{transition:background-color .35s ease,color .35s ease}
+nav{transition:background .35s ease,border-color .35s ease,box-shadow .35s ease}
+.nav-cta,.btn-grad,.btn-ghost,.glass-card,.svc-card,.ind-card,.why-card,.analytics-card,.chat-window,.theme-toggle{
+  transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease,background .25s ease,color .25s ease;
+}
+body.light .hero{
+  background:
+    radial-gradient(circle at 78% 8%,rgba(124,92,255,.13),transparent 28%),
+    radial-gradient(circle at 8% 82%,rgba(0,212,255,.09),transparent 26%),
+    linear-gradient(180deg,#f8faff 0%,#f3f6fb 100%);
+}
+body.light .hero::after{
+  content:'';position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(115deg,transparent 0 48%,rgba(255,255,255,.7) 50%,transparent 52%);
+  opacity:.45;
+}
+body.light .hero-inner{z-index:3}
+body.light .hero-dashboard{
+  background:rgba(255,255,255,.72);
+  box-shadow:0 28px 80px rgba(30,41,59,.10),0 0 0 1px rgba(255,255,255,.7) inset;
+}
+body.light .svc-card,body.light .ind-card,body.light .why-card,body.light .analytics-card{
+  box-shadow:0 10px 35px rgba(15,23,42,.045);
+}
+body.light .svc-card:hover,body.light .ind-card:hover,body.light .why-card:hover,body.light .analytics-card:hover{
+  box-shadow:0 20px 55px rgba(15,23,42,.10);
+}
+body.light .btn-grad{box-shadow:0 12px 28px rgba(92,67,210,.22)}
+body.light .btn-ghost{box-shadow:0 5px 18px rgba(15,23,42,.05)}
+body.light input,body.light textarea,body.light select{
+  background:rgba(255,255,255,.9)!important;color:#111827!important;border-color:rgba(71,85,105,.18)!important;
+}
+body.light input:focus,body.light textarea:focus,body.light select:focus{
+  outline:none;border-color:#7c5cff!important;box-shadow:0 0 0 4px rgba(124,92,255,.10);
+}
+body.light .demo-chat,body.light .demo-analytics{filter:drop-shadow(0 14px 35px rgba(15,23,42,.06))}
+.theme-toggle:hover{transform:translateY(-2px) scale(1.03)}
+.chat-btn:hover{transform:translateY(-3px) scale(1.04)}
+@media (max-width:640px){
+  body.light .hero-dashboard{box-shadow:0 20px 55px rgba(15,23,42,.09)}
+}
+@media (prefers-reduced-motion:reduce){
+  body,nav,.nav-cta,.btn-grad,.btn-ghost,.glass-card,.svc-card,.ind-card,.why-card,.analytics-card,.chat-window,.theme-toggle{transition:none!important}
+}
