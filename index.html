@@ -975,16 +975,17 @@ window.addEventListener('load',()=>{setTimeout(()=>{demoAddMsg("Hi! I'm the Clar
 async function submitForm(){
   const n=document.getElementById('cf-name').value.trim();
   const c=document.getElementById('cf-company').value.trim();
-  const email=document.getElementById('cf-email')?.value.trim()||'';
-  const phone=document.getElementById('cf-phone')?.value.trim()||'';
+  const industry=document.getElementById('cf-industry')?.value.trim()||'';
+  const type=document.getElementById('cf-type')?.value.trim()||'';
+  const budget=document.getElementById('cf-budget')?.value.trim()||'';
   const timeline=document.getElementById('cf-timeline')?.value.trim()||'';
   const msg=document.getElementById('cf-msg')?.value.trim()||'';
-  if(!n||!c||!email){alert('Please fill in your name, company, and email.');return;}
+  if(!n||!c){alert('Please fill in your name and company.');return;}
   const button=document.querySelector('.form-submit');
   const originalLabel=button?.textContent;
   if(button){button.disabled=true;button.textContent='Submitting…';}
   try{
-    const response=await fetch('/api/contact',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name:n,company:c,email,phone,timeline,message:msg})});
+    const response=await fetch('/api/contact',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name:n,company:c,industry,type,budget,timeline,message:msg})});
     const data=await response.json().catch(()=>({}));
     if(!response.ok) throw new Error(data.error||'Unable to submit the request.');
     document.getElementById('cf-wrap').style.display='none';
