@@ -10,27 +10,25 @@ module.exports = async function handler(req, res) {
     const body = req.body || {};
     const name = clean(body.name, 120);
     const company = clean(body.company, 160);
-    const email = clean(body.email, 200);
-    const phone = clean(body.phone, 40);
+    const industry = clean(body.industry, 120);
+    const type = clean(body.type, 120);
+    const budget = clean(body.budget, 120);
     const timeline = clean(body.timeline, 100);
     const message = clean(body.message, 2000);
 
-    if (!name || !company || !email) {
-      return res.status(400).json({ error: 'Name, company, and email are required.' });
-    }
-    if (!/^\S+@\S+\.\S+$/.test(email)) {
-      return res.status(400).json({ error: 'Please provide a valid email address.' });
+    if (!name || !company) {
+      return res.status(400).json({ error: 'Name and company are required.' });
     }
 
     const lead = {
       source: 'clarivex.ai',
       createdAt: new Date().toISOString(),
-      name, company, email, phone, timeline, message
+      name, company, industry, type, budget, timeline, message
     };
 
     const webhook = process.env.CLARIVEX_LEAD_WEBHOOK_URL;
     if (!webhook) {
-      console.error('Lead webhook is not configured', { email, company });
+      console.error('Lead webhook is not configured', { company });
       return res.status(503).json({ error: 'Lead service is not configured yet. Please contact us directly.' });
     }
 
