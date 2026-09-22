@@ -3,7 +3,15 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<meta name="description" content="Clarivex.AI — AI-Driven Software & Digital Transformation Company. We build intelligent applications, enterprise software, and AI automation for modern businesses."/>
+<meta name="description" content="Clarivex.AI builds AI-powered software, intelligent automation, enterprise applications, and digital transformation solutions for modern businesses."/>
+<meta name="robots" content="index,follow"/>
+<meta name="theme-color" content="#0B1020"/>
+<meta property="og:type" content="website"/>
+<meta property="og:title" content="Clarivex.AI — AI-Driven Software & Digital Transformation"/>
+<meta property="og:description" content="Build smarter with AI-powered software, automation, enterprise applications, and digital transformation."/>
+<meta property="og:url" content="https://clarivex.ai/"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<link rel="canonical" href="https://clarivex.ai/"/>
 <meta name="keywords" content="AI Development Company, AI Software, Digital Transformation, Enterprise Software, AI Chatbot, Automation, India"/>
 <title>Clarivex.AI — AI-Driven Software & Digital Transformation</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
@@ -360,7 +368,48 @@ body.light .hero-dashboard{background:rgba(255,255,255,.9);}
 @media(max-width:768px){.nav-links,.nav-cta{display:none;}.hamburger{display:flex;}section{padding:64px 5%;}.hero-inner{padding:2rem 5%;}.process-grid{grid-template-columns:repeat(2,1fr);}.process-grid::before{display:none;}.footer-top{padding:2rem 5%;}}
 @media(max-width:480px){.hero-title{font-size:32px;}.hero-btns{flex-direction:column;}.svc-grid{grid-template-columns:1fr;}.form-row{grid-template-columns:1fr;}.chat-window{width:290px;}.why-grid{grid-template-columns:1fr;}.pricing-grid{grid-template-columns:1fr;}}
 </style>
-</head>
+<style>
+.form-submit:disabled{opacity:.65;cursor:wait;transform:none!important}
+@media (max-width:768px){.cursor,.cursor-trail{display:none!important}}
+@media (prefers-reduced-motion:reduce), .reduce-motion *{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}
+</style>
+<style>
+/* Premium Clarivex 2.0 visual layer */
+:root{
+  --max:1240px;
+  --surface:rgba(18,25,49,.78);
+  --surface2:rgba(255,255,255,.035);
+}
+body{background:#070b17}
+nav{height:74px;padding:0 max(5%,24px);transition:background .3s,box-shadow .3s}
+nav.scrolled{background:rgba(7,11,23,.82);box-shadow:0 10px 40px rgba(0,0,0,.22)}
+.hero{min-height:calc(100vh - 74px)}
+.hero-inner{max-width:1400px;margin:auto;padding-top:5.5rem;padding-bottom:4rem}
+.hero-badge{box-shadow:0 0 30px rgba(124,92,255,.08)}
+.hero-title{font-size:clamp(42px,5.4vw,78px);letter-spacing:-2.8px}
+.hero-sub{font-size:17px;max-width:560px}
+.btn-grad{box-shadow:0 10px 35px rgba(124,92,255,.18)}
+.hero-dashboard{box-shadow:0 30px 100px rgba(0,0,0,.28),0 0 60px rgba(124,92,255,.08)}
+.trust-bar{justify-content:center;min-height:70px}
+.trust-items{animation-duration:28s}
+section{max-width:1400px;margin:0 auto}
+.svc-card,.ind-card,.why-card,.pricing-card,.analytics-card{box-shadow:0 12px 50px rgba(0,0,0,.08)}
+.svc-card:hover,.ind-card:hover,.why-card:hover{transform:translateY(-6px)}
+.section-intro{display:flex;align-items:end;justify-content:space-between;gap:2rem}
+.section-kicker{font-size:11px;color:var(--cyan);letter-spacing:2px;text-transform:uppercase}
+.metric-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;margin-top:4rem;border:1px solid var(--border);border-radius:18px;overflow:hidden}
+.metric-strip>div{padding:1.6rem;background:rgba(124,92,255,.045);text-align:center}
+.metric-strip strong{display:block;font:800 26px var(--fd);background:var(--grad1);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.metric-strip span{font-size:10px;color:var(--gray);letter-spacing:1.5px}
+.final-cta{margin:40px 6% 100px;padding:4rem;border-radius:24px;border:1px solid var(--border);background:radial-gradient(circle at 80% 20%,rgba(0,212,255,.10),transparent 35%),radial-gradient(circle at 20% 80%,rgba(124,92,255,.14),transparent 40%),var(--surface);text-align:center;position:relative;overflow:hidden}
+.final-cta h2{font:800 clamp(30px,4vw,50px)/1.05 var(--fd);letter-spacing:-1px;margin-bottom:1rem}
+.final-cta p{color:var(--gray);max-width:620px;margin:0 auto 1.8rem;line-height:1.8}
+@media(max-width:800px){
+ .metric-strip{grid-template-columns:repeat(2,1fr)}
+ .section-intro{display:block}
+ .final-cta{margin-left:5%;margin-right:5%;padding:2.5rem 1.5rem}
+}
+</style></head>
 <body>
 
 <!-- CURSOR -->
@@ -446,6 +495,12 @@ body.light .hero-dashboard{background:rgba(255,255,255,.9);}
     </div>
   </div>
 
+  <div class="metric-strip">
+    <div><strong>AI + SaaS</strong><span>PRODUCT ENGINEERING</span></div>
+    <div><strong>24/7</strong><span>AUTOMATION READY</span></div>
+    <div><strong>API-first</strong><span>INTEGRATION READY</span></div>
+    <div><strong>India</strong><span>DELIVERY HUB</span></div>
+  </div>
   <!-- Trust Bar -->
   <div class="trust-bar">
     <span class="trust-label">INDUSTRIES WE SERVE</span>
@@ -790,6 +845,13 @@ body.light .hero-dashboard{background:rgba(255,255,255,.9);}
   </section>
 </div>
 
+<section class="final-cta">
+  <div class="section-kicker">START YOUR AI JOURNEY</div>
+  <h2>Turn complex operations into<br><span class="grad">intelligent systems.</span></h2>
+  <p>Tell us what you want to automate, build, or transform. We’ll help shape the right AI and software solution around your business.</p>
+  <a href="#" class="btn-grad" onclick="showPage('contact')">Talk to Clarivex.AI <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+</section>
+
 <!-- FOOTER -->
 <div class="footer">
   <div class="footer-top">
@@ -801,7 +863,7 @@ body.light .hero-dashboard{background:rgba(255,255,255,.9);}
       <p class="footer-desc">AI-Driven Software & Digital Transformation Company. Building intelligent solutions for modern enterprises.</p>
       <div class="footer-social">
         <a href="https://www.linkedin.com/company/clarivex-ai/" target="_blank" rel="noopener" class="f-social-btn" title="LinkedIn"><svg width="15" height="15" viewBox="0 0 24 24" fill="var(--purpleL)"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></a>
-        </svg></a>
+        </a>
       </div>
     </div>
     <div class="footer-col"><h4>COMPANY</h4><ul><li><a href="#" onclick="showPage('home')">Home</a></li><li><a href="#" onclick="showPage('about')">About Us</a></li><li><a href="#" onclick="showPage('careers')">Careers</a></li><li><a href="#" onclick="showPage('contact')">Contact</a></li></ul></div>
@@ -809,7 +871,7 @@ body.light .hero-dashboard{background:rgba(255,255,255,.9);}
     <div class="footer-col"><h4>INDUSTRIES</h4><ul><li><a href="#" onclick="showPage('industries')">Healthcare</a></li><li><a href="#" onclick="showPage('industries')">Finance</a></li><li><a href="#" onclick="showPage('industries')">Retail</a></li><li><a href="#" onclick="showPage('industries')">Manufacturing</a></li></ul></div>
   </div>
   <div class="footer-bottom">
-    <div class="footer-copy">© 2025 Clarivex.AI · Ahmedabad, India · All rights reserved.</div>
+    <div class="footer-copy">© 2026 Clarivex.AI · Ahmedabad, India · All rights reserved.</div>
     <div class="footer-badge">CLARITY · INTELLIGENCE · IMPACT</div>
   </div>
 </div>
@@ -959,12 +1021,29 @@ function demoSend(el){document.getElementById('demo-inp').value=el.textContent;d
 window.addEventListener('load',()=>{setTimeout(()=>{demoAddMsg("Hi! I'm the Clarivex AI assistant. Ask me about our services, pricing, or how we can transform your business! 🚀",'bot');},500);});
 
 // ── FORM ──
-function submitForm(){
+async function submitForm(){
   const n=document.getElementById('cf-name').value.trim();
   const c=document.getElementById('cf-company').value.trim();
+  const industry=document.getElementById('cf-industry')?.value.trim()||'';
+  const type=document.getElementById('cf-type')?.value.trim()||'';
+  const budget=document.getElementById('cf-budget')?.value.trim()||'';
+  const timeline=document.getElementById('cf-timeline')?.value.trim()||'';
+  const msg=document.getElementById('cf-msg')?.value.trim()||'';
   if(!n||!c){alert('Please fill in your name and company.');return;}
-  document.getElementById('cf-wrap').style.display='none';
-  document.getElementById('cf-success').style.display='block';
+  const button=document.querySelector('.form-submit');
+  const originalLabel=button?.textContent;
+  if(button){button.disabled=true;button.textContent='Submitting…';}
+  try{
+    const response=await fetch('/api/contact',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name:n,company:c,industry,type,budget,timeline,message:msg})});
+    const data=await response.json().catch(()=>({}));
+    if(!response.ok) throw new Error(data.error||'Unable to submit the request.');
+    document.getElementById('cf-wrap').style.display='none';
+    document.getElementById('cf-success').style.display='block';
+  }catch(error){
+    console.error('Contact form error:',error);
+    alert(error.message||'Unable to submit right now. Please try again.');
+    if(button){button.disabled=false;button.textContent=originalLabel||'Book Free Consultation →';}
+  }
 }
 
 // ── THEME ──
@@ -991,5 +1070,14 @@ function toggleChat(){chatOpen.v=!chatOpen.v;const w=document.getElementById('ch
 </script>
 
 <script src="/chatbot.js" defer></script>
+<script>
+(function(){
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+    document.documentElement.classList.add('reduce-motion');
+  }
+  const nav=document.querySelector('nav');
+  window.addEventListener('scroll',()=>{ if(nav) nav.classList.toggle('scrolled',window.scrollY>12); },{passive:true});
+})();
+</script>
 </body>
 </html>
