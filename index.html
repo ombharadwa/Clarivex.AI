@@ -384,6 +384,7 @@ body.light .hero-dashboard{background:rgba(255,255,255,.9);}
     <li><a href="#" onclick="showPage('home')" id="nl-home" class="active">Home</a></li>
     <li><a href="#" onclick="showPage('about')" id="nl-about">About</a></li>
     <li><a href="#" onclick="showPage('services')" id="nl-services">Services</a></li>
+    <li><a href="/ai-workspace.html">AI Workspace</a></li>
     <li><a href="#" onclick="showPage('industries')" id="nl-industries">Industries</a></li>
     <li><a href="#" onclick="showPage('careers')" id="nl-careers">Careers</a></li>
     <li><a href="#" onclick="showPage('contact')" id="nl-contact">Contact</a></li>
@@ -398,7 +399,8 @@ body.light .hero-dashboard{background:rgba(255,255,255,.9);}
   <a href="#" onclick="showPage('industries');toggleMenu()">Industries</a>
   <a href="#" onclick="showPage('careers');toggleMenu()">Careers</a>
   <a href="#" onclick="showPage('contact');toggleMenu()">Contact</a>
-  <a href="#" onclick="showPage('contact');toggleMenu()" style="color:var(--purple);font-weight:600;">Book Consultation →</a>
+  <a href="/ai-workspace.html" style="color:var(--purple);font-weight:600;">AI Workspace →</a>
+  <a href="#" onclick="showPage('contact');toggleMenu()">Book Consultation →</a>
 </div>
 
 <!-- ════ HOME ════ -->
@@ -809,7 +811,7 @@ body.light .hero-dashboard{background:rgba(255,255,255,.9);}
     <div class="footer-col"><h4>INDUSTRIES</h4><ul><li><a href="#" onclick="showPage('industries')">Healthcare</a></li><li><a href="#" onclick="showPage('industries')">Finance</a></li><li><a href="#" onclick="showPage('industries')">Retail</a></li><li><a href="#" onclick="showPage('industries')">Manufacturing</a></li></ul></div>
   </div>
   <div class="footer-bottom">
-    <div class="footer-copy">© 2025 Clarivex.AI · Ahmedabad, India · All rights reserved.</div>
+    <div class="footer-copy">© 2026 Clarivex.AI · Ahmedabad, India · All rights reserved.</div>
     <div class="footer-badge">CLARITY · INTELLIGENCE · IMPACT</div>
   </div>
 </div>
@@ -824,15 +826,15 @@ body.light .hero-dashboard{background:rgba(255,255,255,.9);}
 <div class="chat-bubble">
   <div class="chat-window" id="chat-window">
     <div class="chat-header">
-      <div class="chat-header-left"><div class="chat-av">CX</div><div><div class="chat-hname">Clarivex Assistant</div><div class="chat-hstatus">● AI Powered · Always On</div></div></div>
+      <div class="chat-header-left"><div class="chat-av">CX</div><div><div class="chat-hname">Clarivex AI Assistant</div><div class="chat-hstatus">● AI Powered · Always On</div></div></div>
       <button class="chat-close" onclick="toggleChat()">×</button>
     </div>
     <div class="chat-msgs" id="chat-msgs"></div>
     <div class="chat-sugs" id="chat-sugs">
-      <span class="chat-sug" onclick="sendSug(this)">Our services</span>
-      <span class="chat-sug" onclick="sendSug(this)">Pricing</span>
-      <span class="chat-sug" onclick="sendSug(this)">Book a demo</span>
-      <span class="chat-sug" onclick="sendSug(this)">Careers</span>
+      <span class="chat-sug" onclick="sendSug(this)">Ask anything</span>
+      <span class="chat-sug" onclick="sendSug(this)">Research AI trends</span>
+      <span class="chat-sug" onclick="sendSug(this)">Help me code</span>
+      <span class="chat-sug" onclick="sendSug(this)">Business analysis</span>
     </div>
     <div class="chat-input-row">
       <input class="chat-inp" id="chat-inp" placeholder="Ask me anything…" onkeydown="if(event.key==='Enter')sendChat()"/>
