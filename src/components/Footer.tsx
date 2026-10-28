@@ -1,11 +1,14 @@
 import React from 'react';
 import { PageTab } from '../types';
+import { useLanguage } from '../context/LanguageContext';
 
 interface FooterProps {
   onSelectTab: (tab: PageTab) => void;
 }
 
 export const Footer: React.FC<FooterProps> = ({ onSelectTab }) => {
+  const { t } = useLanguage();
+
   const handleNav = (tab: PageTab) => {
     onSelectTab(tab);
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -35,7 +38,7 @@ export const Footer: React.FC<FooterProps> = ({ onSelectTab }) => {
             </span>
           </div>
           <p className="text-[13px] text-[#8892B0] leading-relaxed max-w-sm mb-6">
-            AI-Driven Software & Digital Transformation Company. Building intelligent enterprise solutions, AI workflows, and software platforms for modern businesses.
+            {t('footer.tagline')}
           </p>
           <div className="flex items-center gap-3">
             <a
@@ -56,32 +59,32 @@ export const Footer: React.FC<FooterProps> = ({ onSelectTab }) => {
         {/* Company Links */}
         <div>
           <h4 className="font-bold text-[12px] tracking-[1.5px] text-white mb-4 uppercase">
-            Company
+            {t('footer.company')}
           </h4>
           <ul className="space-y-2.5 text-[13px]">
             <li>
               <button onClick={() => handleNav('home')} className="text-[#8892B0] hover:text-[#A48BFF] transition-colors cursor-pointer">
-                Home
+                {t('nav.home')}
               </button>
             </li>
             <li>
               <button onClick={() => handleNav('about')} className="text-[#8892B0] hover:text-[#A48BFF] transition-colors cursor-pointer">
-                About Us
+                {t('nav.about')}
               </button>
             </li>
             <li>
               <button onClick={() => handleNav('workspace')} className="text-[#00D4FF] hover:text-white transition-colors cursor-pointer font-medium">
-                AI Workspace
+                {t('nav.workspace')}
               </button>
             </li>
             <li>
               <button onClick={() => handleNav('careers')} className="text-[#8892B0] hover:text-[#A48BFF] transition-colors cursor-pointer">
-                Careers
+                {t('nav.careers')}
               </button>
             </li>
             <li>
               <button onClick={() => handleNav('contact')} className="text-[#8892B0] hover:text-[#A48BFF] transition-colors cursor-pointer">
-                Contact
+                {t('nav.contact')}
               </button>
             </li>
           </ul>
@@ -90,7 +93,7 @@ export const Footer: React.FC<FooterProps> = ({ onSelectTab }) => {
         {/* Services Links */}
         <div>
           <h4 className="font-bold text-[12px] tracking-[1.5px] text-white mb-4 uppercase">
-            Services
+            {t('footer.services')}
           </h4>
           <ul className="space-y-2.5 text-[13px]">
             <li>
@@ -119,7 +122,7 @@ export const Footer: React.FC<FooterProps> = ({ onSelectTab }) => {
         {/* Industries Links */}
         <div>
           <h4 className="font-bold text-[12px] tracking-[1.5px] text-white mb-4 uppercase">
-            Industries
+            {t('nav.industries')}
           </h4>
           <ul className="space-y-2.5 text-[13px]">
             <li>
@@ -149,7 +152,7 @@ export const Footer: React.FC<FooterProps> = ({ onSelectTab }) => {
       {/* Bottom Bar */}
       <div className="border-t border-white/5 py-4 px-6">
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 text-[12px] text-white/30">
-          <div>© 2026 Clarivex.AI · Ahmedabad, India · All rights reserved.</div>
+          <div>© 2026 Clarivex.AI · {t('footer.headquarters')} · {t('footer.allRights')}</div>
           <div className="tracking-[2px] font-semibold text-[11px] text-white/20">
             CLARITY · INTELLIGENCE · IMPACT
           </div>

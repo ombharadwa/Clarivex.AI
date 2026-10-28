@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { PageTab } from '../types';
 import { useTheme } from '../context/ThemeContext';
-import { Menu, X, Sun, Moon, Sparkles, ArrowRight } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
+import { Menu, X, Sun, Moon, Sparkles, ArrowRight, Languages } from 'lucide-react';
 
 interface NavbarProps {
   currentTab: PageTab;
@@ -11,6 +12,7 @@ interface NavbarProps {
 export const Navbar: React.FC<NavbarProps> = ({ currentTab, onSelectTab }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { isDark, toggleTheme } = useTheme();
+  const { language, toggleLanguage, setLanguage, t } = useLanguage();
 
   const handleNav = (tab: PageTab) => {
     onSelectTab(tab);
@@ -45,9 +47,9 @@ export const Navbar: React.FC<NavbarProps> = ({ currentTab, onSelectTab }) => {
         </button>
 
         {/* Desktop Links */}
-        <div className="hidden lg:flex items-center gap-7">
+        <div className="hidden lg:flex items-center gap-6 xl:gap-7">
           {(['home', 'about', 'services', 'workspace', 'industries', 'careers', 'contact'] as PageTab[]).map(tab => {
-            const label = tab === 'workspace' ? 'AI Workspace' : tab.charAt(0).toUpperCase() + tab.slice(1);
+            const label = tab === 'workspace' ? t('nav.workspace') : t(`nav.${tab}`);
             const isActive = currentTab === tab;
             return (
               <button
@@ -69,28 +71,61 @@ export const Navbar: React.FC<NavbarProps> = ({ currentTab, onSelectTab }) => {
           })}
         </div>
 
-        {/* Right CTA & Theme Toggle */}
+        {/* Right Controls: Language Toggle, Theme Toggle, CTA */}
         <div className="hidden lg:flex items-center gap-3">
+          {/* Language Toggle Button */}
+          <button
+            onClick={toggleLanguage}
+            id="desktop-language-toggle"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#151B35]/80 border border-[#7C5CFF]/25 hover:border-[#7C5CFF]/60 text-[12px] font-semibold transition-all cursor-pointer shadow-sm group"
+            title={t('nav.switchLang')}
+            aria-label={t('nav.switchLang')}
+          >
+            <Languages className="w-3.5 h-3.5 text-[#00D4FF] group-hover:scale-110 transition-transform" />
+            <span className={language === 'en' ? 'text-white font-bold' : 'text-[#8892B0]'}>EN</span>
+            <span className="text-white/20">/</span>
+            <span className={language === 'hi' ? 'text-[#00D4FF] font-bold' : 'text-[#8892B0]'}>हिन्दी</span>
+          </button>
+
+          {/* Theme Toggle */}
           <button
             onClick={toggleTheme}
             className="w-9 h-9 rounded-full bg-[#151B35]/80 border border-[#7C5CFF]/20 flex items-center justify-center text-[#8892B0] hover:text-white hover:border-[#7C5CFF]/50 transition-all cursor-pointer"
             title="Toggle theme"
+            aria-label="Toggle theme"
           >
             {isDark ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
           </button>
+
+          {/* Book Consultation CTA */}
           <button
             onClick={() => handleNav('contact')}
             className="px-4 py-2 rounded-lg bg-[#7C5CFF] hover:bg-[#A48BFF] text-white text-[13px] font-semibold tracking-wide transition-all shadow-md hover:shadow-indigo-500/30 cursor-pointer"
           >
-            Book Consultation
+            {t('nav.bookConsultation')}
           </button>
         </div>
 
         {/* Mobile controls */}
         <div className="flex items-center gap-2 lg:hidden">
+          {/* Mobile Language Toggle */}
+          <button
+            onClick={toggleLanguage}
+            id="mobile-language-toggle"
+            className="flex items-center gap-1 px-2.5 py-1.5 rounded-lg bg-[#151B35] border border-[#7C5CFF]/25 text-[11px] font-semibold cursor-pointer"
+            aria-label={t('nav.switchLang')}
+            title={t('nav.switchLang')}
+          >
+            <Languages className="w-3.5 h-3.5 text-[#00D4FF]" />
+            <span className={language === 'en' ? 'text-white font-bold' : 'text-[#8892B0]'}>EN</span>
+            <span className="text-white/20">|</span>
+            <span className={language === 'hi' ? 'text-[#00D4FF] font-bold' : 'text-[#8892B0]'}>हि</span>
+          </button>
+
           <button
             onClick={toggleTheme}
             className="w-9 h-9 rounded-full bg-[#151B35] border border-[#7C5CFF]/20 flex items-center justify-center text-[#8892B0] hover:text-white cursor-pointer"
+            aria-label="Toggle theme"
           >
             {isDark ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
           </button>
@@ -115,7 +150,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentTab, onSelectTab }) => {
                 currentTab === tab ? 'text-white font-semibold' : 'text-[#8892B0]'
               }`}
             >
-              {tab.charAt(0).toUpperCase() + tab.slice(1)}
+              {t(`nav.${tab}`)}
             </button>
           ))}
           <button
@@ -124,15 +159,42 @@ export const Navbar: React.FC<NavbarProps> = ({ currentTab, onSelectTab }) => {
           >
             <span className="flex items-center gap-2">
               <Sparkles className="w-4 h-4 text-[#00D4FF]" />
-              AI Workspace
+              {t('nav.workspace')}
             </span>
             <ArrowRight className="w-4 h-4" />
           </button>
+
+          {/* Mobile Language Selector inside dropdown */}
+          <div className="pt-2 border-t border-white/10 flex items-center justify-between py-2 text-[14px] text-[#8892B0]">
+            <span className="flex items-center gap-2 text-white text-[13px]">
+              <Languages className="w-4 h-4 text-[#00D4FF]" />
+              {t('nav.language')}:
+            </span>
+            <div className="flex items-center gap-1.5 bg-[#151B35] p-1 rounded-lg border border-[#7C5CFF]/25">
+              <button
+                onClick={() => setLanguage('en')}
+                className={`px-2.5 py-1 rounded text-xs font-semibold cursor-pointer transition-all ${
+                  language === 'en' ? 'bg-[#7C5CFF] text-white' : 'text-[#8892B0] hover:text-white'
+                }`}
+              >
+                English
+              </button>
+              <button
+                onClick={() => setLanguage('hi')}
+                className={`px-2.5 py-1 rounded text-xs font-semibold cursor-pointer transition-all ${
+                  language === 'hi' ? 'bg-[#7C5CFF] text-white' : 'text-[#8892B0] hover:text-white'
+                }`}
+              >
+                हिन्दी
+              </button>
+            </div>
+          </div>
+
           <button
             onClick={() => handleNav('contact')}
-            className="w-full mt-2 py-3 rounded-lg bg-gradient-to-r from-[#7C5CFF] to-[#00D4FF] text-white text-[14px] font-semibold text-center cursor-pointer"
+            className="w-full mt-2 py-3 rounded-lg bg-gradient-to-r from-[#7C5CFF] to-[#00D4FF] text-white text-[14px] font-semibold text-center cursor-pointer shadow-lg shadow-indigo-500/25"
           >
-            Book Consultation →
+            {t('nav.bookConsultation')} →
           </button>
         </div>
       )}

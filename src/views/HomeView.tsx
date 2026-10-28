@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { PageTab } from '../types';
 import { Reveal } from '../components/Reveal';
+import { useLanguage } from '../context/LanguageContext';
 import { 
   ArrowRight, 
   Bot, 
@@ -19,6 +20,7 @@ interface HomeViewProps {
 }
 
 export const HomeView: React.FC<HomeViewProps> = ({ onSelectTab }) => {
+  const { t } = useLanguage();
   // Counters state
   const [stats, setStats] = useState({ projects: 0, industries: 0, products: 0 });
   const [queriesDay, setQueriesDay] = useState(0);
@@ -167,16 +169,16 @@ export const HomeView: React.FC<HomeViewProps> = ({ onSelectTab }) => {
           <Reveal animation="fade-left">
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-md bg-[#7C5CFF]/10 border border-[#7C5CFF]/30 text-[#A48BFF] text-[11px] font-semibold tracking-[2px] uppercase mb-6">
               <span className="w-1.5 h-1.5 rounded-full bg-[#00D4FF] animate-pulse" />
-              AI-Driven Software & Digital Transformation
+              {t('hero.badge')}
             </div>
 
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white leading-[1.08] tracking-tight mb-6">
-              Enterprise Software Meets{' '}
-              <span className="grad-text">Artificial Intelligence</span>
+              {t('hero.title_part1')}
+              <span className="grad-text">{t('hero.title_part2')}</span>
             </h1>
 
             <p className="text-[#8892B0] text-[16px] sm:text-[17px] font-light leading-relaxed max-w-xl mb-8">
-              Clarivex.AI helps businesses transform operations through AI-powered applications, enterprise software, and intelligent automation solutions.
+              {t('hero.subtitle')}
             </p>
 
             <div className="flex flex-wrap items-center gap-4 mb-12">
@@ -184,14 +186,14 @@ export const HomeView: React.FC<HomeViewProps> = ({ onSelectTab }) => {
                 onClick={() => onSelectTab('contact')}
                 className="btn-grad text-white px-7 py-3.5 rounded-lg text-[14px] font-semibold flex items-center gap-2 cursor-pointer shadow-lg shadow-indigo-500/30"
               >
-                Book Consultation
+                {t('hero.bookConsultation')}
                 <ArrowRight className="w-4 h-4" />
               </button>
               <button
                 onClick={() => onSelectTab('services')}
                 className="px-7 py-3.5 rounded-lg border border-[#7C5CFF]/30 text-white hover:text-[#A48BFF] hover:border-[#7C5CFF] text-[14px] font-medium transition-all cursor-pointer bg-white/[0.02]"
               >
-                Explore Services
+                {t('hero.exploreServices')}
               </button>
             </div>
 
@@ -202,7 +204,7 @@ export const HomeView: React.FC<HomeViewProps> = ({ onSelectTab }) => {
                   {stats.projects}+
                 </div>
                 <div className="text-[10px] text-[#8892B0] tracking-[1.5px] uppercase mt-1">
-                  Projects Delivered
+                  {t('hero.projectsDelivered')}
                 </div>
               </div>
               <div>
@@ -210,7 +212,7 @@ export const HomeView: React.FC<HomeViewProps> = ({ onSelectTab }) => {
                   {stats.industries}+
                 </div>
                 <div className="text-[10px] text-[#8892B0] tracking-[1.5px] uppercase mt-1">
-                  Industries Served
+                  {t('hero.industriesServed')}
                 </div>
               </div>
               <div>
@@ -218,7 +220,7 @@ export const HomeView: React.FC<HomeViewProps> = ({ onSelectTab }) => {
                   {stats.products}+
                 </div>
                 <div className="text-[10px] text-[#8892B0] tracking-[1.5px] uppercase mt-1">
-                  AI Products
+                  {t('hero.aiProducts')}
                 </div>
               </div>
             </div>
@@ -229,7 +231,7 @@ export const HomeView: React.FC<HomeViewProps> = ({ onSelectTab }) => {
             <div className="relative">
               {/* Top floating badge */}
               <div className="absolute -top-3 right-4 z-20 bg-[#151B35]/90 border border-[#7C5CFF]/30 rounded-xl px-3.5 py-2 backdrop-blur-md shadow-lg animate-pulse-slow">
-                <div className="text-[10px] text-[#8892B0] font-medium uppercase tracking-wider">AI Accuracy</div>
+                <div className="text-[10px] text-[#8892B0] font-medium uppercase tracking-wider">{t('hero.aiAccuracy')}</div>
                 <div className="text-[14px] font-bold grad-text">98.7%</div>
               </div>
 

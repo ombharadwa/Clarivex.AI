@@ -11,8 +11,11 @@ import { IndustriesView } from './views/IndustriesView';
 import { CareersView } from './views/CareersView';
 import { ContactView } from './views/ContactView';
 import { WorkspaceView } from './views/WorkspaceView';
+import { updateDocumentSeo } from './utils/seo';
+import { useLanguage } from './context/LanguageContext';
 
 export const App: React.FC = () => {
+  const { language } = useLanguage();
   const [currentTab, setCurrentTab] = useState<PageTab>(() => {
     const hash = window.location.hash.replace('#', '') as PageTab;
     if (['home', 'about', 'services', 'industries', 'careers', 'contact', 'workspace'].includes(hash)) {
@@ -39,6 +42,11 @@ export const App: React.FC = () => {
     window.addEventListener('hashchange', handleHashChange);
     return () => window.removeEventListener('hashchange', handleHashChange);
   }, []);
+
+  // Dynamically update document title and SEO metadata when currentTab or language changes
+  useEffect(() => {
+    updateDocumentSeo(currentTab, language);
+  }, [currentTab, language]);
 
   return (
     <div className="min-h-screen flex flex-col bg-[#0B1020] text-[#F8FAFC] selection:bg-[#7C5CFF]/30 selection:text-white">
