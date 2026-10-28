@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { PageTab } from '../types';
+import { Reveal } from '../components/Reveal';
 import { 
   ArrowRight, 
   Bot, 
@@ -11,12 +12,6 @@ import {
   ShieldCheck, 
   Send,
   Building,
-  Heart,
-  DollarSign,
-  GraduationCap,
-  Factory,
-  Truck,
-  ShoppingCart
 } from 'lucide-react';
 
 interface HomeViewProps {
@@ -169,7 +164,7 @@ export const HomeView: React.FC<HomeViewProps> = ({ onSelectTab }) => {
 
         <div className="relative z-10 max-w-7xl mx-auto px-6 py-12 lg:py-16 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Left Column */}
-          <div>
+          <Reveal animation="fade-left">
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-md bg-[#7C5CFF]/10 border border-[#7C5CFF]/30 text-[#A48BFF] text-[11px] font-semibold tracking-[2px] uppercase mb-6">
               <span className="w-1.5 h-1.5 rounded-full bg-[#00D4FF] animate-pulse" />
               AI-Driven Software & Digital Transformation
@@ -227,77 +222,79 @@ export const HomeView: React.FC<HomeViewProps> = ({ onSelectTab }) => {
                 </div>
               </div>
             </div>
-          </div>
+          </Reveal>
 
           {/* Right Column: Interactive Intelligence Dashboard */}
-          <div className="relative">
-            {/* Top floating badge */}
-            <div className="absolute -top-3 right-4 z-20 bg-[#151B35]/90 border border-[#7C5CFF]/30 rounded-xl px-3.5 py-2 backdrop-blur-md shadow-lg animate-pulse-slow">
-              <div className="text-[10px] text-[#8892B0] font-medium uppercase tracking-wider">AI Accuracy</div>
-              <div className="text-[14px] font-bold grad-text">98.7%</div>
+          <Reveal animation="fade-right">
+            <div className="relative">
+              {/* Top floating badge */}
+              <div className="absolute -top-3 right-4 z-20 bg-[#151B35]/90 border border-[#7C5CFF]/30 rounded-xl px-3.5 py-2 backdrop-blur-md shadow-lg animate-pulse-slow">
+                <div className="text-[10px] text-[#8892B0] font-medium uppercase tracking-wider">AI Accuracy</div>
+                <div className="text-[14px] font-bold grad-text">98.7%</div>
+              </div>
+
+              {/* Dashboard Box */}
+              <div className="bg-[#151B35]/75 border border-[#7C5CFF]/25 rounded-2xl p-6 backdrop-blur-xl shadow-2xl relative overflow-hidden">
+                <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-[#7C5CFF] to-[#00D4FF]" />
+
+                <div className="flex items-center justify-between mb-5">
+                  <span className="text-[11px] font-bold tracking-wider text-white">
+                    CLARIVEX INTELLIGENCE DASHBOARD
+                  </span>
+                  <div className="flex items-center gap-1.5">
+                    <div className="w-2.5 h-2.5 rounded-full bg-[#ff5f57]" />
+                    <div className="w-2.5 h-2.5 rounded-full bg-[#febc2e]" />
+                    <div className="w-2.5 h-2.5 rounded-full bg-[#28c840]" />
+                  </div>
+                </div>
+
+                {/* Stats Grid */}
+                <div className="grid grid-cols-3 gap-3 mb-5">
+                  <div className="bg-[#7C5CFF]/10 border border-[#7C5CFF]/20 rounded-xl p-3 text-center">
+                    <div className="text-lg font-black grad-text">{queriesDay.toLocaleString()}</div>
+                    <div className="text-[9px] text-[#8892B0] font-semibold tracking-wider mt-1">QUERIES/DAY</div>
+                  </div>
+                  <div className="bg-[#7C5CFF]/10 border border-[#7C5CFF]/20 rounded-xl p-3 text-center">
+                    <div className="text-lg font-black grad-text">{automations}</div>
+                    <div className="text-[9px] text-[#8892B0] font-semibold tracking-wider mt-1">AUTOMATIONS</div>
+                  </div>
+                  <div className="bg-[#7C5CFF]/10 border border-[#7C5CFF]/20 rounded-xl p-3 text-center">
+                    <div className="text-lg font-black grad-text">{accuracy}%</div>
+                    <div className="text-[9px] text-[#8892B0] font-semibold tracking-wider mt-1">ACCURACY</div>
+                  </div>
+                </div>
+
+                {/* Dynamic Chart Visualizer */}
+                <div className="bg-black/25 rounded-xl h-24 flex items-end gap-1.5 p-3 mb-4">
+                  {chartBars.map((val, idx) => (
+                    <div
+                      key={idx}
+                      className={`flex-1 rounded-t-sm transition-all duration-700 ${
+                        idx === 10
+                          ? 'bg-gradient-to-t from-[#7C5CFF] to-[#00D4FF]'
+                          : 'bg-[#7C5CFF]/30 hover:bg-[#7C5CFF]/60'
+                      }`}
+                      style={{ height: `${val}%` }}
+                    />
+                  ))}
+                </div>
+
+                {/* Live Status indicator */}
+                <div className="flex items-center gap-2.5 bg-[#00D4FF]/5 border border-[#00D4FF]/20 rounded-lg px-3.5 py-2.5">
+                  <span className="w-2 h-2 rounded-full bg-[#00D4FF] animate-pulse" />
+                  <span className="text-[11.5px] text-[#7EEEFF]">
+                    AI processing 2,847 data points in real-time…
+                  </span>
+                </div>
+              </div>
+
+              {/* Bottom floating badge */}
+              <div className="absolute -bottom-3 left-4 z-20 bg-[#151B35]/90 border border-[#00D4FF]/30 rounded-xl px-3.5 py-2 backdrop-blur-md shadow-lg">
+                <div className="text-[10px] text-[#8892B0] font-medium uppercase tracking-wider">Automation Rate</div>
+                <div className="text-[14px] font-bold text-[#00D4FF]">+340%</div>
+              </div>
             </div>
-
-            {/* Dashboard Box */}
-            <div className="bg-[#151B35]/75 border border-[#7C5CFF]/25 rounded-2xl p-6 backdrop-blur-xl shadow-2xl relative overflow-hidden">
-              <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-[#7C5CFF] to-[#00D4FF]" />
-
-              <div className="flex items-center justify-between mb-5">
-                <span className="text-[11px] font-bold tracking-wider text-white">
-                  CLARIVEX INTELLIGENCE DASHBOARD
-                </span>
-                <div className="flex items-center gap-1.5">
-                  <div className="w-2.5 h-2.5 rounded-full bg-[#ff5f57]" />
-                  <div className="w-2.5 h-2.5 rounded-full bg-[#febc2e]" />
-                  <div className="w-2.5 h-2.5 rounded-full bg-[#28c840]" />
-                </div>
-              </div>
-
-              {/* Stats Grid */}
-              <div className="grid grid-cols-3 gap-3 mb-5">
-                <div className="bg-[#7C5CFF]/10 border border-[#7C5CFF]/20 rounded-xl p-3 text-center">
-                  <div className="text-lg font-black grad-text">{queriesDay.toLocaleString()}</div>
-                  <div className="text-[9px] text-[#8892B0] font-semibold tracking-wider mt-1">QUERIES/DAY</div>
-                </div>
-                <div className="bg-[#7C5CFF]/10 border border-[#7C5CFF]/20 rounded-xl p-3 text-center">
-                  <div className="text-lg font-black grad-text">{automations}</div>
-                  <div className="text-[9px] text-[#8892B0] font-semibold tracking-wider mt-1">AUTOMATIONS</div>
-                </div>
-                <div className="bg-[#7C5CFF]/10 border border-[#7C5CFF]/20 rounded-xl p-3 text-center">
-                  <div className="text-lg font-black grad-text">{accuracy}%</div>
-                  <div className="text-[9px] text-[#8892B0] font-semibold tracking-wider mt-1">ACCURACY</div>
-                </div>
-              </div>
-
-              {/* Dynamic Chart Visualizer */}
-              <div className="bg-black/25 rounded-xl h-24 flex items-end gap-1.5 p-3 mb-4">
-                {chartBars.map((val, idx) => (
-                  <div
-                    key={idx}
-                    className={`flex-1 rounded-t-sm transition-all duration-700 ${
-                      idx === 10
-                        ? 'bg-gradient-to-t from-[#7C5CFF] to-[#00D4FF]'
-                        : 'bg-[#7C5CFF]/30 hover:bg-[#7C5CFF]/60'
-                    }`}
-                    style={{ height: `${val}%` }}
-                  />
-                ))}
-              </div>
-
-              {/* Live Status indicator */}
-              <div className="flex items-center gap-2.5 bg-[#00D4FF]/5 border border-[#00D4FF]/20 rounded-lg px-3.5 py-2.5">
-                <span className="w-2 h-2 rounded-full bg-[#00D4FF] animate-pulse" />
-                <span className="text-[11.5px] text-[#7EEEFF]">
-                  AI processing 2,847 data points in real-time…
-                </span>
-              </div>
-            </div>
-
-            {/* Bottom floating badge */}
-            <div className="absolute -bottom-3 left-4 z-20 bg-[#151B35]/90 border border-[#00D4FF]/30 rounded-xl px-3.5 py-2 backdrop-blur-md shadow-lg">
-              <div className="text-[10px] text-[#8892B0] font-medium uppercase tracking-wider">Automation Rate</div>
-              <div className="text-[14px] font-bold text-[#00D4FF]">+340%</div>
-            </div>
-          </div>
+          </Reveal>
         </div>
       </div>
 
@@ -333,18 +330,20 @@ export const HomeView: React.FC<HomeViewProps> = ({ onSelectTab }) => {
 
       {/* ── SERVICES OVERVIEW ── */}
       <section className="max-w-7xl mx-auto px-6 py-24">
-        <div className="mb-14">
-          <div className="inline-flex items-center gap-2 text-[#00D4FF] text-[11px] font-bold tracking-[3px] uppercase mb-2">
-            <span className="w-5 h-[1px] bg-[#00D4FF]" />
-            What We Build
+        <Reveal animation="fade-up">
+          <div className="mb-14">
+            <div className="inline-flex items-center gap-2 text-[#00D4FF] text-[11px] font-bold tracking-[3px] uppercase mb-2">
+              <span className="w-5 h-[1px] bg-[#00D4FF]" />
+              What We Build
+            </div>
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-white mb-4">
+              AI Services & <span className="grad-text">Software Solutions</span>
+            </h2>
+            <p className="text-[#8892B0] text-[15px] max-w-xl font-light">
+              From intelligent AI systems to enterprise-grade software — we build what modern businesses need to scale.
+            </p>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-white mb-4">
-            AI Services & <span className="grad-text">Software Solutions</span>
-          </h2>
-          <p className="text-[#8892B0] text-[15px] max-w-xl font-light">
-            From intelligent AI systems to enterprise-grade software — we build what modern businesses need to scale.
-          </p>
-        </div>
+        </Reveal>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {[
@@ -405,31 +404,32 @@ export const HomeView: React.FC<HomeViewProps> = ({ onSelectTab }) => {
           ].map((svc, i) => {
             const Icon = svc.icon;
             return (
-              <div
-                key={i}
-                onClick={() => onSelectTab('services')}
-                className="glass-card rounded-2xl p-7 cursor-pointer hover:-translate-y-1.5 transition-all group"
-              >
-                <div className="flex items-center justify-between mb-4">
-                  <span className="text-[11px] font-bold tracking-widest text-[#7C5CFF]">
-                    {svc.num}
-                  </span>
-                  <span
-                    className={`text-[9px] font-bold tracking-wider px-2 py-0.5 rounded ${
-                      svc.tag === 'AI SERVICE'
-                        ? 'bg-[#7C5CFF]/15 text-[#A48BFF]'
-                        : 'bg-[#00D4FF]/10 text-[#7EEEFF]'
-                    }`}
-                  >
-                    {svc.tag}
-                  </span>
+              <Reveal key={i} animation="fade-up" delay={i * 80}>
+                <div
+                  onClick={() => onSelectTab('services')}
+                  className="glass-card rounded-2xl p-7 cursor-pointer hover:-translate-y-1.5 transition-all group h-full"
+                >
+                  <div className="flex items-center justify-between mb-4">
+                    <span className="text-[11px] font-bold tracking-widest text-[#7C5CFF]">
+                      {svc.num}
+                    </span>
+                    <span
+                      className={`text-[9px] font-bold tracking-wider px-2 py-0.5 rounded ${
+                        svc.tag === 'AI SERVICE'
+                          ? 'bg-[#7C5CFF]/15 text-[#A48BFF]'
+                          : 'bg-[#00D4FF]/10 text-[#7EEEFF]'
+                      }`}
+                    >
+                      {svc.tag}
+                    </span>
+                  </div>
+                  <div className={`w-11 h-11 rounded-xl ${svc.bg} flex items-center justify-center mb-5 group-hover:scale-110 transition-transform`}>
+                    <Icon className={`w-5 h-5 ${svc.color}`} />
+                  </div>
+                  <h3 className="text-[17px] font-bold text-white mb-2">{svc.title}</h3>
+                  <p className="text-[13px] text-[#8892B0] leading-relaxed">{svc.desc}</p>
                 </div>
-                <div className={`w-11 h-11 rounded-xl ${svc.bg} flex items-center justify-center mb-5 group-hover:scale-110 transition-transform`}>
-                  <Icon className={`w-5 h-5 ${svc.color}`} />
-                </div>
-                <h3 className="text-[17px] font-bold text-white mb-2">{svc.title}</h3>
-                <p className="text-[13px] text-[#8892B0] leading-relaxed">{svc.desc}</p>
-              </div>
+              </Reveal>
             );
           })}
         </div>
@@ -438,195 +438,203 @@ export const HomeView: React.FC<HomeViewProps> = ({ onSelectTab }) => {
       {/* ── LIVE AI EXPERIENCE (DEMO SECTION) ── */}
       <section className="bg-[#151B35]/50 border-y border-[#7C5CFF]/15 py-24 relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-6 relative z-10">
-          <div className="mb-12">
-            <div className="inline-flex items-center gap-2 text-[#00D4FF] text-[11px] font-bold tracking-[3px] uppercase mb-2">
-              <span className="w-5 h-[1px] bg-[#00D4FF]" />
-              Live AI Experience
+          <Reveal animation="fade-up">
+            <div className="mb-12">
+              <div className="inline-flex items-center gap-2 text-[#00D4FF] text-[11px] font-bold tracking-[3px] uppercase mb-2">
+                <span className="w-5 h-[1px] bg-[#00D4FF]" />
+                Live AI Experience
+              </div>
+              <h2 className="text-3xl sm:text-4xl font-extrabold text-white mb-4">
+                See Our <span className="grad-text">AI In Action</span>
+              </h2>
+              <p className="text-[#8892B0] text-[15px] max-w-xl font-light">
+                Interact with our AI assistant and analytics engine — powered by real intelligence, not scripted demos.
+              </p>
             </div>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-white mb-4">
-              See Our <span className="grad-text">AI In Action</span>
-            </h2>
-            <p className="text-[#8892B0] text-[15px] max-w-xl font-light">
-              Interact with our AI assistant and analytics engine — powered by real intelligence, not scripted demos.
-            </p>
-          </div>
+          </Reveal>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
             {/* Interactive Demo Chat Box */}
-            <div className="bg-[#0B1020]/90 border border-[#7C5CFF]/25 rounded-2xl overflow-hidden shadow-2xl flex flex-col h-[440px]">
-              <div className="p-4 bg-[#7C5CFF]/10 border-b border-[#7C5CFF]/20 flex items-center gap-3">
-                <div className="w-8 h-8 rounded-full bg-gradient-to-r from-[#7C5CFF] to-[#00D4FF] flex items-center justify-center font-bold text-xs text-white">
-                  CX
-                </div>
-                <div>
-                  <div className="text-[13px] font-bold text-white">Clarivex AI Assistant</div>
-                  <div className="text-[10px] text-[#00D4FF]">● Online — Powered by Google Gemini</div>
-                </div>
-              </div>
-
-              {/* Messages scroll */}
-              <div className="flex-1 overflow-y-auto p-4 space-y-3">
-                {demoMsgs.map((m, idx) => (
-                  <div
-                    key={idx}
-                    className={`max-w-[85%] px-3.5 py-2.5 rounded-xl text-[12px] leading-relaxed ${
-                      m.role === 'user'
-                        ? 'bg-[#7C5CFF] text-white self-end ml-auto rounded-br-xs'
-                        : 'bg-[#7C5CFF]/12 text-white/90 border border-[#7C5CFF]/20 self-start mr-auto rounded-bl-xs'
-                    }`}
-                  >
-                    {m.text}
+            <Reveal animation="fade-left">
+              <div className="bg-[#0B1020]/90 border border-[#7C5CFF]/25 rounded-2xl overflow-hidden shadow-2xl flex flex-col h-[440px]">
+                <div className="p-4 bg-[#7C5CFF]/10 border-b border-[#7C5CFF]/20 flex items-center gap-3">
+                  <div className="w-8 h-8 rounded-full bg-gradient-to-r from-[#7C5CFF] to-[#00D4FF] flex items-center justify-center font-bold text-xs text-white">
+                    CX
                   </div>
-                ))}
-                {demoTyping && (
-                  <div className="bg-[#7C5CFF]/12 border border-[#7C5CFF]/20 px-3.5 py-2 rounded-xl rounded-bl-xs w-16 flex items-center gap-1">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#A48BFF] animate-bounce" />
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#A48BFF] animate-bounce [animation-delay:0.2s]" />
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#A48BFF] animate-bounce [animation-delay:0.4s]" />
+                  <div>
+                    <div className="text-[13px] font-bold text-white">Clarivex AI Assistant</div>
+                    <div className="text-[10px] text-[#00D4FF]">● Online — Powered by Google Gemini</div>
+                  </div>
+                </div>
+
+                {/* Messages scroll */}
+                <div className="flex-1 overflow-y-auto p-4 space-y-3">
+                  {demoMsgs.map((m, idx) => (
+                    <div
+                      key={idx}
+                      className={`max-w-[85%] px-3.5 py-2.5 rounded-xl text-[12px] leading-relaxed ${
+                        m.role === 'user'
+                          ? 'bg-[#7C5CFF] text-white self-end ml-auto rounded-br-xs'
+                          : 'bg-[#7C5CFF]/12 text-white/90 border border-[#7C5CFF]/20 self-start mr-auto rounded-bl-xs'
+                      }`}
+                    >
+                      {m.text}
+                    </div>
+                  ))}
+                  {demoTyping && (
+                    <div className="bg-[#7C5CFF]/12 border border-[#7C5CFF]/20 px-3.5 py-2 rounded-xl rounded-bl-xs w-16 flex items-center gap-1">
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#A48BFF] animate-bounce" />
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#A48BFF] animate-bounce [animation-delay:0.2s]" />
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#A48BFF] animate-bounce [animation-delay:0.4s]" />
+                    </div>
+                  )}
+                </div>
+
+                {/* Suggestions */}
+                {showDemoSugs && (
+                  <div className="p-2.5 border-t border-white/5 flex gap-2 flex-wrap">
+                    {['What can Clarivex do?', 'AI chatbot pricing', 'Book a demo'].map((sug, i) => (
+                      <button
+                        key={i}
+                        onClick={() => handleDemoSend(sug)}
+                        className="text-[11px] px-3 py-1 rounded-md bg-[#7C5CFF]/10 hover:bg-[#7C5CFF]/20 text-[#A48BFF] border border-[#7C5CFF]/20 transition-colors cursor-pointer"
+                      >
+                        {sug}
+                      </button>
+                    ))}
                   </div>
                 )}
-              </div>
 
-              {/* Suggestions */}
-              {showDemoSugs && (
-                <div className="p-2.5 border-t border-white/5 flex gap-2 flex-wrap">
-                  {['What can Clarivex do?', 'AI chatbot pricing', 'Book a demo'].map((sug, i) => (
-                    <button
-                      key={i}
-                      onClick={() => handleDemoSend(sug)}
-                      className="text-[11px] px-3 py-1 rounded-md bg-[#7C5CFF]/10 hover:bg-[#7C5CFF]/20 text-[#A48BFF] border border-[#7C5CFF]/20 transition-colors cursor-pointer"
-                    >
-                      {sug}
-                    </button>
-                  ))}
+                {/* Input */}
+                <div className="p-3 border-t border-[#7C5CFF]/15 flex items-center gap-2">
+                  <input
+                    type="text"
+                    value={demoInput}
+                    onChange={e => setDemoInput(e.target.value)}
+                    onKeyDown={e => e.key === 'Enter' && handleDemoSend()}
+                    placeholder="Ask anything about our AI…"
+                    className="flex-1 bg-white/5 border border-[#7C5CFF]/20 rounded-lg px-3.5 py-2 text-[12px] text-white placeholder-white/30 focus:outline-none focus:border-[#7C5CFF]"
+                  />
+                  <button
+                    onClick={() => handleDemoSend()}
+                    className="w-9 h-9 rounded-lg bg-[#7C5CFF] hover:bg-[#A48BFF] text-white flex items-center justify-center transition-all cursor-pointer shadow-md"
+                  >
+                    <Send className="w-3.5 h-3.5" />
+                  </button>
                 </div>
-              )}
-
-              {/* Input */}
-              <div className="p-3 border-t border-[#7C5CFF]/15 flex items-center gap-2">
-                <input
-                  type="text"
-                  value={demoInput}
-                  onChange={e => setDemoInput(e.target.value)}
-                  onKeyDown={e => e.key === 'Enter' && handleDemoSend()}
-                  placeholder="Ask anything about our AI…"
-                  className="flex-1 bg-white/5 border border-[#7C5CFF]/20 rounded-lg px-3.5 py-2 text-[12px] text-white placeholder-white/30 focus:outline-none focus:border-[#7C5CFF]"
-                />
-                <button
-                  onClick={() => handleDemoSend()}
-                  className="w-9 h-9 rounded-lg bg-[#7C5CFF] hover:bg-[#A48BFF] text-white flex items-center justify-center transition-all cursor-pointer shadow-md"
-                >
-                  <Send className="w-3.5 h-3.5" />
-                </button>
               </div>
-            </div>
+            </Reveal>
 
             {/* Performance Analytics & Workflows Cards */}
-            <div className="space-y-6">
-              <div className="bg-[#0B1020]/90 border border-[#7C5CFF]/25 rounded-2xl p-6 shadow-xl">
-                <div className="flex items-center justify-between mb-4">
-                  <span className="text-[12px] font-bold text-white tracking-wider">
-                    REAL-TIME AI PERFORMANCE
-                  </span>
-                  <span className="text-[10px] text-[#00D4FF] bg-[#00D4FF]/10 px-2.5 py-0.5 rounded-full font-bold">
-                    LIVE
-                  </span>
+            <Reveal animation="fade-right">
+              <div className="space-y-6">
+                <div className="bg-[#0B1020]/90 border border-[#7C5CFF]/25 rounded-2xl p-6 shadow-xl">
+                  <div className="flex items-center justify-between mb-4">
+                    <span className="text-[12px] font-bold text-white tracking-wider">
+                      REAL-TIME AI PERFORMANCE
+                    </span>
+                    <span className="text-[10px] text-[#00D4FF] bg-[#00D4FF]/10 px-2.5 py-0.5 rounded-full font-bold">
+                      LIVE
+                    </span>
+                  </div>
+
+                  <div className="flex items-end gap-1.5 h-16 mb-5">
+                    {[60, 45, 80, 55, 90, 70, 85, 65, 95, 75, 88, 92].map((v, i) => (
+                      <div
+                        key={i}
+                        className={`flex-1 rounded-t-sm transition-all duration-500 ${
+                          i >= 9 ? 'bg-gradient-to-t from-[#7C5CFF] to-[#00D4FF]' : 'bg-[#7C5CFF]/30'
+                        }`}
+                        style={{ height: `${v}%` }}
+                      />
+                    ))}
+                  </div>
+
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                    <div className="bg-[#7C5CFF]/10 rounded-xl p-3 text-center">
+                      <div className="text-lg font-bold grad-text">98.7%</div>
+                      <div className="text-[9px] text-[#8892B0] font-semibold mt-1">AI ACCURACY</div>
+                    </div>
+                    <div className="bg-[#7C5CFF]/10 rounded-xl p-3 text-center">
+                      <div className="text-lg font-bold grad-text">1.2s</div>
+                      <div className="text-[9px] text-[#8892B0] font-semibold mt-1">AVG RESPONSE</div>
+                    </div>
+                    <div className="bg-[#7C5CFF]/10 rounded-xl p-3 text-center">
+                      <div className="text-lg font-bold grad-text">2.8K</div>
+                      <div className="text-[9px] text-[#8892B0] font-semibold mt-1">QUERIES/DAY</div>
+                    </div>
+                    <div className="bg-[#7C5CFF]/10 rounded-xl p-3 text-center">
+                      <div className="text-lg font-bold grad-text">340%</div>
+                      <div className="text-[9px] text-[#8892B0] font-semibold mt-1">AUTOMATION GAIN</div>
+                    </div>
+                  </div>
                 </div>
 
-                <div className="flex items-end gap-1.5 h-16 mb-5">
-                  {[60, 45, 80, 55, 90, 70, 85, 65, 95, 75, 88, 92].map((v, i) => (
-                    <div
-                      key={i}
-                      className={`flex-1 rounded-t-sm transition-all duration-500 ${
-                        i >= 9 ? 'bg-gradient-to-t from-[#7C5CFF] to-[#00D4FF]' : 'bg-[#7C5CFF]/30'
-                      }`}
-                      style={{ height: `${v}%` }}
-                    />
-                  ))}
-                </div>
+                {/* Workflow Status */}
+                <div className="bg-[#0B1020]/90 border border-[#7C5CFF]/25 rounded-2xl p-6 shadow-xl">
+                  <div className="flex items-center justify-between mb-4">
+                    <span className="text-[12px] font-bold text-white tracking-wider">
+                      WORKFLOW AUTOMATION STATUS
+                    </span>
+                    <span className="text-[10px] text-[#A48BFF] bg-[#7C5CFF]/15 px-2.5 py-0.5 rounded-full font-bold">
+                      ACTIVE
+                    </span>
+                  </div>
 
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                  <div className="bg-[#7C5CFF]/10 rounded-xl p-3 text-center">
-                    <div className="text-lg font-bold grad-text">98.7%</div>
-                    <div className="text-[9px] text-[#8892B0] font-semibold mt-1">AI ACCURACY</div>
-                  </div>
-                  <div className="bg-[#7C5CFF]/10 rounded-xl p-3 text-center">
-                    <div className="text-lg font-bold grad-text">1.2s</div>
-                    <div className="text-[9px] text-[#8892B0] font-semibold mt-1">AVG RESPONSE</div>
-                  </div>
-                  <div className="bg-[#7C5CFF]/10 rounded-xl p-3 text-center">
-                    <div className="text-lg font-bold grad-text">2.8K</div>
-                    <div className="text-[9px] text-[#8892B0] font-semibold mt-1">QUERIES/DAY</div>
-                  </div>
-                  <div className="bg-[#7C5CFF]/10 rounded-xl p-3 text-center">
-                    <div className="text-lg font-bold grad-text">340%</div>
-                    <div className="text-[9px] text-[#8892B0] font-semibold mt-1">AUTOMATION GAIN</div>
+                  <div className="space-y-4">
+                    <div>
+                      <div className="flex justify-between text-[12px] mb-1.5">
+                        <span className="text-[#8892B0]">Data Processing</span>
+                        <span className="text-emerald-400 font-semibold">✓ Running</span>
+                      </div>
+                      <div className="h-1.5 bg-white/5 rounded-full overflow-hidden">
+                        <div className="h-full bg-gradient-to-r from-[#7C5CFF] to-[#00D4FF] rounded-full w-[87%]" />
+                      </div>
+                    </div>
+
+                    <div>
+                      <div className="flex justify-between text-[12px] mb-1.5">
+                        <span className="text-[#8892B0]">Predictive Engine</span>
+                        <span className="text-emerald-400 font-semibold">✓ Running</span>
+                      </div>
+                      <div className="h-1.5 bg-white/5 rounded-full overflow-hidden">
+                        <div className="h-full bg-gradient-to-r from-[#00D4FF] to-[#7C5CFF] rounded-full w-[72%]" />
+                      </div>
+                    </div>
+
+                    <div>
+                      <div className="flex justify-between text-[12px] mb-1.5">
+                        <span className="text-[#8892B0]">NLP Pipeline</span>
+                        <span className="text-emerald-400 font-semibold">✓ Running</span>
+                      </div>
+                      <div className="h-1.5 bg-white/5 rounded-full overflow-hidden">
+                        <div className="h-full bg-gradient-to-r from-[#7C5CFF] to-[#00D4FF] rounded-full w-[94%]" />
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
-
-              {/* Workflow Status */}
-              <div className="bg-[#0B1020]/90 border border-[#7C5CFF]/25 rounded-2xl p-6 shadow-xl">
-                <div className="flex items-center justify-between mb-4">
-                  <span className="text-[12px] font-bold text-white tracking-wider">
-                    WORKFLOW AUTOMATION STATUS
-                  </span>
-                  <span className="text-[10px] text-[#A48BFF] bg-[#7C5CFF]/15 px-2.5 py-0.5 rounded-full font-bold">
-                    ACTIVE
-                  </span>
-                </div>
-
-                <div className="space-y-4">
-                  <div>
-                    <div className="flex justify-between text-[12px] mb-1.5">
-                      <span className="text-[#8892B0]">Data Processing</span>
-                      <span className="text-emerald-400 font-semibold">✓ Running</span>
-                    </div>
-                    <div className="h-1.5 bg-white/5 rounded-full overflow-hidden">
-                      <div className="h-full bg-gradient-to-r from-[#7C5CFF] to-[#00D4FF] rounded-full w-[87%]" />
-                    </div>
-                  </div>
-
-                  <div>
-                    <div className="flex justify-between text-[12px] mb-1.5">
-                      <span className="text-[#8892B0]">Predictive Engine</span>
-                      <span className="text-emerald-400 font-semibold">✓ Running</span>
-                    </div>
-                    <div className="h-1.5 bg-white/5 rounded-full overflow-hidden">
-                      <div className="h-full bg-gradient-to-r from-[#00D4FF] to-[#7C5CFF] rounded-full w-[72%]" />
-                    </div>
-                  </div>
-
-                  <div>
-                    <div className="flex justify-between text-[12px] mb-1.5">
-                      <span className="text-[#8892B0]">NLP Pipeline</span>
-                      <span className="text-emerald-400 font-semibold">✓ Running</span>
-                    </div>
-                    <div className="h-1.5 bg-white/5 rounded-full overflow-hidden">
-                      <div className="h-full bg-gradient-to-r from-[#7C5CFF] to-[#00D4FF] rounded-full w-[94%]" />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+            </Reveal>
           </div>
         </div>
       </section>
 
       {/* ── DEVELOPMENT PROCESS ── */}
       <section className="max-w-7xl mx-auto px-6 py-24">
-        <div className="mb-14">
-          <div className="inline-flex items-center gap-2 text-[#00D4FF] text-[11px] font-bold tracking-[3px] uppercase mb-2">
-            <span className="w-5 h-[1px] bg-[#00D4FF]" />
-            How We Work
+        <Reveal animation="fade-up">
+          <div className="mb-14">
+            <div className="inline-flex items-center gap-2 text-[#00D4FF] text-[11px] font-bold tracking-[3px] uppercase mb-2">
+              <span className="w-5 h-[1px] bg-[#00D4FF]" />
+              How We Work
+            </div>
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-white mb-4">
+              Our <span className="grad-text">Development Process</span>
+            </h2>
+            <p className="text-[#8892B0] text-[15px] max-w-xl font-light">
+              A battle-tested agile methodology turning complex enterprise challenges into deployed intelligent systems.
+            </p>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-white mb-4">
-            Our <span className="grad-text">Development Process</span>
-          </h2>
-          <p className="text-[#8892B0] text-[15px] max-w-xl font-light">
-            A battle-tested agile methodology turning complex enterprise challenges into deployed intelligent systems.
-          </p>
-        </div>
+        </Reveal>
 
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-4">
           {[
@@ -638,16 +646,17 @@ export const HomeView: React.FC<HomeViewProps> = ({ onSelectTab }) => {
             { num: '06', title: 'Deployment', desc: 'Production launch & go-live' },
             { num: '07', title: 'Support', desc: 'Continuous maintenance & growth' },
           ].map((step, idx) => (
-            <div
-              key={idx}
-              className="bg-[#151B35]/60 border border-[#7C5CFF]/15 hover:border-[#7C5CFF]/40 rounded-2xl p-5 text-center flex flex-col items-center transition-all hover:-translate-y-1"
-            >
-              <div className="w-12 h-12 rounded-full bg-[#0B1020] border border-[#7C5CFF]/30 flex items-center justify-center font-extrabold text-[#7C5CFF] text-[15px] mb-3 shadow-inner">
-                {step.num}
+            <Reveal key={idx} animation="fade-up" delay={idx * 60}>
+              <div
+                className="bg-[#151B35]/60 border border-[#7C5CFF]/15 hover:border-[#7C5CFF]/40 rounded-2xl p-5 text-center flex flex-col items-center transition-all hover:-translate-y-1 h-full"
+              >
+                <div className="w-12 h-12 rounded-full bg-[#0B1020] border border-[#7C5CFF]/30 flex items-center justify-center font-extrabold text-[#7C5CFF] text-[15px] mb-3 shadow-inner">
+                  {step.num}
+                </div>
+                <h4 className="text-[13px] font-bold text-white mb-1.5">{step.title}</h4>
+                <p className="text-[11px] text-[#8892B0] leading-snug">{step.desc}</p>
               </div>
-              <h4 className="text-[13px] font-bold text-white mb-1.5">{step.title}</h4>
-              <p className="text-[11px] text-[#8892B0] leading-snug">{step.desc}</p>
-            </div>
+            </Reveal>
           ))}
         </div>
       </section>
@@ -655,15 +664,17 @@ export const HomeView: React.FC<HomeViewProps> = ({ onSelectTab }) => {
       {/* ── WHY ENTERPRISES CHOOSE US ── */}
       <section className="bg-[#151B35]/40 border-t border-[#7C5CFF]/15 py-24">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="mb-14">
-            <div className="inline-flex items-center gap-2 text-[#00D4FF] text-[11px] font-bold tracking-[3px] uppercase mb-2">
-              <span className="w-5 h-[1px] bg-[#00D4FF]" />
-              Why Clarivex.AI
+          <Reveal animation="fade-up">
+            <div className="mb-14">
+              <div className="inline-flex items-center gap-2 text-[#00D4FF] text-[11px] font-bold tracking-[3px] uppercase mb-2">
+                <span className="w-5 h-[1px] bg-[#00D4FF]" />
+                Why Clarivex.AI
+              </div>
+              <h2 className="text-3xl sm:text-4xl font-extrabold text-white mb-4">
+                Why Enterprises <span className="grad-text">Choose Us</span>
+              </h2>
             </div>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-white mb-4">
-              Why Enterprises <span className="grad-text">Choose Us</span>
-            </h2>
-          </div>
+          </Reveal>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
@@ -700,13 +711,15 @@ export const HomeView: React.FC<HomeViewProps> = ({ onSelectTab }) => {
             ].map((why, i) => {
               const Icon = why.icon;
               return (
-                <div key={i} className="glass-card rounded-2xl p-7 hover:-translate-y-1.5 transition-all">
-                  <div className="w-11 h-11 rounded-xl bg-[#7C5CFF]/15 border border-[#7C5CFF]/30 flex items-center justify-center mb-5 text-[#A48BFF]">
-                    <Icon className="w-5 h-5" />
+                <Reveal key={i} animation="fade-up" delay={i * 80}>
+                  <div className="glass-card rounded-2xl p-7 hover:-translate-y-1.5 transition-all h-full">
+                    <div className="w-11 h-11 rounded-xl bg-[#7C5CFF]/15 border border-[#7C5CFF]/30 flex items-center justify-center mb-5 text-[#A48BFF]">
+                      <Icon className="w-5 h-5" />
+                    </div>
+                    <h3 className="text-[16px] font-bold text-white mb-2">{why.title}</h3>
+                    <p className="text-[13px] text-[#8892B0] leading-relaxed">{why.desc}</p>
                   </div>
-                  <h3 className="text-[16px] font-bold text-white mb-2">{why.title}</h3>
-                  <p className="text-[13px] text-[#8892B0] leading-relaxed">{why.desc}</p>
-                </div>
+                </Reveal>
               );
             })}
           </div>

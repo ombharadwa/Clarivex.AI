@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { PageTab } from '../types';
+import { Reveal } from '../components/Reveal';
 import { MapPin, Mail, CheckCircle2, ArrowRight } from 'lucide-react';
 
 interface ContactViewProps {
@@ -40,17 +41,19 @@ export const ContactView: React.FC<ContactViewProps> = ({ onSelectTab }) => {
         </div>
 
         <div className="max-w-7xl mx-auto px-6 relative z-10">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-md bg-[#7C5CFF]/10 border border-[#7C5CFF]/30 text-[#A48BFF] text-[11px] font-semibold tracking-[2px] uppercase mb-4">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#00D4FF] animate-pulse" />
-            Get In Touch
-          </div>
-          <h1 className="text-3xl sm:text-5xl font-black text-white leading-tight">
-            Let's Build Something <br />
-            <span className="grad-text">Intelligent Together</span>
-          </h1>
-          <p className="text-[16px] text-[#8892B0] max-w-xl font-light mt-4">
-            Ready to transform your business with AI? Book a free consultation with our technical specialists.
-          </p>
+          <Reveal animation="fade-up">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-md bg-[#7C5CFF]/10 border border-[#7C5CFF]/30 text-[#A48BFF] text-[11px] font-semibold tracking-[2px] uppercase mb-4">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#00D4FF] animate-pulse" />
+              Get In Touch
+            </div>
+            <h1 className="text-3xl sm:text-5xl font-black text-white leading-tight">
+              Let's Build Something <br />
+              <span className="grad-text">Intelligent Together</span>
+            </h1>
+            <p className="text-[16px] text-[#8892B0] max-w-xl font-light mt-4">
+              Ready to transform your business with AI? Book a free consultation with our technical specialists.
+            </p>
+          </Reveal>
         </div>
       </div>
 
@@ -58,7 +61,8 @@ export const ContactView: React.FC<ContactViewProps> = ({ onSelectTab }) => {
       <section className="max-w-7xl mx-auto px-6 py-20">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
           {/* Contact Details */}
-          <div className="lg:col-span-5 space-y-6">
+          <div className="lg:col-span-5">
+            <Reveal animation="fade-left" className="space-y-6">
             <div className="bg-[#151B35]/70 border border-[#7C5CFF]/20 rounded-2xl p-6 flex items-start gap-4 shadow-xl">
               <div className="w-11 h-11 rounded-xl bg-[#7C5CFF]/15 border border-[#7C5CFF]/30 flex items-center justify-center text-[#A48BFF] shrink-0">
                 <MapPin className="w-5 h-5" />
@@ -117,11 +121,14 @@ export const ContactView: React.FC<ContactViewProps> = ({ onSelectTab }) => {
                 We respond to all enterprise and project enquiries within 24 business hours. Book a consultation below for same-day coordination.
               </p>
             </div>
+            </Reveal>
           </div>
 
           {/* Contact Form */}
-          <div className="lg:col-span-7 bg-[#0B1020]/90 border border-[#7C5CFF]/30 rounded-3xl p-8 sm:p-10 shadow-2xl relative">
-            <div className="h-[2px] w-full bg-gradient-to-r from-[#7C5CFF] to-[#00D4FF] mb-8 opacity-60 rounded-full" />
+          <div className="lg:col-span-7">
+            <Reveal animation="fade-right">
+              <div className="bg-[#0B1020]/90 border border-[#7C5CFF]/30 rounded-3xl p-8 sm:p-10 shadow-2xl relative">
+                <div className="h-[2px] w-full bg-gradient-to-r from-[#7C5CFF] to-[#00D4FF] mb-8 opacity-60 rounded-full" />
 
             {submitted ? (
               <div className="text-center py-12 space-y-4">
@@ -286,6 +293,8 @@ export const ContactView: React.FC<ContactViewProps> = ({ onSelectTab }) => {
                 </button>
               </form>
             )}
+              </div>
+            </Reveal>
           </div>
         </div>
       </section>

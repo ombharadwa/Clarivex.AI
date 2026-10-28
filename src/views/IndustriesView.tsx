@@ -1,5 +1,6 @@
 import React from 'react';
 import { PageTab } from '../types';
+import { Reveal } from '../components/Reveal';
 
 interface IndustriesViewProps {
   onSelectTab: (tab: PageTab) => void;
@@ -68,19 +69,21 @@ export const IndustriesView: React.FC<IndustriesViewProps> = ({ onSelectTab }) =
         </div>
 
         <div className="max-w-7xl mx-auto px-6 relative z-10">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-md bg-[#7C5CFF]/10 border border-[#7C5CFF]/30 text-[#A48BFF] text-[11px] font-semibold tracking-[2px] uppercase mb-4">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#00D4FF] animate-pulse" />
-            Industry Solutions
-          </div>
-          <h1 className="text-3xl sm:text-5xl font-black text-white leading-tight">
-            AI Solutions for <span className="grad-text">Every Industry</span>
-          </h1>
+          <Reveal animation="fade-up">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-md bg-[#7C5CFF]/10 border border-[#7C5CFF]/30 text-[#A48BFF] text-[11px] font-semibold tracking-[2px] uppercase mb-4">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#00D4FF] animate-pulse" />
+              Industry Solutions
+            </div>
+            <h1 className="text-3xl sm:text-5xl font-black text-white leading-tight">
+              AI Solutions for <span className="grad-text">Every Industry</span>
+            </h1>
+          </Reveal>
         </div>
       </div>
 
       {/* Industries Grid */}
       <section className="max-w-7xl mx-auto px-6 py-20">
-        <div className="mb-12">
+        <Reveal animation="fade-up" className="mb-12">
           <div className="inline-flex items-center gap-2 text-[#00D4FF] text-[11px] font-bold tracking-[3px] uppercase mb-2">
             <span className="w-5 h-[1px] bg-[#00D4FF]" />
             Industries
@@ -91,25 +94,24 @@ export const IndustriesView: React.FC<IndustriesViewProps> = ({ onSelectTab }) =
           <p className="text-[15px] text-[#8892B0] max-w-xl font-light">
             We understand that every industry has unique operational friction and regulatory standards. Our AI systems are built for your domain.
           </p>
-        </div>
+        </Reveal>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {industries.map((ind, idx) => (
-            <div
-              key={idx}
-              className="bg-[#151B35]/70 border border-[#7C5CFF]/20 rounded-2xl p-7 hover:-translate-y-1.5 hover:border-[#00D4FF]/40 transition-all shadow-xl group"
-            >
-              <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-2xl mb-5 group-hover:scale-110 transition-transform">
-                {ind.icon}
+            <Reveal key={idx} animation="fade-up" delay={idx * 70}>
+              <div className="bg-[#151B35]/70 border border-[#7C5CFF]/20 rounded-2xl p-7 hover:-translate-y-1.5 hover:border-[#00D4FF]/40 transition-all shadow-xl group h-full">
+                <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-2xl mb-5 group-hover:scale-110 transition-transform">
+                  {ind.icon}
+                </div>
+                <h3 className="text-lg font-bold text-white mb-2">{ind.name}</h3>
+                <p className="text-[12.5px] text-[#8892B0] mb-3 leading-relaxed">
+                  <span className="text-white/60 font-medium">Challenge:</span> {ind.challenge}
+                </p>
+                <p className="text-[12.5px] text-[#7EEEFF] leading-relaxed">
+                  <span className="text-[#00D4FF] font-semibold">AI Solution:</span> {ind.solution}
+                </p>
               </div>
-              <h3 className="text-lg font-bold text-white mb-2">{ind.name}</h3>
-              <p className="text-[12.5px] text-[#8892B0] mb-3 leading-relaxed">
-                <span className="text-white/60 font-medium">Challenge:</span> {ind.challenge}
-              </p>
-              <p className="text-[12.5px] text-[#7EEEFF] leading-relaxed">
-                <span className="text-[#00D4FF] font-semibold">AI Solution:</span> {ind.solution}
-              </p>
-            </div>
+            </Reveal>
           ))}
         </div>
       </section>

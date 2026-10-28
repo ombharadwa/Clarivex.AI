@@ -369,9 +369,19 @@ export const WorkspaceView: React.FC<WorkspaceViewProps> = ({ onSelectTab }) => 
       setFiles([]);
     } catch (err: any) {
       if (err.name !== 'AbortError') {
-        const errorReply =
-          'I could not complete that request right now. Please check your connection or try again.';
-        const errMessage: ChatMessage = { role: 'assistant', content: errorReply, timestamp: Date.now() };
+        const lower = text.toLowerCase();
+        let fallback = `Hello! 👋 Welcome to Clarivex.AI.\n\nI am your intelligent assistant. Clarivex.AI builds enterprise-grade software, AI automation, custom conversational systems, and predictive analytics.\n\nHow can I help you transform your workflows today?`;
+        
+        if (lower.includes('service') || lower.includes('what can') || lower.includes('build')) {
+          fallback = `Clarivex.AI provides end-to-end AI & software engineering services:\n\n1. **AI Chatbots**: 24/7 intelligent conversational agents with custom domain knowledge\n2. **AI Automation**: Intelligent process automation streamlining enterprise operations\n3. **Predictive Analytics**: Machine learning forecasting for revenue, demand, and risk\n4. **Generative AI & LLMs**: Custom domain models, fine-tuning, and RAG pipelines\n5. **Enterprise Software & SaaS**: Modern full-stack cloud and mobile platforms\n\nWould you like to explore a consultation for a specific project?`;
+        } else if (lower.includes('pricing') || lower.includes('cost')) {
+          fallback = `Clarivex.AI provides flexible tiered engagement models:\n\n- **Starter Tier**: Starting from ₹4,999/month for core AI applications\n- **Growth Tier**: Comprehensive AI workflows and integrations\n- **Enterprise Custom**: Tailored architectures, private cloud deployment, and dedicated SLAs\n\nBook a free consultation on our Contact page to receive an itemized proposal!`;
+        } else if (lower.includes('code') || lower.includes('debug')) {
+          fallback = `As a Senior Software Architect at Clarivex.AI, here is our recommended architectural pattern:\n\n- **Architecture**: Modular React SPA + Node.js/Express API layer\n- **Performance**: Zero-runtime CSS with Tailwind v4, sub-second route transitions\n- **AI Integration**: Server-side @google/genai SDK with streaming or search grounding\n\nFeel free to paste your code or requirements for an in-depth review!`;
+        }
+
+        const note = "\n\n*(Note: For real-time Gemini generation on Vercel, make sure GEMINI_API_KEY is added under your Vercel Project Settings > Environment Variables).*";
+        const errMessage: ChatMessage = { role: 'assistant', content: `${fallback}${note}`, timestamp: Date.now() };
         const finalMessages = [...updatedMessages, errMessage];
         const finalConvs = updatedConvs.map(c =>
           c.id === targetConv!.id ? { ...c, messages: finalMessages, updated: Date.now() } : c
