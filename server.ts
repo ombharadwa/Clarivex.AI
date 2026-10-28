@@ -312,4 +312,11 @@ async function startServer() {
   });
 }
 
-startServer();
+// Export the Express app for Vercel's serverless function entry point.
+export default app;
+
+// In local/self-hosted mode, start the HTTP server. Vercel imports the app
+// from api/[...path].ts and manages the request lifecycle itself.
+if (!process.env.VERCEL) {
+  void startServer();
+}
