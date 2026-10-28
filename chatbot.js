@@ -3,7 +3,8 @@
   const history = [];
   const API = window.CLARIVEX_CHAT_API || '/api/chat';
   let controller = null;
-  let lastUserPrompt = '';\n
+  let lastUserPrompt = '';
+
   function loadProfessionalStyles() {
     if (document.getElementById('clarivex-professional-css')) return;
     const link = document.createElement('link'); link.id='clarivex-professional-css'; link.rel='stylesheet'; link.href='/professional.css'; document.head.appendChild(link);
