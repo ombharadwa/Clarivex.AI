@@ -1,0 +1,25 @@
+{
+  "model": "Clarivex-1",
+  "params": 5459456,
+  "steps": 40,
+  "batch_size": 32,
+  "peak_lr": 0.003,
+  "block_size": 256,
+  "train_seconds": 87.6,
+  "best_val_loss": 3.5834,
+  "best_val_perplexity": 36.0,
+  "history": [
+    {
+      "step": 20,
+      "train_loss": 6.0675,
+      "val_loss": 5.9357,
+      "val_perplexity": 378.32
+    },
+    {
+      "step": 40,
+      "train_loss": 3.7386,
+      "val_loss": 3.5834,
+      "val_perplexity": 36.0
+    }
+  ]
+}
