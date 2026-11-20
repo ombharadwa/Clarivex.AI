@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { MessageSquare, X, Send, RotateCcw, Volume2, Mic, Copy, Check } from 'lucide-react';
 import { ChatMessage } from '../types';
 import { AudioTranscriberModal } from './AudioTranscriberModal';
+import { Markdown } from './Markdown';
 
 const INITIAL_SUGGESTIONS = [
   'What services do you offer?',
@@ -164,7 +165,11 @@ export const FloatingChatbot: React.FC = () => {
                       : 'bg-[#0B1020]/90 text-white/90 border border-[#7C5CFF]/20 rounded-bl-xs shadow-sm'
                   }`}
                 >
-                  <p className="whitespace-pre-wrap">{msg.content}</p>
+                  {msg.role === 'assistant' ? (
+                    <Markdown content={msg.content} />
+                  ) : (
+                    <p className="whitespace-pre-wrap">{msg.content}</p>
+                  )}
 
                   {msg.role === 'assistant' && (
                     <div className="flex items-center gap-2 mt-2 pt-1 border-t border-white/10 text-[10px] text-[#8892B0]">

@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { PageTab, WorkspaceMode, WorkspaceModel, AttachedFile, WorkspaceConversation, ChatMessage, AIPersona } from '../types';
 import { useTheme } from '../context/ThemeContext';
 import { AudioTranscriberModal } from '../components/AudioTranscriberModal';
+import { Markdown } from '../components/Markdown';
 import { 
   Sparkles, 
   Search, 
@@ -603,7 +604,11 @@ export const WorkspaceView: React.FC<WorkspaceViewProps> = ({ onSelectTab }) => 
                         : 'bg-[#111a31] border border-white/10 text-white/95 rounded-bl-xs'
                     }`}
                   >
-                    <div className="whitespace-pre-wrap">{msg.content}</div>
+                    {msg.role === 'assistant' ? (
+                      <Markdown content={msg.content} />
+                    ) : (
+                      <div className="whitespace-pre-wrap">{msg.content}</div>
+                    )}
 
                     {msg.role === 'assistant' && (
                       <div className="flex items-center gap-2 mt-3 pt-2 border-t border-white/10 text-[11px] text-[#8892B0]">
