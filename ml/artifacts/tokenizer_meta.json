@@ -1,0 +1,15 @@
+{
+  "vocab_size": 2612,
+  "special_tokens": [
+    "<|pad|>",
+    "<|user|>",
+    "<|assistant|>",
+    "<|end|>"
+  ],
+  "token_ids": {
+    "<|pad|>": 0,
+    "<|user|>": 1,
+    "<|assistant|>": 2,
+    "<|end|>": 3
+  }
+}
