@@ -325,8 +325,21 @@ export const WorkspaceView: React.FC<WorkspaceViewProps> = ({ onSelectTab }) => 
         }),
       });
 
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.error || 'Server error');
+      const raw = await res.text();
+      let data: any = {};
+      try {
+        data = raw ? JSON.parse(raw) : {};
+      } catch {
+        // A non-JSON body means the request never reached the API route, which
+        // happens when the static preview server is used instead of the app server.
+        throw new Error(
+          res.ok
+            ? 'The chat API returned an unexpected response.'
+            : `Chat API unavailable (HTTP ${res.status}). Start the app with "npm run dev" so /api/chat is served.`
+        );
+      }
+
+      if (!res.ok) throw new Error(data.error || `Chat API error (HTTP ${res.status})`);
 
       const reply = data.reply || 'No response returned.';
       const assistantMessage: ChatMessage = {
@@ -344,10 +357,10 @@ export const WorkspaceView: React.FC<WorkspaceViewProps> = ({ onSelectTab }) => 
       setFiles([]);
     } catch (err: any) {
       if (err.name !== 'AbortError') {
+        const detail = err?.message ? `\n\n_${err.message}_` : '';
         const errMessage: ChatMessage = {
           role: 'assistant',
-          content:
-            'I could not complete that request. The local Clarivex-1 model may still be loading — please try again in a moment.',
+          content: `I could not complete that request. The local Clarivex-1 model may still be loading — please try again in a moment.${detail}`,
           timestamp: Date.now(),
         };
         const finalMessages = [...updatedMessages, errMessage];

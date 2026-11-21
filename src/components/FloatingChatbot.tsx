@@ -67,17 +67,28 @@ export const FloatingChatbot: React.FC = () => {
         }),
       });
 
-      const data = await response.json();
-      if (!response.ok) throw new Error(data.error || 'Request failed');
+      const raw = await response.text();
+      let data: any = {};
+      try {
+        data = raw ? JSON.parse(raw) : {};
+      } catch {
+        throw new Error(
+          response.ok
+            ? 'The chat API returned an unexpected response.'
+            : `Chat API unavailable (HTTP ${response.status}). Start the app with "npm run dev" so /api/chat is served.`
+        );
+      }
+
+      if (!response.ok) throw new Error(data.error || `Chat API error (HTTP ${response.status})`);
 
       setMessages(prev => [...prev, { role: 'assistant', content: data.reply }]);
-    } catch {
+    } catch (err: any) {
+      const detail = err?.message ? `\n\n_${err.message}_` : '';
       setMessages(prev => [
         ...prev,
         {
           role: 'assistant',
-          content:
-            'I could not reach the Clarivex-1 model just now. Please try again in a moment.',
+          content: `I could not reach the Clarivex-1 model just now. Please try again in a moment.${detail}`,
         },
       ]);
     } finally {

@@ -130,6 +130,13 @@ app.get('/api/health', (_req, res) => {
   });
 });
 
+// ── SPA FALLBACK ──
+// Any unmatched /api/* path must return JSON, never index.html. Without this a
+// typo'd or missing route surfaces in the UI as an HTML parse error.
+app.all('/api/*', (_req, res) => {
+  res.status(404).json({ error: 'API route not found' });
+});
+
 async function startServer() {
   if (!isProduction) {
     const { createServer } = await import('vite');

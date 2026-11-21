@@ -164,44 +164,75 @@ export class Clarivex1 {
     return this.cfg;
   }
 
-  /** Build the prompt the model was trained on. */
+  /**
+   * Build the prompt the model was trained on.
+   *
+   * The corpus is single-turn: `<|user|>question<|assistant|>answer<|end|>`.
+   * Feeding prior assistant turns makes the model continue the transcript
+   * instead of answering, so only the latest user turn is used. Multi-line
+   * user content is preserved because the corpus stacks follow-ups with "\n".
+   */
   buildPrompt(turns: ChatTurn[]): string {
-    const recent = turns.slice(-6);
-    const parts: string[] = [];
-    for (const turn of recent) {
-      // Collapse runs of spaces/tabs but keep newlines: the corpus uses "\n"
-      // to separate stacked user lines within a single turn.
-      const content = turn.content
-        .replace(/\r\n?/g, '\n')
-        .replace(/[^\S\n]+/g, ' ')
-        .replace(/\n{2,}/g, '\n')
-        .trim();
-      if (!content) continue;
-      parts.push(
-        turn.role === 'user'
-          ? `<|user|>${content}`
-          : `<|assistant|>${content}<|end|>`
-      );
-    }
-    return `${parts.join('')}<|assistant|>`;
+    const lastUser = [...turns].reverse().find(t => t.role === 'user');
+    if (!lastUser) return '<|assistant|>';
+
+    // Collapse runs of spaces/tabs but keep newlines: the corpus uses "\n"
+    // to separate stacked user lines within a single turn.
+    const content = lastUser.content
+      .replace(/\r\n?/g, '\n')
+      .replace(/[^\S\n]+/g, ' ')
+      .replace(/\n{2,}/g, '\n')
+      .trim();
+
+    return `<|user|>${content}<|assistant|>`;
+  }
+
+  /**
+   * Encode the conversation into token ids that fit `maxPrompt`.
+   *
+   * The prompt always keeps priority over the completion budget: the oldest
+   * turns are dropped first, and only if a single turn still overflows is its
+   * content trimmed. The trailing `<|assistant|>` marker is never cut, because
+   * losing it makes the model continue the user's question instead of answering.
+   */
+  private encodePrompt(turns: ChatTurn[], maxPrompt: number): number[] {
+    const ids = this.tokenizer.encode(this.buildPrompt(turns)).ids as number[];
+    if (ids.length <= maxPrompt) return ids;
+
+    const lastUser = [...turns].reverse().find(t => t.role === 'user');
+    if (!lastUser) return ids.slice(ids.length - maxPrompt);
+
+    // Trim the user content from the left, keeping the marker overhead intact.
+    const contentIds = this.tokenizer.encode(lastUser.content).ids as number[];
+    const overhead = Math.max(0, ids.length - contentIds.length);
+    const keep = Math.max(1, maxPrompt - overhead);
+    const trimmed = this.tokenizer
+      .decode(contentIds.slice(contentIds.length - keep), { skip_special_tokens: true })
+      .trim();
+
+    const finalIds = this.tokenizer
+      .encode(this.buildPrompt([{ role: 'user', content: trimmed }]))
+      .ids as number[];
+
+    return finalIds.length <= maxPrompt ? finalIds : finalIds.slice(finalIds.length - maxPrompt);
   }
 
   generate(turns: ChatTurn[], options: GenerateOptions = {}): GenerateResult {
     const started = Date.now();
-    const maxNewTokens = options.maxNewTokens ?? 220;
     const temperature = options.temperature ?? 0.55;
     const topK = options.topK ?? 20;
     const repetitionPenalty = options.repetitionPenalty ?? 1.12;
 
-    const prompt = this.buildPrompt(turns);
-    const promptIds = this.tokenizer.encode(prompt).ids as number[];
+    const { block_size } = this.cfg;
 
-    const { n_layer, n_embd, n_head, block_size } = this.cfg;
-    const headDim = n_embd / n_head;
-
-    // Trim the prompt so prompt + completion fits the context window.
-    const maxPrompt = Math.max(8, block_size - maxNewTokens);
-    const ids = promptIds.length > maxPrompt ? promptIds.slice(-maxPrompt) : promptIds.slice();
+    // The prompt must always fit, so reserve a floor of generation room and let
+    // the prompt claim the rest. Previously a maxNewTokens larger than
+    // block_size collapsed the prompt to a handful of tokens, which silently
+    // discarded the user's question.
+    const MIN_GEN_TOKENS = 96;
+    const promptBudget = Math.max(8, block_size - MIN_GEN_TOKENS);
+    const ids = this.encodePrompt(turns, promptBudget);
+    const maxNewTokens = Math.max(1, Math.min(options.maxNewTokens ?? 220, block_size - ids.length));
 
     const cache = this.createCache();
     const logits = new Float32Array(this.cfg.vocab_size);
