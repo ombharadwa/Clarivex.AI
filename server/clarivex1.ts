@@ -8,6 +8,7 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { Tokenizer } from '@huggingface/tokenizers';
 
 export interface Clarivex1Config {
@@ -54,7 +55,49 @@ export interface GenerateResult {
   ms: number;
 }
 
-const DEFAULT_ARTIFACTS = path.resolve(process.cwd(), 'ml', 'artifacts');
+const ARTIFACT_FILES = ['model.json', 'model.bin', 'tokenizer.json'] as const;
+
+function hasArtifacts(dir: string): boolean {
+  try {
+    return ARTIFACT_FILES.every(file => fs.existsSync(path.join(dir, file)));
+  } catch {
+    return false;
+  }
+}
+
+/**
+ * Locate the exported weights.
+ *
+ * On Vercel the function is bundled into /var/task and `ml/artifacts` is copied
+ * alongside it by vercel.json `includeFiles`, so cwd resolves. The module-relative
+ * candidates cover bundled layouts where cwd differs from the project root.
+ */
+function resolveArtifactsDir(): string {
+  const candidates: string[] = [];
+
+  const override = process.env.CLARIVEX_ARTIFACTS_DIR;
+  if (override) candidates.push(path.resolve(override));
+
+  candidates.push(path.resolve(process.cwd(), 'ml', 'artifacts'));
+  candidates.push(path.resolve(process.cwd(), '..', 'ml', 'artifacts'));
+
+  try {
+    const here = path.dirname(fileURLToPath(import.meta.url));
+    candidates.push(path.resolve(here, '..', 'ml', 'artifacts'));
+    candidates.push(path.resolve(here, 'ml', 'artifacts'));
+  } catch {
+    // import.meta.url is unavailable under some bundlers
+  }
+
+  for (const dir of candidates) {
+    if (hasArtifacts(dir)) return dir;
+  }
+
+  throw new Error(
+    `Clarivex-1 artifacts not found. Looked in:\n${candidates.map(c => `  - ${c}`).join('\n')}\n` +
+      'Run "python ml/train.py" to build them, or set CLARIVEX_ARTIFACTS_DIR.'
+  );
+}
 
 function gelu(x: number): number {
   // tanh approximation, matching torch's default GELU closely enough for inference
@@ -81,10 +124,11 @@ export class Clarivex1 {
     }
   }
 
-  static load(artifactsDir: string = DEFAULT_ARTIFACTS): Clarivex1 {
-    const metaPath = path.join(artifactsDir, 'model.json');
-    const binPath = path.join(artifactsDir, 'model.bin');
-    const tokPath = path.join(artifactsDir, 'tokenizer.json');
+  static load(artifactsDir?: string): Clarivex1 {
+    const dir = artifactsDir ?? resolveArtifactsDir();
+    const metaPath = path.join(dir, 'model.json');
+    const binPath = path.join(dir, 'model.bin');
+    const tokPath = path.join(dir, 'tokenizer.json');
 
     for (const file of [metaPath, binPath, tokPath]) {
       if (!fs.existsSync(file)) {
@@ -97,11 +141,16 @@ export class Clarivex1 {
     const meta = JSON.parse(fs.readFileSync(metaPath, 'utf8')) as ModelFile;
 
     const buffer = fs.readFileSync(binPath);
-    const blob = new Float32Array(
-      buffer.buffer,
-      buffer.byteOffset,
-      buffer.byteLength / Float32Array.BYTES_PER_ELEMENT
-    );
+    // A Float32Array view requires a 4-byte aligned offset. Node's Buffer pool
+    // does not guarantee that, so copy into a fresh aligned ArrayBuffer when needed.
+    const blob =
+      buffer.byteOffset % Float32Array.BYTES_PER_ELEMENT === 0
+        ? new Float32Array(
+            buffer.buffer,
+            buffer.byteOffset,
+            buffer.byteLength / Float32Array.BYTES_PER_ELEMENT
+          )
+        : new Float32Array(buffer.buffer.slice(buffer.byteOffset, buffer.byteOffset + buffer.byteLength));
 
     const rawTokenizer = JSON.parse(fs.readFileSync(tokPath, 'utf8'));
     const tokenizer = new Tokenizer(rawTokenizer, rawTokenizer);
