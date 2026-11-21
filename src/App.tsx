@@ -49,7 +49,10 @@ export const App: React.FC = () => {
   }, [currentTab, language]);
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#0B1020] text-[#F8FAFC] selection:bg-[#7C5CFF]/30 selection:text-white">
+    <div
+      className="flex min-h-screen flex-col"
+      style={{ background: 'var(--bg)', color: 'var(--fg)' }}
+    >
       <Cursor />
       <Navbar currentTab={currentTab} onSelectTab={handleSelectTab} />
 

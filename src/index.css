@@ -204,6 +204,10 @@
 .text-soft { color: var(--fg-soft); }
 .text-muted { color: var(--muted); }
 .text-faint { color: var(--faint); }
+.text-accent { color: var(--accent); }
+.text-accent2 { color: var(--accent-2); }
+.text-accent3 { color: var(--accent-3); }
+.bg-surface2 { background: var(--surface-2); }
 
 /* ============================================================
    GRADIENTS

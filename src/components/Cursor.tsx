@@ -41,13 +41,13 @@ export const Cursor: React.FC = () => {
     <>
       <div
         ref={cursorRef}
-        className="fixed top-0 left-0 w-3 h-3 rounded-full bg-[#7C5CFF] pointer-events-none z-50 mix-blend-screen hidden md:block"
-        style={{ willChange: 'transform' }}
+        className="pointer-events-none fixed left-0 top-0 z-50 hidden h-3 w-3 rounded-full mix-blend-screen md:block"
+        style={{ willChange: 'transform', background: 'var(--accent)' }}
       />
       <div
         ref={trailRef}
-        className="fixed top-0 left-0 w-8 h-8 rounded-full border border-[#7C5CFF]/40 pointer-events-none z-40 mix-blend-screen hidden md:block"
-        style={{ willChange: 'transform' }}
+        className="pointer-events-none fixed left-0 top-0 z-40 hidden h-8 w-8 rounded-full border mix-blend-screen md:block"
+        style={{ willChange: 'transform', borderColor: 'var(--line-strong)' }}
       />
     </>
   );

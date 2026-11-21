@@ -4,7 +4,7 @@ import React from 'react';
  * Minimal markdown renderer for Clarivex-1 output.
  * Handles the subset the model actually emits: bold, italic, inline code,
  * links, headings, bullet lists, ordered lists and paragraphs.
- * Builds React elements directly — no HTML injection.
+ * Builds React elements directly â€” no HTML injection.
  */
 
 type InlineToken = { type: 'text' | 'bold' | 'italic' | 'code' | 'link'; value: string; href?: string };
@@ -54,7 +54,7 @@ function renderInline(text: string, keyPrefix: string): React.ReactNode[] {
     switch (token.type) {
       case 'bold':
         return (
-          <strong key={key} className="font-semibold text-white">
+          <strong key={key} className="font-semibold text-strong">
             {token.value}
           </strong>
         );
@@ -68,7 +68,7 @@ function renderInline(text: string, keyPrefix: string): React.ReactNode[] {
         return (
           <code
             key={key}
-            className="px-1 py-0.5 rounded bg-white/10 text-[12px] font-mono text-[#00D4FF]"
+            className="px-1 py-0.5 rounded bg-surface2 text-[12px] font-mono text-accent2"
           >
             {token.value}
           </code>
@@ -80,7 +80,7 @@ function renderInline(text: string, keyPrefix: string): React.ReactNode[] {
             href={token.href}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-[#00D4FF] underline underline-offset-2 hover:text-white"
+            className="text-accent2 underline underline-offset-2 hover:text-strong"
           >
             {token.value}
           </a>
@@ -184,7 +184,7 @@ export const Markdown: React.FC<MarkdownProps> = ({ content, className = '' }) =
           const size =
             block.level <= 2 ? 'text-[15px]' : block.level === 3 ? 'text-[14px]' : 'text-[13px]';
           return (
-            <p key={key} className={`${size} font-semibold text-white pt-1`}>
+            <p key={key} className={`${size} font-semibold text-strong pt-1`}>
               {renderInline(block.text, key)}
             </p>
           );
@@ -195,7 +195,7 @@ export const Markdown: React.FC<MarkdownProps> = ({ content, className = '' }) =
             <ul key={key} className="space-y-1 pl-1">
               {block.items.map((item, j) => (
                 <li key={`${key}-${j}`} className="flex gap-2">
-                  <span className="text-[#00D4FF] shrink-0 select-none">•</span>
+                  <span className="text-accent2 shrink-0 select-none">•</span>
                   <span className="flex-1">{renderInline(item, `${key}-${j}`)}</span>
                 </li>
               ))}
@@ -208,7 +208,7 @@ export const Markdown: React.FC<MarkdownProps> = ({ content, className = '' }) =
             <ol key={key} className="space-y-1 pl-1">
               {block.items.map((item, j) => (
                 <li key={`${key}-${j}`} className="flex gap-2">
-                  <span className="text-[#00D4FF] shrink-0 select-none tabular-nums">
+                  <span className="text-accent2 shrink-0 select-none tabular-nums">
                     {j + 1}.
                   </span>
                   <span className="flex-1">{renderInline(item, `${key}-${j}`)}</span>

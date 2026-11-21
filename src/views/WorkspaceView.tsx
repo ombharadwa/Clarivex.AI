@@ -33,7 +33,7 @@ interface WorkspaceViewProps {
 
 const STORAGE_KEY = 'clarivex_workspace_v2';
 
-const MODE_META: Record<WorkspaceMode, { title: string; desc: string; hint: string; icon: React.ComponentType<{ className?: string }> }> = {
+const MODE_META: Record<WorkspaceMode, { title: string; desc: string; hint: string; icon: React.ComponentType<{ className?: string; style?: React.CSSProperties }> }> = {
   general: {
     title: 'Ask Anything',
     desc: 'Your general-purpose AI assistant.',
@@ -410,7 +410,10 @@ export const WorkspaceView: React.FC<WorkspaceViewProps> = ({ onSelectTab }) => 
   const currentModeMeta = MODE_META[mode] || MODE_META.general;
 
   return (
-    <div className="min-h-screen pt-[70px] flex flex-col bg-[#070b18] text-[#f8fafc] overflow-hidden">
+    <div
+      className="page-top flex min-h-screen flex-col overflow-hidden"
+      style={{ background: 'var(--bg)', color: 'var(--fg)' }}
+    >
       {/* Audio Transcriber Modal */}
       <AudioTranscriberModal
         isOpen={isTranscribeModalOpen}
@@ -419,21 +422,30 @@ export const WorkspaceView: React.FC<WorkspaceViewProps> = ({ onSelectTab }) => 
       />
 
       {/* Top Workspace Header */}
-      <div className="h-14 border-b border-white/10 px-4 sm:px-6 flex items-center justify-between bg-[#070b18]/90 backdrop-blur-md shrink-0">
+      <div
+        className="flex h-14 shrink-0 items-center justify-between border-b px-4 backdrop-blur-md sm:px-6"
+        style={{ borderColor: 'var(--line)', background: 'var(--elevated)' }}
+      >
         <div className="flex items-center gap-3">
           <button
             onClick={() => onSelectTab('home')}
-            className="flex items-center gap-1.5 text-xs text-[#8892B0] hover:text-white transition-colors cursor-pointer mr-2"
+            className="mr-2 flex cursor-pointer items-center gap-1.5 text-xs transition-colors"
+            style={{ color: 'var(--muted)' }}
+            onMouseEnter={e => (e.currentTarget.style.color = 'var(--fg)')}
+            onMouseLeave={e => (e.currentTarget.style.color = 'var(--muted)')}
           >
-            <ArrowLeft className="w-3.5 h-3.5" />
+            <ArrowLeft className="h-3.5 w-3.5" />
             Website
           </button>
-          <div className="w-[1px] h-4 bg-white/10" />
+          <div className="h-4 w-[1px]" style={{ background: 'var(--line)' }} />
           <div className="flex items-center gap-2">
-            <div className="w-7 h-7 rounded-lg bg-gradient-to-r from-[#7C5CFF] to-[#00D4FF] flex items-center justify-center font-bold text-xs text-white">
+            <div
+              className="flex h-7 w-7 items-center justify-center rounded-lg text-xs font-bold text-white"
+              style={{ background: 'linear-gradient(135deg, var(--accent), var(--accent-2))' }}
+            >
               CX
             </div>
-            <span className="font-extrabold text-sm tracking-wide text-white">
+            <span className="text-sm font-extrabold tracking-wide" style={{ color: 'var(--fg)' }}>
               CLARIVEX<span className="grad-text">.AI</span>
             </span>
           </div>
@@ -444,7 +456,8 @@ export const WorkspaceView: React.FC<WorkspaceViewProps> = ({ onSelectTab }) => 
           <select
             value={persona}
             onChange={e => handlePersonaChange(e.target.value as AIPersona)}
-            className="hidden sm:block bg-[#111a31] border border-white/10 text-white text-xs rounded-lg px-2.5 py-1.5 focus:outline-none focus:border-[#7C5CFF]"
+            className="field hidden !w-auto !py-1.5 !text-xs sm:block"
+            aria-label="AI role"
           >
             <option value="general">Role: Standard AI</option>
             <option value="architect">Role: Software Architect</option>
@@ -455,31 +468,43 @@ export const WorkspaceView: React.FC<WorkspaceViewProps> = ({ onSelectTab }) => 
           {/* New Chat */}
           <button
             onClick={createNewChat}
-            className="px-3 py-1.5 rounded-lg bg-[#111a31] hover:bg-[#1a2544] border border-white/10 text-xs text-white font-medium flex items-center gap-1.5 transition-all cursor-pointer shadow-sm"
+            className="btn btn-ghost !px-3 !py-1.5 !text-xs"
           >
-            <Plus className="w-3.5 h-3.5 text-[#00D4FF]" />
+            <Plus className="h-3.5 w-3.5" style={{ color: 'var(--accent-2)' }} />
             New chat
           </button>
 
           <button
             onClick={toggleTheme}
-            className="w-8 h-8 rounded-lg bg-[#111a31] border border-white/10 flex items-center justify-center text-[#8892B0] hover:text-white transition-all cursor-pointer"
+            className="flex h-8 w-8 cursor-pointer items-center justify-center rounded-lg transition-all"
+            style={{
+              background: 'var(--surface-2)',
+              border: '1px solid var(--line)',
+              color: 'var(--muted)',
+            }}
             title="Toggle theme"
+            aria-label="Toggle theme"
           >
-            {isDark ? <Sun className="w-3.5 h-3.5" /> : <Moon className="w-3.5 h-3.5" />}
+            {isDark ? <Sun className="h-3.5 w-3.5" /> : <Moon className="h-3.5 w-3.5" />}
           </button>
         </div>
       </div>
 
       {/* Main Workspace Area (Sidebar + Chat) */}
-      <div className="flex-1 flex overflow-hidden">
+      <div className="flex flex-1 overflow-hidden">
         {/* Sidebar */}
-        <aside className="w-64 border-r border-white/10 bg-[#0a0f1e]/80 p-4 flex flex-col shrink-0 hidden md:flex">
-          <div className="text-[10px] font-bold tracking-[2px] text-[#71809d] uppercase mb-3">
+        <aside
+          className="hidden w-64 shrink-0 flex-col border-r p-4 md:flex"
+          style={{ borderColor: 'var(--line)', background: 'var(--bg-soft)' }}
+        >
+          <div
+            className="mb-3 text-[10px] font-bold uppercase tracking-[2px]"
+            style={{ color: 'var(--faint)' }}
+          >
             Workspace Mode
           </div>
 
-          <div className="space-y-1 mb-6">
+          <div className="mb-6 space-y-1">
             {(Object.keys(MODE_META) as WorkspaceMode[]).map(key => {
               const item = MODE_META[key];
               const Icon = item.icon;
@@ -488,16 +513,26 @@ export const WorkspaceView: React.FC<WorkspaceViewProps> = ({ onSelectTab }) => 
                 <button
                   key={key}
                   onClick={() => handleModeChange(key)}
-                  className={`w-full flex items-center gap-3 p-2.5 rounded-xl text-left transition-all cursor-pointer ${
+                  className="flex w-full cursor-pointer items-center gap-3 rounded-xl border p-2.5 text-left transition-all"
+                  style={
                     isActive
-                      ? 'bg-[#7C5CFF]/15 border border-[#7C5CFF]/30 text-white'
-                      : 'hover:bg-white/5 border border-transparent text-[#8892B0] hover:text-white'
-                  }`}
+                      ? {
+                          background: 'rgba(124,92,255,0.14)',
+                          borderColor: 'var(--line-strong)',
+                          color: 'var(--fg)',
+                        }
+                      : { borderColor: 'transparent', color: 'var(--muted)' }
+                  }
                 >
-                  <Icon className={`w-4 h-4 ${isActive ? 'text-[#00D4FF]' : 'text-[#8892B0]'}`} />
+                  <Icon
+                    className="h-4 w-4"
+                    style={{ color: isActive ? 'var(--accent-2)' : 'var(--muted)' }}
+                  />
                   <div className="min-w-0 flex-1">
                     <div className="text-xs font-semibold">{item.title}</div>
-                    <div className="text-[10px] text-[#8892B0] truncate">{item.desc}</div>
+                    <div className="truncate text-[10px]" style={{ color: 'var(--faint)' }}>
+                      {item.desc}
+                    </div>
                   </div>
                 </button>
               );
@@ -506,7 +541,10 @@ export const WorkspaceView: React.FC<WorkspaceViewProps> = ({ onSelectTab }) => 
 
           {/* Conversations History */}
           <div className="flex-1 overflow-y-auto">
-            <div className="text-[10px] font-bold tracking-[2px] text-[#71809d] uppercase mb-2">
+            <div
+              className="mb-2 text-[10px] font-bold uppercase tracking-[2px]"
+              style={{ color: 'var(--faint)' }}
+            >
               Conversations
             </div>
             <div className="space-y-1">
@@ -514,41 +552,60 @@ export const WorkspaceView: React.FC<WorkspaceViewProps> = ({ onSelectTab }) => 
                 <div
                   key={c.id}
                   onClick={() => handleSelectConv(c)}
-                  className={`group flex items-center justify-between px-2.5 py-1.5 rounded-lg text-xs cursor-pointer transition-colors ${
+                  className="group flex cursor-pointer items-center justify-between rounded-lg border px-2.5 py-1.5 text-xs transition-colors"
+                  style={
                     c.id === activeId
-                      ? 'bg-[#7C5CFF]/15 text-white font-medium border border-[#7C5CFF]/20'
-                      : 'text-[#8892B0] hover:bg-white/5 hover:text-white'
-                  }`}
+                      ? {
+                          background: 'rgba(124,92,255,0.14)',
+                          borderColor: 'var(--line)',
+                          color: 'var(--fg)',
+                          fontWeight: 500,
+                        }
+                      : { borderColor: 'transparent', color: 'var(--muted)' }
+                  }
                 >
-                  <span className="truncate flex-1 mr-2">{c.title || 'New conversation'}</span>
+                  <span className="mr-2 flex-1 truncate">{c.title || 'New conversation'}</span>
                   <button
                     onClick={e => deleteConversation(c.id, e)}
-                    className="opacity-0 group-hover:opacity-100 hover:text-red-400 p-0.5 rounded transition-opacity"
+                    className="rounded p-0.5 opacity-0 transition-opacity hover:text-red-400 group-hover:opacity-100"
                     title="Delete conversation"
+                    aria-label="Delete conversation"
                   >
-                    <Trash2 className="w-3 h-3" />
+                    <Trash2 className="h-3 w-3" />
                   </button>
                 </div>
               ))}
             </div>
           </div>
 
-          <div className="text-[10.5px] text-[#556480] border-t border-white/5 pt-3 mt-3 leading-relaxed">
+          <div
+            className="mt-3 border-t pt-3 text-[10.5px] leading-relaxed"
+            style={{ borderColor: 'var(--line-soft)', color: 'var(--faint)' }}
+          >
             Powered by Clarivex-1 — our own model, running locally. No external AI providers.
           </div>
         </aside>
 
         {/* Chat Section */}
-        <section className="flex-1 flex flex-col min-w-0 bg-[#070b18]">
+        <section className="flex min-w-0 flex-1 flex-col" style={{ background: 'var(--bg)' }}>
           {/* Subheader */}
-          <div className="h-16 border-b border-white/10 px-4 sm:px-8 flex items-center justify-between shrink-0 bg-[#070b18]/60">
+          <div
+            className="flex h-16 shrink-0 items-center justify-between border-b px-4 sm:px-8"
+            style={{ borderColor: 'var(--line)', background: 'var(--bg-soft)' }}
+          >
             <div>
-              <div className="text-[10px] font-bold tracking-[2px] text-[#71809d] uppercase flex items-center gap-2">
+              <div
+                className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[2px]"
+                style={{ color: 'var(--faint)' }}
+              >
                 <span>Clarivex AI · {currentModeMeta.hint}</span>
               </div>
-              <h1 className="text-base font-bold text-white flex items-center gap-2">
+              <h1
+                className="flex items-center gap-2 text-base font-bold"
+                style={{ color: 'var(--fg)' }}
+              >
                 {currentModeMeta.title}
-                <span className="text-xs text-[#8892B0] font-normal">
+                <span className="text-xs font-normal" style={{ color: 'var(--muted)' }}>
                   ({PERSONA_LABELS[persona]?.name || 'Standard'})
                 </span>
               </h1>
@@ -562,37 +619,54 @@ export const WorkspaceView: React.FC<WorkspaceViewProps> = ({ onSelectTab }) => 
                   setModel(m);
                   saveWorkspace(conversations, mode, m);
                 }}
-                className="bg-[#111a31] border border-white/10 text-white text-xs rounded-lg px-2.5 py-1.5 focus:outline-none focus:border-[#7C5CFF]"
+                className="field !w-auto !py-1.5 !text-xs"
+                aria-label="Model"
               >
                 <option value="auto">Clarivex-1 (Balanced)</option>
                 <option value="fast">Clarivex-1 (Fast)</option>
                 <option value="deep">Clarivex-1 (Deep)</option>
               </select>
-              <div className="hidden sm:flex items-center gap-1.5 text-[10px] font-bold text-emerald-400 tracking-wider">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+              <div
+                className="hidden items-center gap-1.5 text-[10px] font-bold tracking-wider sm:flex"
+                style={{ color: 'var(--accent-3)' }}
+              >
+                <span className="dot-live" style={{ background: 'var(--accent-3)' }} />
                 CLARIVEX-1 LOCAL
               </div>
             </div>
           </div>
 
           {/* Messages Container */}
-          <div className="flex-1 overflow-y-auto px-4 sm:px-8 py-6 space-y-5">
+          <div className="flex-1 space-y-5 overflow-y-auto px-4 py-6 sm:px-8">
             {(!currentConv?.messages || currentConv.messages.length === 0) ? (
-              <div className="max-w-xl mx-auto my-10 text-center animate-in fade-in">
-                <div className="w-14 h-14 rounded-2xl bg-gradient-to-r from-[#7C5CFF] to-[#00D4FF] mx-auto mb-4 flex items-center justify-center font-extrabold text-white text-lg shadow-xl shadow-indigo-500/20">
+              <div className="mx-auto my-10 max-w-xl text-center">
+                <div
+                  className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl text-lg font-extrabold text-white"
+                  style={{
+                    background: 'linear-gradient(135deg, var(--accent), var(--accent-2))',
+                    boxShadow: '0 18px 44px -18px rgba(124,92,255,0.9)',
+                  }}
+                >
                   CX
                 </div>
-                <h2 className="text-2xl font-bold text-white mb-2">How can I help you today?</h2>
-                <p className="text-xs text-[#8892B0] max-w-md mx-auto mb-6 leading-relaxed">
-                  Ask about our services, process, pricing, industries, or careers. Every answer is generated by Clarivex-1, our own model running locally.
+                <h2 className="mb-2 text-2xl font-bold" style={{ color: 'var(--fg)' }}>
+                  How can I help you today?
+                </h2>
+                <p
+                  className="mx-auto mb-6 max-w-md text-xs leading-relaxed"
+                  style={{ color: 'var(--muted)' }}
+                >
+                  Ask about our services, process, pricing, industries, or careers. Every answer is
+                  generated by Clarivex-1, our own model running locally.
                 </p>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-left">
+                <div className="grid grid-cols-1 gap-2.5 text-left sm:grid-cols-2">
                   {STARTER_PROMPTS.map((prompt, i) => (
                     <button
                       key={i}
                       onClick={() => handleSend(prompt)}
-                      className="p-3 rounded-xl bg-[#0d1326] hover:bg-[#151b35] border border-white/10 hover:border-[#7C5CFF]/40 text-xs text-[#aebbd0] hover:text-white transition-all cursor-pointer shadow-sm"
+                      className="card-flat cursor-pointer p-3 text-xs transition-all"
+                      style={{ color: 'var(--fg-soft)' }}
                     >
                       {prompt} →
                     </button>
@@ -603,19 +677,32 @@ export const WorkspaceView: React.FC<WorkspaceViewProps> = ({ onSelectTab }) => 
               currentConv.messages.map((msg, idx) => (
                 <div
                   key={idx}
-                  className={`max-w-3xl mx-auto flex flex-col ${
+                  className={`mx-auto flex max-w-3xl flex-col ${
                     msg.role === 'user' ? 'items-end' : 'items-start'
                   }`}
                 >
-                  <div className="text-[10px] text-[#65728b] mb-1 font-medium px-1 flex items-center gap-1.5">
+                  <div
+                    className="mb-1 flex items-center gap-1.5 px-1 text-[10px] font-medium"
+                    style={{ color: 'var(--faint)' }}
+                  >
                     <span>{msg.role === 'user' ? 'You' : 'Clarivex AI'}</span>
                   </div>
                   <div
-                    className={`max-w-[88%] rounded-2xl px-4 py-3 text-[13px] leading-relaxed shadow-sm ${
+                    className="max-w-[88%] rounded-2xl px-4 py-3 text-[13px] leading-relaxed"
+                    style={
                       msg.role === 'user'
-                        ? 'bg-gradient-to-r from-[#7C5CFF]/30 to-[#00D4FF]/20 border border-[#7C5CFF]/30 text-white rounded-br-xs'
-                        : 'bg-[#111a31] border border-white/10 text-white/95 rounded-bl-xs'
-                    }`}
+                        ? {
+                            background:
+                              'linear-gradient(120deg, rgba(124,92,255,0.28), rgba(0,212,255,0.18))',
+                            border: '1px solid var(--line-strong)',
+                            color: 'var(--fg)',
+                          }
+                        : {
+                            background: 'var(--surface)',
+                            border: '1px solid var(--line)',
+                            color: 'var(--fg-soft)',
+                          }
+                    }
                   >
                     {msg.role === 'assistant' ? (
                       <Markdown content={msg.content} />
@@ -624,28 +711,31 @@ export const WorkspaceView: React.FC<WorkspaceViewProps> = ({ onSelectTab }) => 
                     )}
 
                     {msg.role === 'assistant' && (
-                      <div className="flex items-center gap-2 mt-3 pt-2 border-t border-white/10 text-[11px] text-[#8892B0]">
+                      <div
+                        className="mt-3 flex items-center gap-2 border-t pt-2 text-[11px]"
+                        style={{ borderColor: 'var(--line-soft)', color: 'var(--muted)' }}
+                      >
                         <button
                           onClick={() => handleCopy(msg.content, idx)}
-                          className="flex items-center gap-1 hover:text-white transition-colors cursor-pointer"
+                          className="flex cursor-pointer items-center gap-1 transition-colors hover:opacity-80"
                         >
                           {copiedId === idx ? (
                             <>
-                              <Check className="w-3 h-3 text-emerald-400" />
+                              <Check className="h-3 w-3" style={{ color: 'var(--accent-3)' }} />
                               <span>Copied</span>
                             </>
                           ) : (
                             <>
-                              <Copy className="w-3 h-3" />
+                              <Copy className="h-3 w-3" />
                               <span>Copy</span>
                             </>
                           )}
                         </button>
                         <button
                           onClick={handleRegenerate}
-                          className="flex items-center gap-1 hover:text-white transition-colors cursor-pointer"
+                          className="flex cursor-pointer items-center gap-1 transition-colors hover:opacity-80"
                         >
-                          <RotateCcw className="w-3 h-3" />
+                          <RotateCcw className="h-3 w-3" />
                           <span>Regenerate</span>
                         </button>
                       </div>
@@ -656,10 +746,22 @@ export const WorkspaceView: React.FC<WorkspaceViewProps> = ({ onSelectTab }) => 
             )}
 
             {isGenerating && (
-              <div className="max-w-3xl mx-auto flex flex-col items-start">
-                <div className="text-[10px] text-[#65728b] mb-1 font-medium">Clarivex AI</div>
-                <div className="bg-[#111a31] border border-white/10 px-4 py-3 rounded-2xl rounded-bl-xs text-[13px] text-white/80 flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-[#A48BFF] animate-pulse" />
+              <div className="mx-auto flex max-w-3xl flex-col items-start">
+                <div className="mb-1 text-[10px] font-medium" style={{ color: 'var(--faint)' }}>
+                  Clarivex AI
+                </div>
+                <div
+                  className="flex items-center gap-2 rounded-2xl px-4 py-3 text-[13px]"
+                  style={{
+                    background: 'var(--surface)',
+                    border: '1px solid var(--line)',
+                    color: 'var(--fg-soft)',
+                  }}
+                >
+                  <span
+                    className="h-2 w-2 animate-pulse rounded-full"
+                    style={{ background: 'var(--accent-soft)' }}
+                  />
                   <span>
                     {mode === 'research'
                       ? 'Researching with Clarivex-1...'
@@ -672,19 +774,38 @@ export const WorkspaceView: React.FC<WorkspaceViewProps> = ({ onSelectTab }) => 
           </div>
 
           {/* Composer */}
-          <div className="p-4 sm:px-8 shrink-0 bg-[#070b18]">
-            <div className="max-w-3xl mx-auto bg-[#0d1326] border border-[#7C5CFF]/30 focus-within:border-[#7C5CFF]/60 rounded-2xl p-3 shadow-xl transition-all">
+          <div className="shrink-0 p-4 sm:px-8" style={{ background: 'var(--bg)' }}>
+            <div
+              className="mx-auto max-w-3xl rounded-2xl p-3 transition-all"
+              style={{
+                background: 'var(--surface)',
+                border: '1px solid var(--line-strong)',
+                boxShadow: 'var(--shadow-md)',
+              }}
+            >
               {/* Attachment chips */}
               {files.length > 0 && (
-                <div className="flex flex-wrap gap-2 mb-2 pb-2 border-b border-white/5">
+                <div
+                  className="mb-2 flex flex-wrap gap-2 border-b pb-2"
+                  style={{ borderColor: 'var(--line-soft)' }}
+                >
                   {files.map((f, i) => (
                     <span
                       key={i}
-                      className="inline-flex items-center gap-1 px-2.5 py-1 rounded-md bg-[#7C5CFF]/15 border border-[#7C5CFF]/30 text-xs text-[#b9c5db]"
+                      className="inline-flex items-center gap-1 rounded-md px-2.5 py-1 text-xs"
+                      style={{
+                        background: 'rgba(124,92,255,0.14)',
+                        border: '1px solid var(--line-strong)',
+                        color: 'var(--fg-soft)',
+                      }}
                     >
-                      <span className="truncate max-w-[140px]">{f.name}</span>
-                      <button onClick={() => removeFile(i)} className="hover:text-red-400 cursor-pointer">
-                        <X className="w-3 h-3" />
+                      <span className="max-w-[140px] truncate">{f.name}</span>
+                      <button
+                        onClick={() => removeFile(i)}
+                        className="cursor-pointer hover:text-red-400"
+                        aria-label={`Remove ${f.name}`}
+                      >
+                        <X className="h-3 w-3" />
                       </button>
                     </span>
                   ))}
@@ -707,11 +828,15 @@ export const WorkspaceView: React.FC<WorkspaceViewProps> = ({ onSelectTab }) => 
                   }
                 }}
                 placeholder="Ask Clarivex AI anything about our services, process, pricing or careers..."
-                className="w-full bg-transparent border-0 outline-none text-white text-[13px] placeholder-white/30 resize-none max-h-40"
+                className="max-h-40 w-full resize-none border-0 bg-transparent text-[13px] outline-none"
+                style={{ color: 'var(--fg)' }}
               />
 
-              <div className="flex items-center justify-between pt-2 border-t border-white/5 mt-1">
-                <div className="flex items-center gap-3 flex-wrap">
+              <div
+                className="mt-1 flex items-center justify-between border-t pt-2"
+                style={{ borderColor: 'var(--line-soft)' }}
+              >
+                <div className="flex flex-wrap items-center gap-3">
                   {/* File attach */}
                   <input
                     ref={fileInputRef}
@@ -724,9 +849,10 @@ export const WorkspaceView: React.FC<WorkspaceViewProps> = ({ onSelectTab }) => 
                   <button
                     type="button"
                     onClick={() => fileInputRef.current?.click()}
-                    className="text-xs text-[#8f9db5] hover:text-white flex items-center gap-1 cursor-pointer transition-colors"
+                    className="flex cursor-pointer items-center gap-1 text-xs transition-colors"
+                    style={{ color: 'var(--muted)' }}
                   >
-                    <Paperclip className="w-3.5 h-3.5" />
+                    <Paperclip className="h-3.5 w-3.5" />
                     <span>Attach</span>
                   </button>
 
@@ -734,24 +860,35 @@ export const WorkspaceView: React.FC<WorkspaceViewProps> = ({ onSelectTab }) => 
                   <button
                     type="button"
                     onClick={() => setIsTranscribeModalOpen(true)}
-                    className="text-xs text-[#A48BFF] hover:text-white flex items-center gap-1 cursor-pointer transition-colors px-2 py-0.5 rounded bg-[#7C5CFF]/10 hover:bg-[#7C5CFF]/20 border border-[#7C5CFF]/20"
+                    className="flex cursor-pointer items-center gap-1 rounded px-2 py-0.5 text-xs transition-colors"
+                    style={{
+                      color: 'var(--accent-soft)',
+                      background: 'rgba(124,92,255,0.1)',
+                      border: '1px solid var(--line)',
+                    }}
                     title="Voice input using your browser's speech recognition"
                   >
-                    <Mic className="w-3.5 h-3.5" />
+                    <Mic className="h-3.5 w-3.5" />
                     <span>Voice Input</span>
                   </button>
 
-                  {/* Research mode toggle in composer */}
+                  {/* Research mode toggle */}
                   <button
                     type="button"
                     onClick={() => handleModeChange(mode === 'research' ? 'general' : 'research')}
-                    className={`text-xs flex items-center gap-1 cursor-pointer transition-colors px-2 py-0.5 rounded ${
+                    className="flex cursor-pointer items-center gap-1 rounded px-2 py-0.5 text-xs transition-colors"
+                    style={
                       mode === 'research'
-                        ? 'bg-[#00D4FF]/15 text-[#00D4FF] border border-[#00D4FF]/30 font-semibold'
-                        : 'text-[#8f9db5] hover:text-white'
-                    }`}
+                        ? {
+                            background: 'rgba(0,212,255,0.14)',
+                            border: '1px solid rgba(0,212,255,0.3)',
+                            color: 'var(--accent-2)',
+                            fontWeight: 600,
+                          }
+                        : { color: 'var(--muted)' }
+                    }
                   >
-                    <Globe className="w-3.5 h-3.5" />
+                    <Globe className="h-3.5 w-3.5" />
                     <span>Research {mode === 'research' ? 'On' : 'Off'}</span>
                   </button>
 
@@ -759,7 +896,8 @@ export const WorkspaceView: React.FC<WorkspaceViewProps> = ({ onSelectTab }) => 
                     <button
                       type="button"
                       onClick={() => setFiles([])}
-                      className="text-[11px] text-[#71809d] hover:text-white cursor-pointer"
+                      className="cursor-pointer text-[11px]"
+                      style={{ color: 'var(--faint)' }}
                     >
                       Clear files
                     </button>
@@ -770,24 +908,34 @@ export const WorkspaceView: React.FC<WorkspaceViewProps> = ({ onSelectTab }) => 
                   {isGenerating ? (
                     <button
                       onClick={handleStop}
-                      className="px-3 py-1.5 rounded-lg bg-red-500/10 border border-red-500/30 text-red-400 text-xs font-medium flex items-center gap-1 cursor-pointer hover:bg-red-500/20"
+                      className="flex cursor-pointer items-center gap-1 rounded-lg px-3 py-1.5 text-xs font-medium"
+                      style={{
+                        background: 'rgba(239,68,68,0.1)',
+                        border: '1px solid rgba(239,68,68,0.3)',
+                        color: '#FF8A8A',
+                      }}
                     >
-                      <Square className="w-3 h-3 fill-current" />
+                      <Square className="h-3 w-3 fill-current" />
                       Stop
                     </button>
                   ) : (
                     <button
                       onClick={() => handleSend()}
                       disabled={!input.trim() && files.length === 0}
-                      className="w-8 h-8 rounded-lg bg-gradient-to-r from-[#7C5CFF] to-[#00D4FF] hover:opacity-90 disabled:opacity-30 text-white flex items-center justify-center cursor-pointer transition-all shadow-md"
+                      aria-label="Send message"
+                      className="flex h-8 w-8 cursor-pointer items-center justify-center rounded-lg text-white transition-all disabled:opacity-30"
+                      style={{
+                        background: 'linear-gradient(120deg, var(--accent), var(--accent-2))',
+                        boxShadow: '0 8px 22px -10px rgba(124,92,255,0.9)',
+                      }}
                     >
-                      <Send className="w-3.5 h-3.5" />
+                      <Send className="h-3.5 w-3.5" />
                     </button>
                   )}
                 </div>
               </div>
             </div>
-            <div className="text-center text-[10px] text-[#4f5c73] mt-2">
+            <div className="mt-2 text-center text-[10px]" style={{ color: 'var(--faint)' }}>
               Clarivex-1 runs entirely on this server. No external AI providers, no API keys.
             </div>
           </div>

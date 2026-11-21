@@ -140,36 +140,36 @@ export const AudioTranscriberModal: React.FC<AudioTranscriberModalProps> = ({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-md animate-in fade-in">
-      <div className="w-full max-w-lg bg-[#151B35] border border-[#7C5CFF]/30 rounded-3xl p-6 sm:p-8 shadow-2xl relative flex flex-col overflow-hidden">
-        <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-[#7C5CFF] to-[#00D4FF]" />
+    <div className="fixed inset-0 z-[130] flex items-center justify-center p-4 backdrop-blur-md" style={{ background: 'rgba(4,7,18,0.72)' }}>
+      <div className="relative flex w-full max-w-lg flex-col overflow-hidden rounded-3xl p-6 sm:p-8" style={{ background: 'var(--elevated)', border: '1px solid var(--line-strong)', boxShadow: 'var(--shadow-lg)' }}>
+        <div className="absolute left-0 right-0 top-0 h-[2px]" style={{ background: 'linear-gradient(90deg, var(--accent), var(--accent-2))' }} />
 
         <div className="flex items-center justify-between mb-6">
           <div className="flex items-center gap-2.5">
-            <div className="w-9 h-9 rounded-xl bg-[#7C5CFF]/15 border border-[#7C5CFF]/30 flex items-center justify-center text-[#A48BFF]">
+            <div className="flex h-9 w-9 items-center justify-center rounded-xl" style={{ background: 'rgba(124,92,255,0.14)', border: '1px solid var(--line-strong)', color: 'var(--accent-soft)' }}>
               <Volume2 className="w-5 h-5" />
             </div>
             <div>
-              <h3 className="font-extrabold text-[16px] text-white flex items-center gap-2">
+              <h3 className="flex items-center gap-2 text-[16px] font-extrabold" style={{ color: 'var(--fg)' }}>
                 Voice Input
-                <span className="text-[10px] font-bold text-[#00D4FF] bg-[#00D4FF]/10 px-2 py-0.5 rounded-full">
+                <span className="rounded-full px-2 py-0.5 text-[10px] font-bold" style={{ color: 'var(--accent-2)', background: 'rgba(0,212,255,0.1)' }}>
                   on-device
                 </span>
               </h3>
-              <p className="text-[11px] text-[#8892B0]">
+              <p className="text-[11px]" style={{ color: 'var(--muted)' }}>
                 Speak your prompt — transcribed by your browser, no server needed
               </p>
             </div>
           </div>
           <button
             onClick={onClose}
-            className="p-1.5 text-[#8892B0] hover:text-white rounded-lg transition-colors cursor-pointer"
+            className="cursor-pointer rounded-lg p-1.5 transition-colors" style={{ color: 'var(--muted)' }}
           >
             <X className="w-5 h-5" />
           </button>
         </div>
 
-        <div className="py-8 flex flex-col items-center justify-center border border-white/5 bg-[#0B1020]/60 rounded-2xl mb-6 text-center">
+        <div className="mb-6 flex flex-col items-center justify-center rounded-2xl py-8 text-center" style={{ background: 'var(--surface-2)', border: '1px solid var(--line-soft)' }}>
           {isRecording ? (
             <div className="space-y-4 flex flex-col items-center">
               <div className="relative">
@@ -181,30 +181,30 @@ export const AudioTranscriberModal: React.FC<AudioTranscriberModalProps> = ({
                   <Square className="w-6 h-6 fill-current" />
                 </button>
               </div>
-              <div className="font-mono text-lg font-bold text-red-400">{formatTime(recordDuration)}</div>
-              <p className="text-xs text-[#8892B0]">Listening... Click to stop</p>
-              {interim && <p className="text-xs text-[#A48BFF] italic px-6">{interim}</p>}
+              <div className="font-mono text-lg font-bold" style={{ color: '#FF8A8A' }}>{formatTime(recordDuration)}</div>
+              <p className="text-xs" style={{ color: 'var(--muted)' }}>Listening... Click to stop</p>
+              {interim && <p className="px-6 text-xs italic" style={{ color: 'var(--accent-soft)' }}>{interim}</p>}
             </div>
           ) : (
             <div className="space-y-4 flex flex-col items-center">
               <button
                 onClick={startRecording}
                 disabled={!supported}
-                className="w-16 h-16 rounded-full bg-gradient-to-r from-[#7C5CFF] to-[#00D4FF] text-white flex items-center justify-center shadow-lg shadow-indigo-500/30 hover:scale-105 disabled:opacity-40 disabled:hover:scale-100 transition-all cursor-pointer"
+                className="flex h-16 w-16 cursor-pointer items-center justify-center rounded-full text-white transition-all hover:scale-105 disabled:opacity-40 disabled:hover:scale-100" style={{ background: 'linear-gradient(120deg, var(--accent), var(--accent-2))', boxShadow: '0 18px 44px -14px rgba(124,92,255,0.95)' }}
               >
                 <Mic className="w-7 h-7" />
               </button>
-              <div className="text-xs font-semibold text-white">
+              <div className="text-xs font-semibold" style={{ color: 'var(--fg)' }}>
                 {supported ? 'Click to start speaking' : 'Speech recognition unavailable'}
               </div>
-              <p className="text-[11px] text-[#8892B0] max-w-xs">
+              <p className="max-w-xs text-[11px]" style={{ color: 'var(--muted)' }}>
                 Audio never leaves your device. Works in Chrome, Edge and Safari.
               </p>
             </div>
           )}
 
           {error && (
-            <div className="mt-4 mx-4 flex items-start gap-2 text-[11px] text-amber-300 bg-amber-500/10 border border-amber-500/25 rounded-lg px-3 py-2 text-left">
+            <div className="mx-4 mt-4 flex items-start gap-2 rounded-lg px-3 py-2 text-left text-[11px]" style={{ color: '#FBBF24', background: 'rgba(245,158,11,0.1)', border: '1px solid rgba(245,158,11,0.25)' }}>
               <AlertCircle className="w-3.5 h-3.5 shrink-0 mt-0.5" />
               <span>{error}</span>
             </div>
@@ -213,17 +213,17 @@ export const AudioTranscriberModal: React.FC<AudioTranscriberModalProps> = ({
 
         {transcription && (
           <div className="space-y-3">
-            <div className="flex items-center justify-between text-xs font-bold text-[#8892B0] uppercase tracking-wider">
+            <div className="flex items-center justify-between text-xs font-bold uppercase tracking-wider" style={{ color: 'var(--muted)' }}>
               <span>Transcription</span>
               <button
                 onClick={handleCopy}
-                className="flex items-center gap-1 text-[#00D4FF] hover:text-white transition-colors cursor-pointer lowercase font-medium"
+                className="flex cursor-pointer items-center gap-1 font-medium lowercase transition-colors" style={{ color: 'var(--accent-2)' }}
               >
                 {copied ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
                 {copied ? 'Copied' : 'Copy text'}
               </button>
             </div>
-            <div className="p-4 rounded-xl bg-[#0B1020] border border-[#7C5CFF]/20 text-[13px] text-white leading-relaxed max-h-36 overflow-y-auto whitespace-pre-wrap">
+            <div className="max-h-36 overflow-y-auto whitespace-pre-wrap rounded-xl p-4 text-[13px] leading-relaxed" style={{ background: 'var(--surface-2)', border: '1px solid var(--line)', color: 'var(--fg)' }}>
               {transcription}
             </div>
 
@@ -233,7 +233,7 @@ export const AudioTranscriberModal: React.FC<AudioTranscriberModalProps> = ({
                   onApplyTranscription(transcription);
                   onClose();
                 }}
-                className="w-full btn-grad text-white py-3 rounded-xl text-xs font-bold flex items-center justify-center gap-1.5 cursor-pointer shadow-lg"
+                className="w-full btn btn-primary py-3 rounded-xl text-xs font-bold flex items-center justify-center gap-1.5 cursor-pointer"
               >
                 <Sparkles className="w-4 h-4" />
                 Insert Transcription Into Prompt
