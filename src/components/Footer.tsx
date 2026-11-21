@@ -6,6 +6,17 @@ interface FooterProps {
   onSelectTab: (tab: PageTab) => void;
 }
 
+const COMPANY_LINKS: { tab: PageTab; key: string }[] = [
+  { tab: 'home', key: 'nav.home' },
+  { tab: 'about', key: 'nav.about' },
+  { tab: 'workspace', key: 'nav.workspace' },
+  { tab: 'careers', key: 'nav.careers' },
+  { tab: 'contact', key: 'nav.contact' },
+];
+
+const SERVICE_LINKS = ['AI Chatbots', 'AI Automation', 'Enterprise Software', 'SaaS Platforms'];
+const INDUSTRY_LINKS = ['Healthcare', 'Finance & Banking', 'Retail & E-Commerce', 'Manufacturing'];
+
 export const Footer: React.FC<FooterProps> = ({ onSelectTab }) => {
   const { t } = useLanguage();
 
@@ -14,18 +25,41 @@ export const Footer: React.FC<FooterProps> = ({ onSelectTab }) => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  const linkStyle: React.CSSProperties = { color: 'var(--muted)' };
+
+  const LinkButton: React.FC<{ tab: PageTab; children: React.ReactNode; accent?: boolean }> = ({
+    tab,
+    children,
+    accent,
+  }) => (
+    <button
+      onClick={() => handleNav(tab)}
+      className="cursor-pointer text-left transition-colors"
+      style={accent ? { color: 'var(--accent-2)', fontWeight: 500 } : linkStyle}
+      onMouseEnter={e => (e.currentTarget.style.color = accent ? 'var(--fg)' : 'var(--accent-soft)')}
+      onMouseLeave={e =>
+        (e.currentTarget.style.color = accent ? 'var(--accent-2)' : 'var(--muted)')
+      }
+    >
+      {children}
+    </button>
+  );
+
   return (
-    <footer className="bg-[#0B1020] border-t border-[#7C5CFF]/15 transition-colors">
-      <div className="max-w-7xl mx-auto px-6 py-14 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
+    <footer style={{ background: 'var(--bg-soft)', borderTop: '1px solid var(--line)' }}>
+      <div className="container-x grid grid-cols-1 gap-10 py-14 md:grid-cols-2 lg:grid-cols-5">
         {/* Brand */}
         <div className="lg:col-span-2">
-          <div className="flex items-center gap-2.5 mb-4">
-            <div className="w-[34px] h-[34px] rounded-lg bg-[#7C5CFF]/15 border border-[#7C5CFF]/30 flex items-center justify-center">
-              <svg viewBox="0 0 24 24" fill="none" className="w-[17px] h-[17px]">
+          <div className="mb-4 flex items-center gap-2.5">
+            <div
+              className="flex h-[34px] w-[34px] items-center justify-center rounded-lg"
+              style={{ background: 'rgba(124,92,255,0.14)', border: '1px solid var(--line-strong)' }}
+            >
+              <svg viewBox="0 0 24 24" fill="none" className="h-[17px] w-[17px]">
                 <defs>
                   <linearGradient id="footerGrad" x1="0" y1="0" x2="1" y2="1">
-                    <stop offset="0%" stopColor="#7C5CFF" />
-                    <stop offset="100%" stopColor="#00D4FF" />
+                    <stop offset="0%" stopColor="var(--accent)" />
+                    <stop offset="100%" stopColor="var(--accent-2)" />
                   </linearGradient>
                 </defs>
                 <line x1="5" y1="5" x2="19" y2="19" stroke="url(#footerGrad)" strokeWidth="2.5" strokeLinecap="round" />
@@ -33,11 +67,11 @@ export const Footer: React.FC<FooterProps> = ({ onSelectTab }) => {
                 <circle cx="12" cy="12" r="3" fill="url(#footerGrad)" />
               </svg>
             </div>
-            <span className="font-extrabold text-[17px] tracking-[1px] text-white">
+            <span className="text-[17px] font-extrabold tracking-[1px]" style={{ color: 'var(--fg)' }}>
               CLARIVEX<span className="grad-text">.AI</span>
             </span>
           </div>
-          <p className="text-[13px] text-[#8892B0] leading-relaxed max-w-sm mb-6">
+          <p className="mb-6 max-w-sm text-[13px] leading-relaxed" style={{ color: 'var(--muted)' }}>
             {t('footer.tagline')}
           </p>
           <div className="flex items-center gap-3">
@@ -45,12 +79,32 @@ export const Footer: React.FC<FooterProps> = ({ onSelectTab }) => {
               href="https://www.linkedin.com/company/clarivex-ai/"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-9 h-9 rounded-lg bg-[#7C5CFF]/10 border border-[#7C5CFF]/20 flex items-center justify-center text-[#A48BFF] hover:bg-[#7C5CFF]/25 hover:border-[#7C5CFF]/40 transition-all"
+              className="flex h-9 w-9 items-center justify-center rounded-lg transition-all"
+              style={{
+                background: 'rgba(124,92,255,0.1)',
+                border: '1px solid var(--line)',
+                color: 'var(--accent-soft)',
+              }}
               title="Clarivex.AI on LinkedIn"
             >
-              <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
+              <svg className="h-4 w-4 fill-current" viewBox="0 0 24 24">
                 <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z" />
                 <circle cx="4" cy="4" r="2" />
+              </svg>
+            </a>
+            <a
+              href="mailto:hello@clarivex.ai"
+              className="flex h-9 w-9 items-center justify-center rounded-lg transition-all"
+              style={{
+                background: 'rgba(0,212,255,0.1)',
+                border: '1px solid var(--line)',
+                color: 'var(--accent-2-soft)',
+              }}
+              title="Email Clarivex.AI"
+            >
+              <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <rect x="2" y="4" width="20" height="16" rx="2" />
+                <path d="m2 7 10 6 10-6" />
               </svg>
             </a>
           </div>
@@ -58,102 +112,68 @@ export const Footer: React.FC<FooterProps> = ({ onSelectTab }) => {
 
         {/* Company Links */}
         <div>
-          <h4 className="font-bold text-[12px] tracking-[1.5px] text-white mb-4 uppercase">
+          <h4
+            className="mb-4 text-[12px] font-bold uppercase tracking-[1.5px]"
+            style={{ color: 'var(--fg)' }}
+          >
             {t('footer.company')}
           </h4>
           <ul className="space-y-2.5 text-[13px]">
-            <li>
-              <button onClick={() => handleNav('home')} className="text-[#8892B0] hover:text-[#A48BFF] transition-colors cursor-pointer">
-                {t('nav.home')}
-              </button>
-            </li>
-            <li>
-              <button onClick={() => handleNav('about')} className="text-[#8892B0] hover:text-[#A48BFF] transition-colors cursor-pointer">
-                {t('nav.about')}
-              </button>
-            </li>
-            <li>
-              <button onClick={() => handleNav('workspace')} className="text-[#00D4FF] hover:text-white transition-colors cursor-pointer font-medium">
-                {t('nav.workspace')}
-              </button>
-            </li>
-            <li>
-              <button onClick={() => handleNav('careers')} className="text-[#8892B0] hover:text-[#A48BFF] transition-colors cursor-pointer">
-                {t('nav.careers')}
-              </button>
-            </li>
-            <li>
-              <button onClick={() => handleNav('contact')} className="text-[#8892B0] hover:text-[#A48BFF] transition-colors cursor-pointer">
-                {t('nav.contact')}
-              </button>
-            </li>
+            {COMPANY_LINKS.map(l => (
+              <li key={l.tab}>
+                <LinkButton tab={l.tab} accent={l.tab === 'workspace'}>
+                  {t(l.key)}
+                </LinkButton>
+              </li>
+            ))}
           </ul>
         </div>
 
         {/* Services Links */}
         <div>
-          <h4 className="font-bold text-[12px] tracking-[1.5px] text-white mb-4 uppercase">
+          <h4
+            className="mb-4 text-[12px] font-bold uppercase tracking-[1.5px]"
+            style={{ color: 'var(--fg)' }}
+          >
             {t('footer.services')}
           </h4>
           <ul className="space-y-2.5 text-[13px]">
-            <li>
-              <button onClick={() => handleNav('services')} className="text-[#8892B0] hover:text-[#A48BFF] transition-colors cursor-pointer">
-                AI Chatbots
-              </button>
-            </li>
-            <li>
-              <button onClick={() => handleNav('services')} className="text-[#8892B0] hover:text-[#A48BFF] transition-colors cursor-pointer">
-                AI Automation
-              </button>
-            </li>
-            <li>
-              <button onClick={() => handleNav('services')} className="text-[#8892B0] hover:text-[#A48BFF] transition-colors cursor-pointer">
-                Enterprise Software
-              </button>
-            </li>
-            <li>
-              <button onClick={() => handleNav('services')} className="text-[#8892B0] hover:text-[#A48BFF] transition-colors cursor-pointer">
-                SaaS Platforms
-              </button>
-            </li>
+            {SERVICE_LINKS.map(s => (
+              <li key={s}>
+                <LinkButton tab="services">{s}</LinkButton>
+              </li>
+            ))}
           </ul>
         </div>
 
         {/* Industries Links */}
         <div>
-          <h4 className="font-bold text-[12px] tracking-[1.5px] text-white mb-4 uppercase">
+          <h4
+            className="mb-4 text-[12px] font-bold uppercase tracking-[1.5px]"
+            style={{ color: 'var(--fg)' }}
+          >
             {t('nav.industries')}
           </h4>
           <ul className="space-y-2.5 text-[13px]">
-            <li>
-              <button onClick={() => handleNav('industries')} className="text-[#8892B0] hover:text-[#A48BFF] transition-colors cursor-pointer">
-                Healthcare
-              </button>
-            </li>
-            <li>
-              <button onClick={() => handleNav('industries')} className="text-[#8892B0] hover:text-[#A48BFF] transition-colors cursor-pointer">
-                Finance & Banking
-              </button>
-            </li>
-            <li>
-              <button onClick={() => handleNav('industries')} className="text-[#8892B0] hover:text-[#A48BFF] transition-colors cursor-pointer">
-                Retail & E-Commerce
-              </button>
-            </li>
-            <li>
-              <button onClick={() => handleNav('industries')} className="text-[#8892B0] hover:text-[#A48BFF] transition-colors cursor-pointer">
-                Manufacturing
-              </button>
-            </li>
+            {INDUSTRY_LINKS.map(i => (
+              <li key={i}>
+                <LinkButton tab="industries">{i}</LinkButton>
+              </li>
+            ))}
           </ul>
         </div>
       </div>
 
       {/* Bottom Bar */}
-      <div className="border-t border-white/5 py-4 px-6">
-        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 text-[12px] text-white/30">
-          <div>© 2026 Clarivex.AI · {t('footer.headquarters')} · {t('footer.allRights')}</div>
-          <div className="tracking-[2px] font-semibold text-[11px] text-white/20">
+      <div style={{ borderTop: '1px solid var(--line-soft)' }} className="px-6 py-4">
+        <div
+          className="container-x flex flex-col items-center justify-between gap-3 text-[12px] sm:flex-row"
+          style={{ color: 'var(--faint)' }}
+        >
+          <div>
+            © 2026 Clarivex.AI · {t('footer.headquarters')} · {t('footer.allRights')}
+          </div>
+          <div className="text-[11px] font-semibold tracking-[2px]">
             CLARITY · INTELLIGENCE · IMPACT
           </div>
         </div>

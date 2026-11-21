@@ -441,6 +441,68 @@
 }
 
 /* ============================================================
+   FORM CONTROLS
+   ============================================================ */
+
+.field-label {
+  display: block;
+  margin-bottom: 0.4rem;
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--faint);
+}
+
+.field {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  font-size: 0.82rem;
+  font-family: inherit;
+  color: var(--fg);
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  transition: border-color 0.25s ease, background-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.field::placeholder { color: var(--faint); }
+
+.field:focus {
+  outline: none;
+  border-color: var(--accent);
+  background: var(--surface);
+  box-shadow: 0 0 0 3px rgba(124, 92, 255, 0.16);
+}
+
+textarea.field { resize: vertical; min-height: 96px; }
+
+select.field {
+  appearance: none;
+  background-image: linear-gradient(45deg, transparent 50%, var(--muted) 50%),
+                    linear-gradient(135deg, var(--muted) 50%, transparent 50%);
+  background-position: calc(100% - 18px) calc(50% + 1px), calc(100% - 13px) calc(50% + 1px);
+  background-size: 5px 5px, 5px 5px;
+  background-repeat: no-repeat;
+  padding-right: 2.4rem;
+  cursor: pointer;
+}
+
+select.field option {
+  background: var(--surface-solid);
+  color: var(--fg);
+}
+
+.field-error {
+  padding: 0.7rem 0.9rem;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  color: #FF8A8A;
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.28);
+}
+
+/* ============================================================
    BACKDROPS
    ============================================================ */
 
