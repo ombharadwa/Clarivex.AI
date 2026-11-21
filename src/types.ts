@@ -28,6 +28,14 @@ export interface WorkspaceConversation {
   created: number;
   updated: number;
 }
+export interface ServiceDetail {
+  overview: string;
+  deliverables: string[];
+  stack: string[];
+  timeline: string;
+  outcomes: { label: string; value: string }[];
+}
+
 export interface ServiceItem {
   id: string;
   num: string;
@@ -35,6 +43,7 @@ export interface ServiceItem {
   name: string;
   desc: string;
   icon: string;
+  detail: ServiceDetail;
 }
 
 export interface IndustryItem {
