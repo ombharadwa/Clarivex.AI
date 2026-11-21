@@ -1,4 +1,4 @@
-import { getClarivex1, ChatTurn } from '../server/clarivex1';
+import { getClarivex1, ChatTurn } from './_lib/clarivex1.js';
 
 const MAX_ATTACHMENT_CHARS = 6000;
 

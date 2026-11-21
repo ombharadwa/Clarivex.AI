@@ -1,4 +1,4 @@
-import { getClarivex1 } from '../server/clarivex1';
+import { getClarivex1 } from './_lib/clarivex1.js';
 
 export default function handler(_req: any, res: any) {
   const model = getClarivex1();
